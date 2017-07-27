@@ -11,4 +11,5 @@ virtenv/
 dist/
 build/
 .env/
+env/
 .idea/
