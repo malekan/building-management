@@ -1,0 +1,14 @@
+*.py[co]
+*.sw[po]
+*.bak
+*.orig
+*~
+*.log
+.project
+.pydevproject
+venv/
+virtenv/
+dist/
+build/
+.env/
+.idea/
