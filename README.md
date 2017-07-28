@@ -1,3 +1,3 @@
-**Building Management Web Application**
+<strong>**Building Management Web Application**</strong>
 <br>
-`SAD Course Project`
+<p style="font-size: 16px">SAD Course Project</p>
