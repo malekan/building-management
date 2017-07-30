@@ -1,5 +1,5 @@
 from django import forms
-from .models import Building, Unit
+from .models import Building, Unit, Facility
 
 
 class BuildingForm(forms.ModelForm):
@@ -29,3 +29,15 @@ class UnitForm(forms.ModelForm):
         self.fields['description'].label = "توضیح"
         self.fields['number_of_floors'].label = "تعداد طبقات"
         self.fields['number_of_elevators'].label = "تعداد آسانسورها"
+
+
+class FacilityForm(forms.ModelForm):
+    class Meta:
+        model = Facility
+        fields = ('name', 'description', 'building')
+
+    def __init__(self, *args, **kwargs):
+        super(FacilityForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = "نام"
+        self.fields['description'].label = "توضیحات"
+        self.fields['building'].label = "ساختمان"
