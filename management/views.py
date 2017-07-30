@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import BuildingForm
+from .forms import BuildingForm, UnitForm
 
 
 def index(request):
@@ -17,3 +17,8 @@ def signup(request):
 def new_building(request):
     form = BuildingForm()
     return render(request, 'management/new_building_form.html', {'form': form})
+
+
+def new_unit(request):
+    form = UnitForm()
+    return render(request, 'management/new_unit_form.html', {'form': form})
