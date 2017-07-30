@@ -25,10 +25,12 @@ class UnitForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UnitForm, self).__init__(*args, **kwargs)
         self.fields['unit_type'].label = "نوع واحد"
-        self.fields['area'].label = "آدرس"
+        self.fields['area'].label = "مساحت"
+        self.fields['number_of_bedrooms'].label = "تعداد اتاق خواب"
+        self.fields['number_of_parking_spaces'].label = "تعداد پارکینگ"
+        self.fields['number_of_storage_rooms'].label = "تعداد انباری"
         self.fields['description'].label = "توضیح"
-        self.fields['number_of_floors'].label = "تعداد طبقات"
-        self.fields['number_of_elevators'].label = "تعداد آسانسورها"
+        self.fields['owner'].label = "مالک"
 
 
 class FacilityForm(forms.ModelForm):
