@@ -48,10 +48,10 @@ class Unit(models.Model):
     description = models.TextField()
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='units')
+    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='owned_units')
     ownership_info = models.TextField(max_length=long_description_length, blank=True)
     rental_status = models.BooleanField(default=False)
-    tenant = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    tenant = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='rented_units')
 
 
 class Pictures(models.Model):
@@ -105,8 +105,8 @@ class Cost(models.Model):
 
 
 class Message(models.Model):
-    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='messages')
-    receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+    sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='sent_messages')
+    receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='received_messages')
     date_time = models.DateTimeField()
     title = models.CharField(max_length=2 * names_length)
     text = models.TextField(max_length=3 * long_description_length)
