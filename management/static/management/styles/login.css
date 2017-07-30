@@ -1,0 +1,22 @@
+html, body {
+  height: 100%; }
+
+* {
+  box-sizing: border-box; }
+
+.container {
+  margin-top: 18%; }
+
+a {
+  text-decoration: none; }
+
+.btn {
+  width: 48%; }
+
+.login-btn {
+  float: left; }
+
+.signup-btn {
+  float: right; }
+
+/*# sourceMappingURL=login.css.map */

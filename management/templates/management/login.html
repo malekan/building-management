@@ -1,0 +1,29 @@
+{% extends 'management/base_guest.html' %}
+{% block title %}ورود | سیما{% endblock %}
+{% load staticfiles %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'management/styles/login.css' %}"/>
+{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form id="login-form" action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label" for="username_id">نام کاربری :</label>
+                    <input class="form-control" id="username_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">رمز عبور</label>
+                    <input type="password" class="form-control" id="pwd" required>
+                </div>
+                <button type="submit" id="login-btn" class="login-btn btn btn-default">ورود</button>
+                <a href="signup.html"><button type="button" class="signup-btn btn btn-default">ثبت نام</button></a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

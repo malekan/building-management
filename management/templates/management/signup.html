@@ -1,0 +1,36 @@
+{% extends 'management/base_guest.html' %}
+{% block title %}ثبت نام | سیما{% endblock %}
+{% load staticfiles %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'management/styles/signup.css' %}"/>
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="fname">نام:</label>
+                    <input class="form-control" id="fname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lname">نام خانوادگی:</label>
+                    <input class="form-control" id="lname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">ایمیل:</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="username_id">نام کاربری:</label>
+                    <input class="form-control" id="username_id" required>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">رمز عبور:</label>
+                    <input type="password" class="form-control" id="pwd" required>
+                </div>
+                <button type="submit" id="signup-btn" class="btn btn-default">ثبت نام</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+html, body {
+  height: 100%; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.container {
+  margin-top: 18%; }
+
+#signup-btn {
+  width: 100%; }
+
+/*# sourceMappingURL=signup.css.map */

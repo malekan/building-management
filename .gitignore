@@ -172,4 +172,8 @@ ENV/
 # mkdocs documentation
 /site
 
+### Sass ###
+.sass-cache/
+*.css.map
+
 # End of https://www.gitignore.io/api/python,django,pycharm

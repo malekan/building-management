@@ -1,6 +1,9 @@
 .navbar {
     border: none;
     border-radius: 0;
-    background-color: #0e76a8;
+    background-color: #1c94c4;
 }
 
+body {
+    direction: rtl;
+}
