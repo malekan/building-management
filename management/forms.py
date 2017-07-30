@@ -21,3 +21,11 @@ class UnitForm(forms.ModelForm):
         model = Unit
         fields = ('unit_type', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
                   'number_of_storage_rooms', 'description', 'owner')
+
+    def __init__(self, *args, **kwargs):
+        super(UnitForm, self).__init__(*args, **kwargs)
+        self.fields['unit_type'].label = "نوع واحد"
+        self.fields['area'].label = "آدرس"
+        self.fields['description'].label = "توضیح"
+        self.fields['number_of_floors'].label = "تعداد طبقات"
+        self.fields['number_of_elevators'].label = "تعداد آسانسورها"
