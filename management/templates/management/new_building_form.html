@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!--BEGIN PAGE WRAPPER-->
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                ثبت ساختمان جدید
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="#">مدیریت ساختمان</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">داشبورد</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-6">
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">ثبت ساختمان جدید</div>
+                        <div class="panel-body">
+                            <form method="POST" class="post-form">{% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="save btn btn-default">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
