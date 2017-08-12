@@ -9,26 +9,26 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <form id="signup-form">
+            <form id="signup-form" method="post">
                 <div class="form-group">
-                    <label for="fname">نام:</label>
-                    <input class="form-control" id="fname" required>
+                    <label for="fullname">نام و خانوادگی</label>
+                    <input class="form-control" id="fullname" name="fname" required />
                 </div>
                 <div class="form-group">
-                    <label for="lname">نام خانوادگی:</label>
-                    <input class="form-control" id="lname" required>
+                    <label for="signup_tel">شماره همراه</label>
+                    <input class="form-control" id="signup_tel" name="signup_tel" required />
                 </div>
                 <div class="form-group">
-                    <label for="email">ایمیل:</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <label for="email">ایمیل</label>
+                    <input type="email" class="form-control" id="email" name="email" required />
                 </div>
                 <div class="form-group">
-                    <label for="username_id">نام کاربری:</label>
-                    <input class="form-control" id="username_id" required>
+                    <label for="username_id">نام کاربری</label>
+                    <input class="form-control" id="username_id" name="username" required />
                 </div>
                 <div class="form-group">
-                    <label for="pwd">رمز عبور:</label>
-                    <input type="password" class="form-control" id="pwd" required>
+                    <label for="pwd">رمز عبور</label>
+                    <input type="password" class="form-control" id="pwd" name="pwd" required>
                 </div>
                 <button type="submit" id="signup-btn" class="btn btn-default">ثبت نام</button>
             </form>

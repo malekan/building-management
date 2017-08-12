@@ -176,4 +176,7 @@ ENV/
 .sass-cache/
 *.css.map
 
+### Less ###
+*.less
+
 # End of https://www.gitignore.io/api/python,django,pycharm
