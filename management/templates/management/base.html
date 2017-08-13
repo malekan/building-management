@@ -49,7 +49,7 @@
         <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
             <div class="news-update-box hidden-xs">
                 <ul id="news-update" class="ticker list-unstyled">
-                    <li>محمدمهدی فاریابی عزیز خوش آمدید. سیما, سامانه یکپارچه مدیریت آپارتمان</li>
+                    <li style="color : white">محمدمهدی فاریابی عزیز خوش آمدید. سیما, سامانه یکپارچه مدیریت آپارتمان</li>
                 </ul>
             </div>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
@@ -106,8 +106,9 @@
                 </li>
                         <div id="collapse1" class="sublinks collapse list-group">
                             <a class="list-group-item small" href="">پرداخت قبوض</a>
+                            <a class="list-group-item small" href="">دریافت سوابق مالی</a>
                             <a class="list-group-item small" href="">رزرو امکانات ساختمان</a>
-                            <a class="list-group-item small" href="">پرداخت قبوض</a>
+                            <a class="list-group-item small" href="">حذف واحد</a>
                         </div>
 
 
@@ -117,28 +118,17 @@
                 </i><span class="menu-title">استیجار واحد مسکونی</span></a>
                 </li>
                         <div id="collapse2" class="sublinks collapse list-group">
-                            <a class="list-group-item small" href="">ویرایش مستاجر</a>
                             <a class="list-group-item small" href="">ثبت مستاجر</a>
+                            <a class="list-group-item small" href="">ویرایش مستاجر</a>
                         </div>
 
 
 
                 <li><a data-toggle="collapse" href="#collapse3"><i class="fa fa-edit fa-fw">
                     <div class="icon-bg bg-violet"></div>
-                </i><span class="menu-title">مدیریت سامانه</span></a>
-                </li>
-
-                        <div id="collapse3" class="sublinks collapse list-group">
-                            <a class="list-group-item small" href="">one</a>
-                            <a class="list-group-item small" href="">two</a>
-                            <a class="list-group-item small" href="">three</a>
-                        </div>
-
-                <li><a data-toggle="collapse" href="#collapse4"><i class="fa fa-th-list fa-fw">
-                    <div class="icon-bg bg-blue"></div>
                 </i><span class="menu-title">مدیریت ساختمان</span></a>
                 </li>
-                        <div id="collapse4" class="sublinks collapse list-group">
+                        <div id="collapse3" class="sublinks collapse list-group">
                             <a class="list-group-item small" href="/management/building/new">ثبت ساختمان جدید</a>
                             <a class="list-group-item small" href="">ویرایش ساختمان ها</a>
                             <a class="list-group-item small" href="/management/unit/new">قبت واحد مسکونی جدید</a>
@@ -182,19 +172,8 @@
 
                 <li><a href="/email.html"><i class="fa fa-envelope-o">
                     <div class="icon-bg bg-primary"></div>
-                </i><span class="menu-title">ایمیل</span></a>
+                </i><span class="menu-title">پیام رسانی</span></a>
                 </li>
-
-                <li><a href="Dropdown.html"><i class="fa fa-sitemap fa-fw">
-                    <div class="icon-bg bg-dark"></div>
-                </i><span class="menu-title">Multi-Level Dropdown</span></a>
-
-                </li>
-
-
-                <li><a href="Charts.html"><i class="fa fa-bar-chart-o fa-fw">
-                    <div class="icon-bg bg-orange"></div>
-                </i><span class="menu-title">Charts</span></a>
             </ul>
         </div>
     </nav>
@@ -206,14 +185,34 @@
         {% block content %}
 
         {% endblock %}
-        <!--BEGIN FOOTER-->
-        <div id="footer">
-            <div class="copyright">
-                <a href="http://torobche.ir">تمامی حقوق این سامانه متعلق به گروه نرم افزاری تربچه است</a></div>
-        </div>
-        <!--END FOOTER-->
 
     </div>
+
+
+
+<footer>
+    <div class="container-fluid text-center">
+        <a class="brand" href="#"></a>
+    </div>
+    <div class="container-fluid text-center">
+        <nav class="navbar-collapse">
+            <ul id="menu-main-menu-1" class="nav navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="/whatis">سیما چیست؟</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="help/">راهنما</a></li>
+                {#<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="/login">ورود به سامانه</a></li>#}
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13"><a href="{% url 'management:home' %}">صفحه‌ی اصلی</a></li>
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net",
+    "licenseKey":"afa4101d8d","applicationID":"11530091","transactionName":"NFxSMEtRXURYBUJQCw0WcQdNWVxZFgBEVgoXFEAFXlU=",
+    "queueTime":3,"applicationTime":252,"atts":"GBtRRgNLTko=","errorBeacon":"bam.nr-data.net","agent":""}</script>
+
+
 
 
 </div>
