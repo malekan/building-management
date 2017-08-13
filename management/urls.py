@@ -6,7 +6,7 @@ app_name = 'management'
 
 urlpatterns = [
     url(r'home/$', views.index, name='home'),
-    url(r'login/$', views.login, name='login'),
+    url(r'login/$', views.login_user, name='login'),
     url(r'signup/$', views.signup, name='signup'),
     url(r'^dashboard/$', TemplateView.as_view(template_name='management/dashboard.html')),
     url(r'^email/$', TemplateView.as_view(template_name='management/email.html')),
