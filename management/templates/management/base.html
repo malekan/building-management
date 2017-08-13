@@ -49,7 +49,7 @@
         <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
             <div class="news-update-box hidden-xs">
                 <ul id="news-update" class="ticker list-unstyled">
-                    <li style="color : white">محمدمهدی فاریابی عزیز خوش آمدید. سیما, سامانه یکپارچه مدیریت آپارتمان</li>
+                    <li style="color : white">{% block user_fullname2 %}{% endblock %} عزیز خوش آمدید. سیما, سامانه یکپارچه مدیریت آپارتمان</li>
                 </ul>
             </div>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
@@ -67,7 +67,7 @@
                 </li>
                 <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
                         src="images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span
-                        class="hidden-xs">محمد مهدی فاریابی</span>&nbsp;<span class="caret"></span></a>
+                        class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
                         <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
                         <li><a href="#"><i class="fa fa-calendar"></i>تقویم</a></li>

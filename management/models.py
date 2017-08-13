@@ -15,7 +15,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=names_length)
     mobile_number = models.CharField(max_length=11)
-    avatar = models.ImageField(upload_to='media/avatars', blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
+
+    def __str__(self):
+        return 'full_name' + self.mobile_number
 
 
 class Building(models.Model):
@@ -24,7 +27,8 @@ class Building(models.Model):
     description = models.TextField(max_length=long_description_length)
     number_of_floors = models.IntegerField()
     number_of_elevators = models.IntegerField()
-    main_pic = models.FileField(upload_to='media', null=True, blank=True)
+    main_pic_src = models.CharField(max_length=5000, null=True, blank=True)
+    # main_pic = models.ImageField(default='../static/building_default.png')
 
     manager = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     end_of_subscription = models.DateTimeField(null=True)

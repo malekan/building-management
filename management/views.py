@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
@@ -11,8 +12,10 @@ from .forms import BuildingForm, UnitForm, FacilityForm
 def index(request):
     return render(request, template_name='management/index.html')
 
+
 def whatis(request):
     return render(request, template_name='management/whatis.html')
+
 
 def login_user(request):
     if request.method == 'POST':
@@ -22,7 +25,9 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'management/dashboard.html')
+                return render(request, 'management/dashboard.html', {
+                    'user_fullname': Profile.objects.get(user=request.user).full_name
+                })
             else:
                 return render(request, 'management/login.html', {
                     'login_error_message': 'حساب کاربری شما غیرفعال شده است.'
@@ -81,15 +86,35 @@ def signup(request):
 
 @login_required
 def new_building(request):
+    if request.method == 'POST':
+        form = BuildingForm(request.POST)
+        if form.is_valid():
+            building = form.save(commit=False)
+            # building.main_pic = request.FILES['main_pic']
+            [building.manager] = list(Profile.objects.filter(user=request.user).all())
+            building.save()
     form = BuildingForm()
-    return render(request, 'management/building_management.html', {'new_building_form': form})
+    [manager] = list(Profile.objects.filter(user=request.user).all())
+    building_list = Building.objects.filter(manager=manager)
+    return render(request, 'management/building_management.html', {
+        'new_building_form': form,
+        'building_list': building_list,
+    })
+
+
+@login_required
+def delete_building(request, building_id):
+    print(building_id)
+    building = get_object_or_404(Building, pk=building_id)
+    building.delete()
+    return redirect(reverse('management:new_building'))
 
 
 @login_required
 def make_building_page(request, building_id):
     form = UnitForm()
     return render(request, 'management/building_page.html', context={
-        'building_id': building_id,'new_unit_form': form
+        'building_id': building_id, 'new_unit_form': form
 
     })
 
