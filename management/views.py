@@ -73,7 +73,7 @@ def signup(request):
 # @login
 def new_building(request):
     form = BuildingForm()
-    return render(request, 'management/new_building_form.html', {'form': form})
+    return render(request, 'management/building_management.html', {'form': form})
 
 
 class BuildingUpdate(UpdateView):
