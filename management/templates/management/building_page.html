@@ -1,0 +1,295 @@
+{% extends 'management/base.html' %}
+{% block content %}
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+
+                مدیریت واحدهای ساختمان
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="#">مدیریت واحدها</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">داشبورد</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+
+
+    <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;
+    color:#f5f5f5;text-align:center;text-decoration:none;background: #00008d;box-shadow: 0 0 3px gray;
+     font-size:20px;font-weight:bold;width: 100px; height: 100px; z-index: 5000" data-toggle="modal"
+            data-target="#new_building">اضافه کردن واحد جدید
+    </button>
+
+    <div id="modal-config" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        وضعیت کلی ساختمان سینا</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-6">
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">مانده سرفصل بدهی واحدها</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>موجودی نقد و بانک</td>
+                                        <td>۲۵۰۰۰۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی ساکنین</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طلب مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">وضعیت هزینه ۶ ماه گذشته</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>موجودی نقد و بانک</td>
+                                        <td>۲۵۰۰۰۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی ساکنین</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طلب مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" style="background-color: red">
+                        بستن
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        برو به صفحه ساختمان
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="new_building" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #00008d;color: white ">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+ثبت واحد جدید</h4>
+                </div>
+                <div class="modal-body">
+
+                                            <form method="POST" class="post-form">{% csrf_token %}
+                                                {{ form.as_p }}
+                                                <button type="submit" class="save btn btn-default">Save</button>
+                                            </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="col-lg-12">
+                                <div class="portlet box">
+                                    <div class="portlet-header">
+                                        <div class="caption">
+                                            واحد ۰۱۲
+                                        </div>
+                                        <div class="tools">
+                                            <i data-toggle="modal"
+                                               data-target="#modal-config"
+                                               class="fa fa-cog"></i><i
+                                                class="fa fa-times" onclick="closeClick()"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div>
+                                            <img src="http://www.vuenj.com/wp-content/uploads/2016/11/Penthouse-2.jpg"
+                                                 width="100%"/>
+                                            <p>
+                                                <strong>ساختمان مرکزی سینا</strong><br/>
+                                                <small>
+                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
+                                                </small>
+                                            <p>
+                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
+                                                نظیر استخر و
+                                                سالن بیلیارد ... است.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12">
+                                <div class="portlet box">
+                                    <div class="portlet-header">
+                                        <div class="caption">
+                                            ساختمان سینا
+                                        </div>
+                                        <div class="tools">
+                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
+                                                                               data-target="#modal-config"
+                                                                               class="fa fa-cog"></i><i
+                                                class="fa fa-refresh"></i><i
+                                                class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div>
+                                            <img src="http://www.mycasitaliving.com/wp-content/uploads/2014/08/item21.rendition.slideshowVertical.bette-midler-manhattan-penthouse-10-terrace.jpg"
+                                                 width="100%"/>
+                                            <p>
+                                                <strong>ساختمان مرکزی سینا</strong><br/>
+                                                <small>
+                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
+                                                </small>
+                                            <p>
+                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
+                                                نظیر استخر و
+                                                سالن بیلیارد ... است.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="col-lg-12">
+                                <div class="portlet box">
+                                    <div class="portlet-header">
+                                        <div class="caption">
+                                            ساختمان سینا
+                                        </div>
+                                        <div class="tools">
+                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
+                                                                               data-target="#modal-config"
+                                                                               class="fa fa-cog"></i><i
+                                                class="fa fa-refresh"></i><i
+                                                class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div>
+                                            <img src="http://www.ontwerpwerkplaats.nl/ow3/media/resized/a6/de_ontwerpwerkplaats-161106_ow_bibliotheek_haase_kopie_2048x2048.jpg"
+                                                 width="100%"/>
+                                            <p>
+                                                <strong>ساختمان مرکزی سینا</strong><br/>
+                                                <small>
+                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
+                                                </small>
+                                            <p>
+                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
+                                                نظیر استخر و
+                                                سالن بیلیارد ... است.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4">
+                            <div class="col-lg-12">
+                                <div class="portlet box">
+                                    <div class="portlet-header">
+                                        <div class="caption">
+                                            ساختمان سینا
+                                        </div>
+                                        <div class="tools">
+                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
+                                                                               data-target="#modal-config"
+                                                                               class="fa fa-cog"></i><i
+                                                class="fa fa-refresh"></i><i
+                                                class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div>
+                                            <img src="http://www.archbalticdesign.com/uploads/content_entry/picture/2257/vertical_Bazilijonu_sumazintas_dydis_51.jpg"
+                                                 width="100%"/>
+                                            <p>
+                                                <strong>ساختمان مرکزی سینا</strong><br/>
+                                                <small>
+                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
+                                                </small>
+                                            <p>
+                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای
+                                                امکاناتی
+                                                نظیر استخر و
+                                                سالن بیلیارد ... است.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function closeClick(e) {
+            var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
+            if (result == true)
+                alert('yes');
+        }
+    </script>
+{% endblock %}
+
