@@ -1,0 +1,263 @@
+{% extends 'management/base_user.html' %}
+
+{% block content %}
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!--BEGIN PAGE WRAPPER-->
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                داشبورد
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="#">داشبورد</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="active">داشبورد</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+      <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+
+
+
+                <div class="col-lg-6">
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">وضعیت کلی</div>
+                        <div class="panel-body">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                <tr>
+                                    <td>مجموع پرداخت‌های ماه</td>
+                                    <td>۲۵۰۰۰۰ ریال</td>
+                                </tr>
+                                <tr>
+                                    <td>مجموع بدهی‌های جاری</td>
+                                    <td>۰ ریال</td>
+                                </tr>
+                                <tr>
+                                    <td>نزدیک‌ترین ملت پرداخت</td>
+                                    <td>۰ ریال</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">وضعیت پرداختی‌ها و بدهی‌های ماه</div>
+                        <div class="panel-body">
+                        <div id="piechart"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">وضعیت مالی واحدها</div>
+                        <div class="panel-body">
+                            <div class="col-lg-4">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">واحد ۱</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>مساحت</td>
+                                        <td>۰ متر مربع</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طبقه</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مالک</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ساکن</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مانده حساب</td>
+                                        <td>۲۰۰۰۰۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">واحد 2</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>مساحت</td>
+                                        <td>۰ متر مربع</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طبقه</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مالک</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ساکن</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مانده حساب</td>
+                                        <td>۲۰۰۰۰۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">واحد ۳</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>مساحت</td>
+                                        <td>۰ متر مربع</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طبقه</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مالک</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ساکن</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مانده حساب</td>
+                                        <td>۲۰۰۰۰۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">واحد ۴</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>مساحت</td>
+                                        <td>۰ متر مربع</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طبقه</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مالک</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ساکن</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مانده حساب</td>
+                                        <td>۲۰۰۰۰۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            </div>
+                            <div class="col-lg-4">
+                        <div class="panel panel-blue">
+                            <div class="panel-heading">واحد ۵</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>مساحت</td>
+                                        <td>۰ متر مربع</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طبقه</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مالک</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ساکن</td>
+                                        <td>ایمان</td>
+                                    </tr>
+                                    <tr>
+                                        <td>مانده حساب</td>
+                                        <td>۲۰۰۰۰۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Hours per Day'],
+  ['نقد', 250000],
+  ['بانک', 125000],
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'', 'width':'100%', 'height':200};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+
+    <!--END CONTENT-->
+
+
+
+    <!--END PAGE WRAPPER-->
+
+{% endblock %}

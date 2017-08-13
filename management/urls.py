@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'login/$', views.login_user, name='login'),
     url(r'signup/$', views.signup, name='signup'),
     url(r'^dashboard/$', TemplateView.as_view(template_name='management/dashboard.html')),
+    url(r'^dashboard_user/$', TemplateView.as_view(template_name='management/dashboard_user.html')),
     url(r'^email/$', TemplateView.as_view(template_name='management/email.html')),
     url(r'building/new/$', views.new_building, name='new_building'),
     url(r'building/(?P<building_id>[0-9]+)/edit/', views.BuildingUpdate.as_view(), name='update_building'),
