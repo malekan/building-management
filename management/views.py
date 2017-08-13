@@ -12,16 +12,32 @@ def index(request):
 
 
 def login_user(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return render(request, 'management/dashboard.html')
+            else:
+                return render(request, 'management/login.html', {
+                    'login_error_message': 'حساب کاربری شما غیرفعال شده است.'
+                })
+        else:
+            return render(request, 'management/login.html', {
+                'login_error_message': 'اطلاعات وارد شده صحیح نیست.'
+            })
     return render(request, template_name='management/login.html')
 
 
 def signup(request):
-    if request.method == 'post':
+    if request.method == 'POST':
         fullname = request.POST['fullname']
         signup_tel = request.POST['signup_tel']
         email = request.POST['email']
         username = request.POST['username']
-        password = request.POST['pwd']
+        password = request.POST['password']
         # avatar = request.POST['avatar']
 
         if User.objects.filter(username=username).count() == 1:
@@ -36,20 +52,17 @@ def signup(request):
             return render(request, template_name='management/signup.html', context={
                 'tel_error_message': 'این شماره همراه قبلا استفاده شده‌ است.'
             })
-        print('no form error')
         user = User(username=username, email=email)
         user.set_password(password)
         user.save()
-        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel, avatar=avatar)
+        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel)
         profile.save()
         user = authenticate(username=username, password=password)
         if user is not None:
-            print('no auth error')
             if user.is_active:
                 login(request, user)
-                print('no login error')
                 return render(request, 'management/dashboard.html')
-        print('auth error')
+
         return render(request, template_name='management/signup.html', context={
             'auth_error': 'با عرض پوزش خطایی رخ داده است. لطفا دوباره امتحان کنید.'
         })

@@ -10,18 +10,21 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
+            {% if login_error_message %}
+                <div class="login-error small">{{ login_error_message }}</div>
+            {% endif %}
             <form id="login-form" action="" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label class="control-label" for="username_id">نام کاربری :</label>
-                    <input class="form-control" id="username_id" required>
+                    <input class="form-control" id="username_id" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">رمز عبور</label>
-                    <input type="password" class="form-control" id="pwd" required>
+                    <label for="password">رمز عبور</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
                 <button type="submit" id="login-btn" class="login-btn btn btn-default">ورود</button>
-                <a href="signup"><button type="button" class="signup-btn btn btn-default">ثبت نام</button></a>
+                <a href="{% url 'management:signup' %}"><button type="button" class="signup-btn btn btn-default">ثبت نام</button></a>
             </form>
         </div>
     </div>
