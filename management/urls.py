@@ -5,7 +5,7 @@ from . import views
 app_name = 'management'
 
 urlpatterns = [
-    url(r'^$', views.index, name='home'),
+    url(r'home/$', views.index, name='home'),
     url(r'login/$', views.login, name='login'),
     url(r'signup/$', views.signup, name='signup'),
     url(r'^dashboard/$', TemplateView.as_view(template_name='management/dashboard.html')),
