@@ -100,7 +100,7 @@ class BuildingUpdate(UpdateView):
 @login_required
 def new_unit(request):
     form = UnitForm()
-    return render(request, 'management/building_page.html', {'form': form})
+    return render(request, 'management/building_page.html', {'new_unit_form': form})
 
 
 @login_required
