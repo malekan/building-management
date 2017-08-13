@@ -15,7 +15,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=names_length)
     mobile_number = models.CharField(max_length=11)
-    avatar = models.ImageField(upload_to='media/avatars')
+    avatar = models.ImageField(upload_to='media/avatars', blank=True, null=True)
 
 
 class Building(models.Model):
