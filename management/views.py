@@ -11,6 +11,8 @@ from .forms import BuildingForm, UnitForm, FacilityForm
 def index(request):
     return render(request, template_name='management/index.html')
 
+def whatis(request):
+    return render(request, template_name='management/whatis.html')
 
 def login_user(request):
     if request.method == 'POST':

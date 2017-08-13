@@ -6,6 +6,7 @@ app_name = 'management'
 
 urlpatterns = [
     url(r'home/$', views.index, name='home'),
+    url(r'whatis/$', views.whatis, name='whatis'),
     url(r'login/$', views.login_user, name='login'),
     url(r'logout/$', views.logout_user, name='logout'),
     url(r'signup/$', views.signup, name='signup'),

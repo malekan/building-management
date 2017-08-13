@@ -95,6 +95,8 @@ img.emoji {
 			.wp-pagenavi .nextpostslink {
 				padding-left: 40px;
 				padding-right: 0;
+
+
 			}
 			.wp-pagenavi > a.disabled {
 				color: rgba(127, 148, 154, 0.4);
@@ -181,12 +183,12 @@ img.emoji {
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-								<a class="brand" href="http://corp.zinio.com">Project name</a>
-								<a class="brand-small" href="http://corp.zinio.com">Project name</a>
+								<a class="brand" href="{% url 'management:home' %}">Project name</a>
+								<a class="brand-small" href="{% url 'management:home' %}">Project name</a>
 							</div>
 							<div id="navbar" class="navbar-collapse collapse">
-								<ul id="menu-main-menu" class="nav navbar-nav"><li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="/whatis">سیما چیست؟</a></li>
-<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="help/">راهنما</a></li>
+								<ul id="menu-main-menu" class="nav navbar-nav"><li id="menu-item-83" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="{% url 'management:whatis' %}">سیما چیست؟</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="{% url 'management:whatis' %}">راهنما</a></li>
 <li id="menu-item-17" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="login/">ورود به سامانه</a></li>
 <li id="menu-item-13" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13"><a href="{% url 'management:home' %}">صفحه‌ی اصلی</a></li>
 </ul>							</div>
@@ -211,8 +213,9 @@ img.emoji {
     </div>
     <div class="container-fluid text-center">
         <nav class="navbar-collapse">
-            <ul id="menu-main-menu-1" class="nav navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="/whatis">سیما چیست؟</a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="help/">راهنما</a></li>
+            <ul id="menu-main-menu-1" class="nav navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83">
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="{% url 'management:whatis' %}">سیما چیست؟</a></li>
+                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="{% url 'management:whatis' %}">راهنما</a></li>
                 {#<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="/login">ورود به سامانه</a></li>#}
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13"><a href="{% url 'management:home' %}">صفحه‌ی اصلی</a></li>
             </ul>
