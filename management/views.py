@@ -85,8 +85,10 @@ def new_building(request):
 
 @login_required
 def make_building_page(request, building_id):
+    form = UnitForm()
     return render(request, 'management/building_page.html', context={
-        'building_id': building_id
+        'building_id': building_id,'new_unit_form': form
+
     })
 
 
