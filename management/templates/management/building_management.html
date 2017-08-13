@@ -151,7 +151,8 @@
                                                 <i data-toggle="modal"
                                                    data-target="#modal-config"
                                                    class="fa fa-cog"></i><i
-                                                    class="fa fa-times" onclick="closeClick()"></i>
+                                                    class="fa fa-times" onclick="closeClick({{ building.pk }})"></i>
+
                                             </div>
                                         </div>
                                         <div class="portlet-body">
@@ -326,10 +327,10 @@
 
 
     <script>
-        function closeClick(e) {
+        function closeClick(buildingID) {
             var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
             if (result == true)
-                alert('yes');
+                window.location.replace("/management/building/delete/"+buildingID);
         }
     </script>
 {% endblock %}

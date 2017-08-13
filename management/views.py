@@ -104,9 +104,10 @@ def new_building(request):
 
 @login_required
 def delete_building(request, building_id):
+    print(building_id)
     building = get_object_or_404(Building, pk=building_id)
     building.delete()
-    redirect('new_building')
+    return redirect(reverse('management:new_building'))
 
 
 @login_required

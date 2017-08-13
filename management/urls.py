@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'building/management/', TemplateView.as_view(template_name="management/building_management.html")),
     url(r'unit/new/$', views.new_unit, name='new_unit'),
     url(r'building/facility/new', views.new_facility, name='new_facility'),
+    url(r'building/delete/(?P<building_id>[0-9]+)/$', views.delete_building, name="delete_building")
 ]
