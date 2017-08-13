@@ -89,7 +89,12 @@ def new_building(request):
             [building.manager] = list(Profile.objects.filter(user=request.user).all())
             building.save()
     form = BuildingForm()
-    return render(request, 'management/building_management.html', {'new_building_form': form})
+    [manager] = list(Profile.objects.filter(user=request.user).all())
+    building_list = Building.objects.filter(manager=manager)
+    return render(request, 'management/building_management.html', {
+        'new_building_form': form,
+        'building_list': building_list,
+    })
 
 
 @login_required
