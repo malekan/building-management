@@ -80,7 +80,7 @@ def signup(request):
 @login_required
 def new_building(request):
     form = BuildingForm()
-    return render(request, 'management/building_management.html', {'form': form})
+    return render(request, 'management/building_management.html', {'new_building_form': form})
 
 
 @login_required
@@ -100,7 +100,7 @@ class BuildingUpdate(UpdateView):
 @login_required
 def new_unit(request):
     form = UnitForm()
-    return render(request, 'management/new_unit_form.html', {'form': form})
+    return render(request, 'management/building_page.html', {'form': form})
 
 
 @login_required
