@@ -73,8 +73,7 @@ class Bill(models.Model):
     description = models.TextField(max_length=short_description_length)
     fee = models.IntegerField()
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    due_date_time = models.DateTimeField(
-        default=timezone.now() + datetime.timedelta(weeks=1))
+    due_date_time = models.DateTimeField()
     is_paid = models.BooleanField(default=False)
 
 

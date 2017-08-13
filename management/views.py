@@ -11,7 +11,7 @@ def index(request):
     return render(request, template_name='management/index.html')
 
 
-def login(request):
+def login_user(request):
     return render(request, template_name='management/login.html')
 
 
@@ -22,7 +22,7 @@ def signup(request):
         email = request.POST['email']
         username = request.POST['username']
         password = request.POST['pwd']
-        avatar = request.POST['avatar']
+        # avatar = request.POST['avatar']
 
         if User.objects.filter(username=username).count() == 1:
             return render(request, template_name='management/signup.html', context={
@@ -36,7 +36,7 @@ def signup(request):
             return render(request, template_name='management/signup.html', context={
                 'tel_error_message': 'این شماره همراه قبلا استفاده شده‌ است.'
             })
-
+        print('no form error')
         user = User(username=username, email=email)
         user.set_password(password)
         user.save()
@@ -44,12 +44,16 @@ def signup(request):
         profile.save()
         user = authenticate(username=username, password=password)
         if user is not None:
+            print('no auth error')
             if user.is_active:
                 login(request, user)
+                print('no login error')
                 return render(request, 'management/dashboard.html')
-        return render(request, template_name='management/signup.html')
-    else:
-        pass
+        print('auth error')
+        return render(request, template_name='management/signup.html', context={
+            'auth_error': 'با عرض پوزش خطایی رخ داده است. لطفا دوباره امتحان کنید.'
+        })
+
     return render(request, template_name='management/signup.html')
 
 
@@ -74,4 +78,4 @@ def new_unit(request):
 # @login
 def new_facility(request):
     form = FacilityForm()
-    return render(request, 'management/new_facility_form', {'form': form})
+    return render(request, 'management/new_facility_form.html', {'form': form})

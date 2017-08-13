@@ -6,24 +6,35 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            <form id="signup-form" method="post">
+            {% if auth_error %}
+                <div>{{ auth_error }}</div>
+            {% endif %}
+            <form id="signup-form" method="post" action="" role="form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="fullname">نام و خانوادگی</label>
                     <input class="form-control" id="fullname" name="fullname" required />
                 </div>
+                {% if tel_error_message %}
+                    <div>{{ tel_error_message }}</div>
+                {% endif %}
                 <div class="form-group">
                     <label for="signup_tel">شماره همراه</label>
                     <input class="form-control" id="signup_tel" name="signup_tel" required />
                 </div>
+                {% if email_error_message %}
+                    <div>{{ email_error_message }}</div>
+                {% endif %}
                 <div class="form-group">
                     <label for="email">ایمیل</label>
                     <input type="email" class="form-control" id="email" name="email" required />
                 </div>
-                <div class="error">{{ username_error_message }}</div>
+                {% if username_error_message %}
+                    <div>{{ username_error_message }}</div>
+                {% endif %}
                 <div class="form-group">
                     <label for="username_id">نام کاربری</label>
                     <input class="form-control" id="username_id" name="username" required />
