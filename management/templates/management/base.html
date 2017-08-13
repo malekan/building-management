@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dashboard | Dashboard</title>
+    <title>داشبورد | پنل مدیریت</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -195,7 +195,7 @@
     </div>
     <div class="container-fluid text-center">
         <nav class="navbar-collapse">
-            <ul id="menu-main-menu-1" class="nav navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="/whatis">سیما چیست؟</a></li>
+            <ul id="menu-main-menu-1" class="nav navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83"><a href="{% url 'management:whatis' %}">سیما چیست؟</a></li>
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a href="{% url 'management:whatis' %}">راهنما</a></li>
                 {#<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="/login">ورود به سامانه</a></li>#}
                 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13"><a href="{% url 'management:home' %}">صفحه‌ی اصلی</a></li>
