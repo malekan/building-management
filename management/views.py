@@ -79,6 +79,13 @@ def signup(request):
 
 @login_required
 def new_building(request):
+    if request.method == 'POST':
+        form = BuildingForm(request.POST)
+        if form.is_valid():
+            building = form.save(commit=False)
+            # building.main_pic = request.FILES['main_pic']
+            [building.manager] = list(Profile.objects.filter(user=request.user).all())
+            building.save()
     form = BuildingForm()
     return render(request, 'management/building_management.html', {'new_building_form': form})
 

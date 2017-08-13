@@ -5,7 +5,7 @@ from .models import Building, Unit, Facility, Profile
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = Building
-        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic')
+        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic_src')
 
     def __init__(self, *args, **kwargs):
         super(BuildingForm, self).__init__(*args, **kwargs)
@@ -14,7 +14,7 @@ class BuildingForm(forms.ModelForm):
         self.fields['description'].label = "توضیح"
         self.fields['number_of_floors'].label = "تعداد طبقات"
         self.fields['number_of_elevators'].label = "تعداد آسانسورها"
-        self.fields['main_pic'].label = "انتخاب تصویر"
+        self.fields['main_pic_src'].label = "انتخاب تصویر"
 
 
 class UnitForm(forms.ModelForm):
