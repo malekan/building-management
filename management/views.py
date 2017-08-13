@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 
 from django.contrib.auth.models import User
@@ -29,6 +30,12 @@ def login_user(request):
                 'login_error_message': 'اطلاعات وارد شده صحیح نیست.'
             })
     return render(request, template_name='management/login.html')
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return render(request, 'management/index.html')
 
 
 def signup(request):
@@ -70,25 +77,33 @@ def signup(request):
     return render(request, template_name='management/signup.html')
 
 
-# @login
+@login_required
 def new_building(request):
     form = BuildingForm()
     return render(request, 'management/building_management.html', {'form': form})
 
 
+@login_required
+def make_building_page(request, building_id):
+    return render(request, 'management/building_page.html', context={
+        'building_id': building_id
+    })
+
+
+@login_required
 class BuildingUpdate(UpdateView):
     form = BuildingForm
-    context_object_name = 'form'
-    template_name = 'management/update_building_form.html'
+    context_object_name = 'update_form'
+    template_name = 'management/building_management.html'
 
 
-# @login
+@login_required
 def new_unit(request):
     form = UnitForm()
     return render(request, 'management/new_unit_form.html', {'form': form})
 
 
-# @login
+@login_required
 def new_facility(request):
     form = FacilityForm()
     return render(request, 'management/new_facility_form.html', {'form': form})
