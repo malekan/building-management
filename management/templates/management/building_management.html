@@ -116,14 +116,14 @@
                         &times;
                     </button>
                     <h4 class="modal-title">
-ثبت ساختمان جدید</h4>
+                        ثبت ساختمان جدید</h4>
                 </div>
                 <div class="modal-body">
 
-                                            <form method="POST" class="post-form">{% csrf_token %}
-                                                {{ new_building_form.as_p }}
-                                                <button type="submit" class="save btn btn-default">Save</button>
-                                            </form>
+                    <form method="POST" class="post-form">{% csrf_token %}
+                        {{ new_building_form.as_p }}
+                        <button type="submit" class="save btn btn-default">Save</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -138,6 +138,46 @@
             <div class="row mbl">
                 <div class="col-lg-12">
                     <div class="row">
+
+                        {% for building in building_list %}
+                            <div class="col-lg-4">
+                                <div class="col-lg-12">
+                                    <div class="portlet box">
+                                        <div class="portlet-header">
+                                            <div class="caption">
+                                            {{ building.name }}
+                                            </div>
+                                            <div class="tools">
+                                                <i data-toggle="modal"
+                                                   data-target="#modal-config"
+                                                   class="fa fa-cog"></i><i
+                                                    class="fa fa-times" onclick="closeClick()"></i>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div>
+                                                <img src="{{ building.main_pic_src }}"
+                                                     width="100%"/>
+                                                <p>
+                                                    <strong>{{ building.name }}</strong><br/>
+                                                    <small>
+{{ building.address }}                                                    </small>
+                                                <p>
+                                    {{ building.description }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+
+
+
+
+
                         <div class="col-lg-4">
                             <div class="col-lg-12">
                                 <div class="portlet box">
@@ -171,7 +211,8 @@
                                 </div>
                             </div>
 
-
+                        </div>
+                        <div class="col-lg-4">
                             <div class="col-lg-12">
                                 <div class="portlet box">
                                     <div class="portlet-header">
