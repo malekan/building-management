@@ -5,7 +5,7 @@ from .models import Building, Unit, Facility, Profile
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = Building
-        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators')
+        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic')
 
     def __init__(self, *args, **kwargs):
         super(BuildingForm, self).__init__(*args, **kwargs)
@@ -14,6 +14,7 @@ class BuildingForm(forms.ModelForm):
         self.fields['description'].label = "توضیح"
         self.fields['number_of_floors'].label = "تعداد طبقات"
         self.fields['number_of_elevators'].label = "تعداد آسانسورها"
+        self.fields['main_pic'].label = "انتخاب تصویر"
 
 
 class UnitForm(forms.ModelForm):
@@ -44,11 +45,10 @@ class FacilityForm(forms.ModelForm):
         self.fields['description'].label = "توضیحات"
         self.fields['building'].label = "ساختمان"
 
-
-# class ProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
-        #TODO to be completed
+    # class ProfileForm(forms.ModelForm):
+    #     class Meta:
+    #         model = Profile
+    # TODO to be completed
     #     fields = ('unit_type', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
     #               'number_of_storage_rooms', 'description', 'owner')
     #
@@ -61,5 +61,3 @@ class FacilityForm(forms.ModelForm):
     #     self.fields['number_of_storage_rooms'].label = "تعداد انباری"
     #     self.fields['description'].label = "توضیح"
     #     self.fields['owner'].label = "مالک"
-
-
