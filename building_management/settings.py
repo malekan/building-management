@@ -101,7 +101,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# login url
 LOGIN_URL = 'management/login/'
+
+# email host config
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'projectemailhost@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['sima_email_host_pass']
+EMAIL_PORT = 587
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

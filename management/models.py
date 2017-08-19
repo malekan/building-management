@@ -18,7 +18,7 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
 
     def __str__(self):
-        return 'full_name' + self.mobile_number
+        return self.full_name + self.mobile_number
 
 
 class Building(models.Model):

@@ -1,8 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage, BadHeaderError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
+from django.template import loader, Context
 
 from django.contrib.auth.models import User
 from .models import Profile, Building, Unit
@@ -15,6 +21,74 @@ def index(request):
 
 def whatis(request):
     return render(request, template_name='management/whatis.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        signup_tel = request.POST['signup_tel']
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+        # avatar = request.POST['avatar']
+
+        if Profile.objects.filter(mobile_number=signup_tel).count() == 1:
+            return render(request, template_name='management/signup.html', context={
+                'tel_error_message': 'این شماره همراه قبلا استفاده شده‌ است.'
+            })
+        if User.objects.filter(email=email).count() == 1:
+            return render(request, template_name='management/signup.html', context={
+                'email_error_message': 'این ایمیل قبلا استفاده شده است.'
+            })
+        if User.objects.filter(username=username).count() == 1:
+            return render(request, template_name='management/signup.html', context={
+                'username_error_message': 'این نام کابری قبلا استفاده شده است.'
+            })
+
+        user = User(username=username, email=email)
+        user.set_password(password)
+        user.is_active = False
+        user.save()
+        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel)
+        profile.save()
+        current_site = get_current_site(request)
+        message_template = loader.get_template('management/account_activation_confirmation_email.html')
+        context = {
+            'fullname': profile.full_name,
+            'domain': current_site.domain,
+            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+            'token': account_activation_token.make_token(user)
+        }
+        message = message_template.render(context)
+        mail_subject = 'سیما: فعال‌سازی حساب کاربری'
+        mail = EmailMessage(subject=mail_subject, body=message, to=[email])
+        try:
+            mail.send()
+        except BadHeaderError:
+            user.delete()
+            return render(request, 'management/signup.html', {
+                'email_error_message': 'ایمیل وارد شده معتبر نیست.'
+            })
+        return render(request, 'management/signup.html', {
+            'confirmation_message': 'ایمیل فعالسازی حساب کاربری برای شما ارسال شد.'
+        })
+
+    else:
+        return render(request, template_name='management/signup.html')
+
+
+def activate_account(request, uid_base_64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uid_base_64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        return render(request, 'management/login.html', {
+            'activation_successful_message': 'حساب کاربری شما با موفقت فعال شد! اکنون می‌توانید وارد شوید.'
+        })
 
 
 def login_user(request):
@@ -30,7 +104,7 @@ def login_user(request):
                 })
             else:
                 return render(request, 'management/login.html', {
-                    'login_error_message': 'حساب کاربری شما غیرفعال شده است.'
+                    'login_error_message': 'حساب کاربری شما غیرفعال است.'
                 })
         else:
             return render(request, 'management/login.html', {
@@ -45,45 +119,6 @@ def logout_user(request):
     return render(request, 'management/index.html')
 
 
-def signup(request):
-    if request.method == 'POST':
-        fullname = request.POST['fullname']
-        signup_tel = request.POST['signup_tel']
-        email = request.POST['email']
-        username = request.POST['username']
-        password = request.POST['password']
-        # avatar = request.POST['avatar']
-
-        if User.objects.filter(username=username).count() == 1:
-            return render(request, template_name='management/signup.html', context={
-                'username_error_message': 'این نام کابری قبلا استفاده شده است.'
-            })
-        if User.objects.filter(email=email).count() == 1:
-            return render(request, template_name='management/signup.html', context={
-                'email_error_message': 'این ایمیل قبلا استفاده شده است.'
-            })
-        if Profile.objects.filter(mobile_number=signup_tel).count() == 1:
-            return render(request, template_name='management/signup.html', context={
-                'tel_error_message': 'این شماره همراه قبلا استفاده شده‌ است.'
-            })
-        user = User(username=username, email=email)
-        user.set_password(password)
-        user.save()
-        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel)
-        profile.save()
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return render(request, 'management/dashboard.html')
-
-        return render(request, template_name='management/signup.html', context={
-            'auth_error': 'با عرض پوزش خطایی رخ داده است. لطفا دوباره امتحان کنید.'
-        })
-
-    return render(request, template_name='management/signup.html')
-
-
 @login_required
 def new_building(request):
     if request.method == 'POST':
@@ -91,7 +126,7 @@ def new_building(request):
         if form.is_valid():
             building = form.save(commit=False)
             # building.main_pic = request.FILES['main_pic']
-            [building.manager] = list(Profile.objects.filter(user=request.user).all())
+            building.manager = get_object_or_404(Profile, user=request.user)
             building.save()
     form = BuildingForm()
     [manager] = list(Profile.objects.filter(user=request.user).all())
