@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^signup/account-activation/(?P<uid_base_64>[0-9a-zA-Z_\-]+)/(?P<token>[0-9a-zA-Z]{1,13}-[0-9a-zA-Z]{1,20})/$',
         views.activate_account, name='account-activation'),
     url(r'^login/$', views.login_user, name='login'),
-    url(r'logout/$', views.logout_user, name='logout'),
+    url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^dashboard/$', TemplateView.as_view(template_name='management/dashboard.html')),
     url(r'^messaging/$', TemplateView.as_view(template_name='management/messaging.html')),
     url(r'^dashboard_user/$', TemplateView.as_view(template_name='management/dashboard_user.html')),
