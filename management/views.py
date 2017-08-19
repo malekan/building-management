@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -86,9 +87,8 @@ def activate_account(request, uid_base_64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        return render(request, 'management/login.html', {
-            'activation_successful_message': 'حساب کاربری شما با موفقت فعال شد! اکنون می‌توانید وارد شوید.'
-        })
+        messages.add_message(request, messages.SUCCESS, 'حساب کاربری شما با موفقت فعال شد! اکنون می‌توانید وارد شوید.')
+        return redirect(reverse('management:login'))
 
 
 def login_user(request):
