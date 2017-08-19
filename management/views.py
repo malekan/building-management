@@ -120,6 +120,11 @@ def logout_user(request):
 
 
 @login_required
+def dashboard(request):
+    return render(request, 'management/dashboard.html')
+
+
+@login_required
 def new_building(request):
     if request.method == 'POST':
         form = BuildingForm(request.POST)
@@ -171,3 +176,8 @@ def new_unit(request):
 def new_facility(request):
     form = FacilityForm()
     return render(request, 'management/new_facility_form.html', {'form': form})
+
+
+@login_required
+def messaging(request):
+    return render(request, 'management/messaging.html')
