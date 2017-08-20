@@ -1,5 +1,5 @@
 from django import forms
-from .models import Building, Unit, Facility, Profile
+from .models import Building, Unit, Facility, Profile, Cost
 
 
 class BuildingForm(forms.ModelForm):
@@ -61,3 +61,22 @@ class FacilityForm(forms.ModelForm):
     #     self.fields['number_of_storage_rooms'].label = "تعداد انباری"
     #     self.fields['description'].label = "توضیح"
     #     self.fields['owner'].label = "مالک"
+
+class CostForm(forms.ModelForm):
+    TYPE_CHOICES = (
+        ('number_of_unit', 'تعداد واحد'),
+        ('number_of_people', 'تعداد نفر'),
+    )
+    building_id = forms.IntegerField(label="", widget=forms.HiddenInput(), required=True)
+    pay_from_cash = forms.BooleanField(label="برای این هزینه قبض صادر شود؟",required=False)
+    bill_type = forms.CharField(label="صدور قبض براساس", widget=forms.Select(choices=TYPE_CHOICES), required=True)
+
+    class Meta:
+        model = Cost
+        fields = ('fee','description','building_id','pay_from_cash')
+
+    def __init__(self, *args, **kwargs):
+        super(CostForm, self).__init__(*args, **kwargs)
+        self.fields['fee'].label = "مبلغ پرداختی"
+        self.fields['description'].label = "توضیحات"
+

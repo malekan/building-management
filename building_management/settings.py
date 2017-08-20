@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'management.apps.ManagementConfig',
+    'bootstrapform',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -104,11 +107,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # login url
 LOGIN_URL = 'management/login/'
 
+CRISPY_TEMPLATE_PACK = 'semantic-ui'
+
+
 # email host config
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'projectemailhost@gmail.com'
-EMAIL_HOST_PASSWORD = os.environ['sima_email_host_pass']
+# EMAIL_HOST_PASSWORD = os.environ['sima_email_host_pass']
 EMAIL_PORT = 587
 
 # Internationalization

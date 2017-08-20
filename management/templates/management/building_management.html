@@ -1,4 +1,6 @@
 {% extends 'management/base.html' %}
+{% load bootstrap %}
+
 {% block content %}
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
@@ -145,13 +147,14 @@
                                     <div class="portlet box">
                                         <div class="portlet-header">
                                             <div class="caption">
-                                            {{ building.name }}
+                                                {{ building.name }}
                                             </div>
                                             <div class="tools">
                                                 <i data-toggle="modal"
                                                    data-target="#modal-config"
-                                                   class="fa fa-cog"></i><i
-                                                    class="fa fa-times" onclick="closeClick({{ building.pk }})"></i>
+                                                   class="fa fa-cog"></i>
+                                                <i class="fa fa-money" onclick="recordNewCost({{ building.pk }})"></i>
+                                                <i class="fa fa-times" onclick="closeClick({{ building.pk }})"></i>
 
                                             </div>
                                         </div>
@@ -162,9 +165,9 @@
                                                 <p>
                                                     <strong>{{ building.name }}</strong><br/>
                                                     <small>
-{{ building.address }}                                                    </small>
+                                                        {{ building.address }}                                                    </small>
                                                 <p>
-                                    {{ building.description }}
+                                                    {{ building.description }}
                                                 </p>
                                             </div>
                                         </div>
@@ -175,150 +178,29 @@
                         {% endfor %}
 
 
-
-
-
-
-                        <div class="col-lg-4">
-                            <div class="col-lg-12">
-                                <div class="portlet box">
-                                    <div class="portlet-header">
-                                        <div class="caption">
-                                            ساختمان سینا
-                                        </div>
-                                        <div class="tools">
-                                            <i data-toggle="modal"
-                                               data-target="#modal-config"
-                                               class="fa fa-cog"></i><i
-                                                class="fa fa-times" onclick="closeClick()"></i>
-                                        </div>
+                        <div id="add_new_cost" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color: #00008d;color: white ">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title">
+                                            ثبت هزینه</h4>
                                     </div>
-                                    <div class="portlet-body">
-                                        <div>
-                                            <img src="http://danakhabar.com/files/fa/news/1392/7/21/42197_699.jpg"
-                                                 width="100%"/>
-                                            <p>
-                                                <strong>ساختمان مرکزی سینا</strong><br/>
-                                                <small>
-                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
-                                                </small>
-                                            <p>
-                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
-                                                نظیر استخر و
-                                                سالن بیلیارد ... است.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                    <div class="modal-body">
 
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="col-lg-12">
-                                <div class="portlet box">
-                                    <div class="portlet-header">
-                                        <div class="caption">
-                                            ساختمان سینا
-                                        </div>
-                                        <div class="tools">
-                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
-                                                                               data-target="#modal-config"
-                                                                               class="fa fa-cog"></i><i
-                                                class="fa fa-refresh"></i><i
-                                                class="fa fa-times"></i>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div>
-                                            <img src="http://danakhabar.com/files/fa/news/1392/7/21/42197_699.jpg"
-                                                 width="100%"/>
-                                            <p>
-                                                <strong>ساختمان مرکزی سینا</strong><br/>
-                                                <small>
-                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
-                                                </small>
-                                            <p>
-                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
-                                                نظیر استخر و
-                                                سالن بیلیارد ... است.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        <form method="POST" class="post-form" action="/cost/new/">{% csrf_token %}
+                                            {{ new_cost_form|bootstrap }}
 
-                        <div class="col-lg-4">
-                            <div class="col-lg-12">
-                                <div class="portlet box">
-                                    <div class="portlet-header">
-                                        <div class="caption">
-                                            ساختمان سینا
-                                        </div>
-                                        <div class="tools">
-                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
-                                                                               data-target="#modal-config"
-                                                                               class="fa fa-cog"></i><i
-                                                class="fa fa-refresh"></i><i
-                                                class="fa fa-times"></i>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div>
-                                            <img src="http://danakhabar.com/files/fa/news/1392/7/21/42197_699.jpg"
-                                                 width="100%"/>
-                                            <p>
-                                                <strong>ساختمان مرکزی سینا</strong><br/>
-                                                <small>
-                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
-                                                </small>
-                                            <p>
-                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای امکاناتی
-                                                نظیر استخر و
-                                                سالن بیلیارد ... است.
-                                            </p>
-                                        </div>
+                                            <button type="submit" class="save btn btn-default">Save</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="col-lg-4">
-                            <div class="col-lg-12">
-                                <div class="portlet box">
-                                    <div class="portlet-header">
-                                        <div class="caption">
-                                            ساختمان سینا
-                                        </div>
-                                        <div class="tools">
-                                            <i class="fa fa-chevron-up"></i><i data-toggle="modal"
-                                                                               data-target="#modal-config"
-                                                                               class="fa fa-cog"></i><i
-                                                class="fa fa-refresh"></i><i
-                                                class="fa fa-times"></i>
-                                        </div>
-                                    </div>
-                                    <div class="portlet-body">
-                                        <div>
-                                            <img src="http://danakhabar.com/files/fa/news/1392/7/21/42197_699.jpg"
-                                                 width="100%"/>
-                                            <p>
-                                                <strong>ساختمان مرکزی سینا</strong><br/>
-                                                <small>
-                                                    آدرس:تهران خیابان جنت آباد شمالی کوچه سحر پلاک ۱۰
-                                                </small>
-                                            <p>
-                                                این ساختمان دارای ۱۰ طبقه و هر طبقه ۳ واحدی می باشد و دارای
-                                                امکاناتی
-                                                نظیر استخر و
-                                                سالن بیلیارد ... است.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -327,10 +209,26 @@
 
 
     <script>
+
         function closeClick(buildingID) {
             var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
             if (result == true)
-                window.location.replace("/management/building/delete/"+buildingID);
+                window.location.replace("/management/building/delete/" + buildingID);
         }
+        var is_first_time = true;
+        function recordNewCost(buildingID) {
+            $('#add_new_cost').modal();
+            $('#id_bill_type').css('display', 'none');
+            $('[for="id_bill_type"]').css('display', 'none');
+            $('#id_building_id').val(buildingID);
+            if (is_first_time) {
+                $('#id_pay_from_cash').click(function () {
+                    $('#id_bill_type').toggle();
+                    $('[for="id_bill_type"]').toggle();
+                    is_first_time = false;
+                });
+            }
+        }
+
     </script>
 {% endblock %}

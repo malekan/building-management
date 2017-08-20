@@ -13,7 +13,7 @@ from django.template import loader, Context
 
 from django.contrib.auth.models import User
 from .models import Profile, Building, Unit
-from .forms import BuildingForm, UnitForm, FacilityForm
+from .forms import BuildingForm, UnitForm, FacilityForm, CostForm
 
 
 def index(request):
@@ -123,7 +123,6 @@ def logout_user(request):
 def dashboard(request):
     return render(request, 'management/dashboard.html')
 
-
 @login_required
 def new_building(request):
     if request.method == 'POST':
@@ -134,12 +133,23 @@ def new_building(request):
             building.manager = get_object_or_404(Profile, user=request.user)
             building.save()
     form = BuildingForm()
+    cost_form = CostForm()
     [manager] = list(Profile.objects.filter(user=request.user).all())
     building_list = Building.objects.filter(manager=manager)
     return render(request, 'management/building_management.html', {
         'new_building_form': form,
+        'new_cost_form': cost_form,
         'building_list': building_list,
     })
+
+def new_cost(request):
+    if request.method == 'POST':
+        form = CostForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data['pay_from_cash'])
+            print(form.cleaned_data['fee'])
+            print(form.cleaned_data['description'])
+            print(form.cleaned_data['building_id'])
 
 
 @login_required
