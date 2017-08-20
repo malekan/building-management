@@ -127,10 +127,10 @@ def dashboard(request):
 @login_required
 def new_building(request):
     if request.method == 'POST':
-        form = BuildingForm(request.POST)
+        form = BuildingForm(request.POST or None, request.FILES or None)
         if form.is_valid():
             building = form.save(commit=False)
-            # building.main_pic = request.FILES['main_pic']
+            print(request.FILES)
             building.manager = get_object_or_404(Profile, user=request.user)
             building.save()
     form = BuildingForm()

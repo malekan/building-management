@@ -14,7 +14,7 @@ class BuildingForm(forms.ModelForm):
         self.fields['description'].label = "توضیح"
         self.fields['number_of_floors'].label = "تعداد طبقات"
         self.fields['number_of_elevators'].label = "تعداد آسانسورها"
-        self.fields['main_pic_src'].label = "انتخاب تصویر"
+        self.fields['main_pic'].label = "انتخاب تصویر"
 
 
 class UnitForm(forms.ModelForm):
