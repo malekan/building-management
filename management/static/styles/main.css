@@ -57,7 +57,7 @@ html {
 }
 body {
   font-family: 'ProximaNova', sans-serif;
-  font-size: 13px;
+  font-size:20px;
   line-height: 1.42857143;
   color: #7d7d7d;
   background-color: #f0f2f5;
@@ -354,7 +354,7 @@ hr {
 #topbar .navbar-top-links li .dropdown-menu li a {
   padding: 3px 20px;
   min-height: 0;
-  color: #999999;
+  color: #111111;
 }
 #topbar .navbar-top-links li .dropdown-menu li a div {
   white-space: normal;
@@ -4086,7 +4086,7 @@ h6 {
   border-top-left-radius: 0 !important;
 }
 .badge {
-  font-size: 11px !important;
+  font-size: 16px !important;
   font-weight: 300;
   height: 18px;
   padding: 3px 6px 3px 6px;
@@ -4220,7 +4220,7 @@ a.list-group-item.active > .badge,
     box-shadow: none !important;
 }
 .panel > .panel-heading {
-  font-size: 18px;
+  font-size: 22px;
   padding: 7px 15px;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
@@ -5226,7 +5226,7 @@ fieldset[disabled] .btn-white.active {
 .dropdown-menu li a {
   color: #999999;
   padding: 9px 10px;
-  font-size: 13px;
+  font-size: 18px;
 }
 .dropdown-submenu {
   position: relative;
@@ -5317,7 +5317,7 @@ li [class*=" icon-"].icon-large {
 }
 .list-group .list-group-item {
   border-color: #e5e5e5;
-  color: #999999;
+  color: #111111;
 }
 .list-group .list-group-item.active {
   background: #dc6767;
