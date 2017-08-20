@@ -28,8 +28,7 @@ class Building(models.Model):
     number_of_floors = models.IntegerField()
     number_of_elevators = models.IntegerField()
     # main_pic_src = models.CharField(max_length=5000, null=True, blank=True)
-    main_pic = models.ImageField(upload_to='building_images', default='../static/building_default.png')
-
+    main_pic = models.FileField(upload_to='building_images', default='../static/building_default.png')
     manager = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     end_of_subscription = models.DateTimeField(null=True)
 
