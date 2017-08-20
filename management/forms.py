@@ -5,7 +5,7 @@ from .models import Building, Unit, Facility, Profile
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = Building
-        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic_src')
+        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic')
 
     def __init__(self, *args, **kwargs):
         super(BuildingForm, self).__init__(*args, **kwargs)
