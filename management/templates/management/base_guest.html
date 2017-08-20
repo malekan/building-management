@@ -32,18 +32,21 @@
     <!--[if gt IE 10]> <html class="ie ie11 newest"> <![endif]-->
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}سیما | سامانه‌ی یکپارچه‌ی مدیریت آپارتمان{% endblock %}</title>
         {% load staticfiles %}
         <link rel="shortcut icon" type="image/png" href="{% static 'sima_logo_captionless.png' %}"/>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 
-
         <link type="text/css" rel="stylesheet" href="{% static 'wp-content/themes/zinio_pro/css/bootstrap.css' %}" media="all"/>
         <link type="text/css" rel="stylesheet" href="" media="all"/>
         <link type="text/css" rel="stylesheet" href="{% static 'wp-content/themes/zinio_pro/css/carousel.css' %}" media="all"/>
         <link type="text/css" rel="stylesheet" href="{% static 'wp-content/themes/zinio_pro/css/skin.css' %}" media="all"/>
+
+
+        {% block style %}{% endblock %}
+
 
         <script src="{% static 'wp-content/themes/zinio_pro/js/jquery.min.js' %}"></script>
         <script src="{% static 'wp-content/themes/zinio_pro/js/bootstrap.min.js' %}"></script>
