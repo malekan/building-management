@@ -181,3 +181,8 @@ def new_facility(request):
 @login_required
 def messaging(request):
     return render(request, 'management/messaging.html')
+
+
+@login_required
+def bulletin_board(request):
+    return render(request, 'management/bulletin_board.html')
