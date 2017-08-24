@@ -10,7 +10,7 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-                پیام رسانی - پیام‌های دریافتی
+                پیام رسانی - پیام‌های ارسالی
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -18,37 +18,16 @@
                     href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="{% url 'management:home' %}">پیام رسانی - پیام‌های دریافتی</a>&nbsp;&nbsp;<i
+            <li class="hidden"><a href="{% url 'management:home' %}">پیام رسانی - پیام‌های ارسالی</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">پیام رسانی - پیام‌های دریافتی</li>
+            <li class="active">پیام رسانی - پیام‌های ارسالی</li>
         </ol>
         <div class="clearfix">
         </div>
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->
     <!--BEGIN CONTENT-->
-
-    <div id="new_message" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">ایجاد پیام جدید</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ارسال پیام</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="page-content">
         <div id="tab-general">
@@ -92,21 +71,20 @@
                             </a></div>
 
                         </div>
-                        <div class="mtm mbm"></div>
                         <div class="col-sm-4 col-md-3">
 
 
                             <div class="panel">
                                 <div class="panel-body pan">
                                     <ul style="background: #fff" class="nav nav-pills nav-stacked">
-                                        <li class="active"><a
+                                        <li><a
                                                 href="{% url 'management:messaging' %}"><span
                                                 class="badge pull-right">42</span><i class="fa fa-inbox fa-fw mrs"></i>پیام‌های
                                             دریافتی</a>
                                         </li>
 
 
-                                        <li>
+                                        <li class="active">
                                             <a href="{% url 'management:messaging_sent' %}"><i
                                                     class="fa fa-plane fa-fw mrs"></i>پیام‌های ارسالی</a></li>
 
@@ -496,10 +474,6 @@
                                 </div>
                             </div>
                         </div>
-                        <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;
-    color:#f5f5f5;text-align:center;background: rgb(220,103,103);box-shadow: 0 0 3px gray;
-     font-size:26px;width: 100px; height: 100px; z-index: 5000" data-toggle="modal" data-target="#new_message">ایجاد پیام جدید
-    </button>
                     </div>
                 </div>
             </div>

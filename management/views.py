@@ -192,6 +192,9 @@ def new_facility(request):
 def messaging(request):
     return render(request, 'management/messaging.html')
 
+@login_required
+def messaging_sent(request):
+    return render(request, 'management/messaging_sent.html')
 
 @login_required
 def bulletin_board(request):

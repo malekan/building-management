@@ -67,7 +67,7 @@ input,
 button,
 select,
 textarea {
-  font-family: inherit;
+  font-family: 'ProximaNova', sans-serif;
   font-size: inherit;
   line-height: inherit;
 }

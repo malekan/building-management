@@ -53,11 +53,11 @@
                 </ul>
             </div>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
-                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:bulletin_board' %}" class="dropdown-toggle"><i
                         class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
 
                 </li>
-                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
+                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:messaging' %}" class="dropdown-toggle"><i
                         class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
 
                 </li>
@@ -95,7 +95,7 @@
             <ul id="side-menu" class="nav">
 
                 <div class="clearfix"></div>
-                <li class="active"><a href="/dashboard.html"><i class="fa fa-tachometer fa-fw">
+                <li class="active"><a href="{% url 'management:dashboard' %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
                 </i><span class="menu-title">داشبورد</span></a></li>
 
