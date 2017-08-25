@@ -1,4 +1,5 @@
 {% extends 'management/base.html' %}
+{% load bootstrap %}
 
 {% block user_fullname1 %}{{ user_fullname }}{% endblock %}
 {% block user_fullname2 %}{{ user_fullname }}{% endblock %}
@@ -39,10 +40,9 @@
                     <h4 class="modal-title">ایجاد اعلان جدید</h4>
                 </div>
                 <div class="modal-body">
-
                     <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ارسال اعلان</button>
+                        {{ new_bulletin_form|bootstrap }}
+                        <button type="submit" class="save btn btn-default">ثبت اعلان</button>
                     </form>
                 </div>
             </div>

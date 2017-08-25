@@ -1,5 +1,5 @@
 from django import forms
-from .models import Building, Unit, Facility, Profile, Cost
+from .models import Building, Unit, Facility, Profile, Cost, Bulletin
 
 
 class BuildingForm(forms.ModelForm):
@@ -45,22 +45,23 @@ class FacilityForm(forms.ModelForm):
         self.fields['description'].label = "توضیحات"
         self.fields['building'].label = "ساختمان"
 
-    # class ProfileForm(forms.ModelForm):
-    #     class Meta:
-    #         model = Profile
-    # TODO to be completed
-    #     fields = ('unit_type', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
-    #               'number_of_storage_rooms', 'description', 'owner')
-    #
-    # def __init__(self, *args, **kwargs):
-    #     super(UnitForm, self).__init__(*args, **kwargs)
-    #     self.fields['unit_type'].label = "نوع واحد"
-    #     self.fields['area'].label = "مساحت"
-    #     self.fields['number_of_bedrooms'].label = "تعداد اتاق خواب"
-    #     self.fields['number_of_parking_spaces'].label = "تعداد پارکینگ"
-    #     self.fields['number_of_storage_rooms'].label = "تعداد انباری"
-    #     self.fields['description'].label = "توضیح"
-    #     self.fields['owner'].label = "مالک"
+        # class ProfileForm(forms.ModelForm):
+        #     class Meta:
+        #         model = Profile
+        # TODO to be completed
+        #     fields = ('unit_type', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
+        #               'number_of_storage_rooms', 'description', 'owner')
+        #
+        # def __init__(self, *args, **kwargs):
+        #     super(UnitForm, self).__init__(*args, **kwargs)
+        #     self.fields['unit_type'].label = "نوع واحد"
+        #     self.fields['area'].label = "مساحت"
+        #     self.fields['number_of_bedrooms'].label = "تعداد اتاق خواب"
+        #     self.fields['number_of_parking_spaces'].label = "تعداد پارکینگ"
+        #     self.fields['number_of_storage_rooms'].label = "تعداد انباری"
+        #     self.fields['description'].label = "توضیح"
+        #     self.fields['owner'].label = "مالک"
+
 
 class CostForm(forms.ModelForm):
     TYPE_CHOICES = (
@@ -68,15 +69,26 @@ class CostForm(forms.ModelForm):
         ('number_of_people', 'تعداد نفر'),
     )
     building_id = forms.IntegerField(label="", widget=forms.HiddenInput(), required=True)
-    pay_from_cash = forms.BooleanField(label="برای این هزینه قبض صادر شود؟",required=False)
+    pay_from_cash = forms.BooleanField(label="برای این هزینه قبض صادر شود؟", required=False)
     bill_type = forms.CharField(label="صدور قبض براساس", widget=forms.Select(choices=TYPE_CHOICES), required=True)
 
     class Meta:
         model = Cost
-        fields = ('fee','description','building_id','pay_from_cash')
+        fields = ('fee', 'description', 'building_id', 'pay_from_cash')
 
     def __init__(self, *args, **kwargs):
         super(CostForm, self).__init__(*args, **kwargs)
         self.fields['fee'].label = "مبلغ پرداختی"
         self.fields['description'].label = "توضیحات"
+
+
+class BulletinForm(forms.ModelForm):
+    class Meta:
+        model = Bulletin
+        fields = ('title', 'text')
+
+    def __init__(self, *args, **kwargs):
+        super(BulletinForm, self).__init__(*args, **kwargs)
+        self.fields['title'].label = "عنوان"
+        self.fields['text'].label = "متن"
 

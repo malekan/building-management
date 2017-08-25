@@ -13,7 +13,7 @@ from django.template import loader, Context
 
 from django.contrib.auth.models import User
 from .models import Profile, Building, Unit
-from .forms import BuildingForm, UnitForm, FacilityForm, CostForm
+from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm
 
 
 def index(request):
@@ -185,7 +185,13 @@ def new_unit(request):
 
 
 @login_required
-def new_facility(request):
+def new_facility(request, building_id):
+    if request.method == 'POST':
+        form = FacilityForm(request.POST)
+        if form.is_valid():
+            facility = form.save(commit=False)
+            facility.building = get_object_or_404(Building, pk=building_id)
+            facility.save()
     form = FacilityForm()
     return render(request, 'management/new_facility_form.html', {'form': form})
 
@@ -201,9 +207,24 @@ def messaging_sent(request):
 
 
 @login_required
-def bulletin_board(request):
-    return render(request, 'management/bulletin_board.html')
+def bulletin_board(request, building_id):
+    if request.method == 'POST':
+        form = BulletinForm(request.POST)
+        if form.is_valid():
+            bulletin = form.save(commit=False)
+            bulletin.building = get_object_or_404(Building, pk=building_id)
+            bulletin.save()
+    new_bulletin_form = BulletinForm()
+    return render(request, 'management/bulletin_board.html', {
+        'new_bulletin_form': new_bulletin_form,
+    })
 
 
+@login_required
+def get_bulletin(request):
+    # bulletin_id =
+    pass
+
+@login_required
 def facility_info(request):
     return render(request, 'management/facility_info.html')
