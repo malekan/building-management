@@ -228,3 +228,7 @@ def get_bulletin(request):
 @login_required
 def facility_info(request):
     return render(request, 'management/facility_info.html')
+
+@login_required
+def manager_account(request):
+    return render(request, 'management/manager_account.html')

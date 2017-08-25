@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^buildings/$', views.buildings, name='buildings'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^manager_account/$', views.manager_account, name='manager_account'),
     url(r'^messaging/$', views.messaging, name='messaging'),
     url(r'^messaging_sent/$', views.messaging_sent, name='messaging_sent'),
     url(r'^bulletin_board/$', views.bulletin_board, name='bulletin_board'),

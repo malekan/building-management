@@ -79,7 +79,7 @@
                         class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
-                        <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
+                        <li><a href="{% url 'management:manager_account' %}"><i class="fa fa-user"></i>حساب کاربری من</a></li>
                         <li><a href="{% url 'management:buildings' %}"><i class="fa fa-home"></i>ساختمان‌‌های من</a></li>
                         {#                        <li><a href="#"><i class="fa fa-envelope"></i>پیام‌های دریافتی<span class="badge badge-danger">3</span></a>#}
                         {#                        </li>#}
@@ -107,29 +107,8 @@
                 <div class="clearfix"></div>
                 <li class="active"><a href="{% url 'management:dashboard' %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
-                </i><span class="menu-title">داشبورد (ساختمان لاله)</span></a></li>
+                </i><span class="menu-title">داشبورد - ساختمان لاله</span></a></li>
 
-
-                <li><a data-toggle="collapse" href="#collapse1"><i class="fa fa-desktop fa-fw">
-                    <div class="icon-bg bg-pink"></div>
-                </i><span class="menu-title ">واحدهای من</span></a>
-                </li>
-                <div id="collapse1" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="">پرداخت قبوض</a>
-                    <a class="list-group-item small" href="">دریافت سوابق مالی</a>
-                    <a class="list-group-item small" href="">رزرو امکانات ساختمان</a>
-                    <a class="list-group-item small" href="">حذف واحد</a>
-                </div>
-
-
-                <li><a data-toggle="collapse" href="#collapse2"><i class="fa fa-send-o fa-fw">
-                    <div class="icon-bg bg-green"></div>
-                </i><span class="menu-title">استیجار واحد مسکونی</span></a>
-                </li>
-                <div id="collapse2" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="">ثبت مستاجر</a>
-                    <a class="list-group-item small" href="">ویرایش مستاجر</a>
-                </div>
 
 
                 <li><a data-toggle="collapse" href="#collapse3"><i class="fa fa-edit fa-fw">
@@ -137,12 +116,10 @@
                 </i><span class="menu-title">مدیریت ساختمان</span></a>
                 </li>
                 <div id="collapse3" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="{% url 'management:new_building' %}">ساختمان‌های تحت
-                        مدیریت</a>
-                    <a class="list-group-item small" href="{% url 'management:new_unit' %}">ثبت واحد مسکونی جدید</a>
-                    <a class="list-group-item small" href="">ویرایش واحدهای مسکونی</a>
-                    <a class="list-group-item small" href="">ثبت خدمتکار جدید</a>
-                    <a class="list-group-item small" href="">ویرایش اطلاعات خدمه</a>
+                    <a class="list-group-item small" href="{% url 'management:new_unit' %}">واحد‌های ساختمان</a>
+                    <a class="list-group-item small" href="{% url 'management:facility_info' %}">امکانات ساختمان</a>
+                    <a class="list-group-item small" href="">خدمه‌ی ساختمان</a>
+                    <a class="list-group-item small" href="{% url 'management:buildings' %}">ساختمان‌های من</a>
                     <a class="list-group-item small" href="">تمدید اشتراک سامانه</a>
                 </div>
 
@@ -151,8 +128,8 @@
                 </i><span class="menu-title">مدیریت ساکنین</span></a>
                 </li>
                 <div id="collapse5" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="">ثبت مالک جدید</a>
-                    <a class="list-group-item small" href="">ویرایش اطلاعات مالکین</a>
+                    <a class="list-group-item small" href="">مالکین</a>
+                    <a class="list-group-item small" href="">مستاجرین</a>
                 </div>
 
                 <li><a data-toggle="collapse" href="#collapse6"><i class="fa fa-file-o fa-fw">
@@ -163,7 +140,6 @@
                 <div id="collapse6" class="sublinks collapse list-group">
                     <a class="list-group-item small" href="">تعین روش محاسبه شارژ</a>
                     <a class="list-group-item small" href="">ثبت هزینه</a>
-                    <a class="list-group-item small" href="">دریافت سوابق مالی واحدها</a>
                     <a class="list-group-item small" href="">دریافت سوابق مالی ساختمان</a>
 
                 </div>

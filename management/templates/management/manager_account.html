@@ -1,0 +1,154 @@
+{% extends 'management/base.html' %}
+
+{% block user_fullname1 %}{{ user_fullname }}{% endblock %}
+{% block user_fullname2 %}{{ user_fullname }}{% endblock %}
+
+{% block content %}
+
+    <!--BEGIN PAGE WRAPPER-->
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                حساب کاربری مدیریت
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a
+                    href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="{% url 'management:manager_account' %}">حساب کاربری مدیریت</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">حساب کاربری مدیریت</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+
+    <div id="make_reservation" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">رزرو امکان - نام امکان</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST" class="post-form">{% csrf_token %}
+                        {{ new_building_form.as_p }}
+                        <button type="submit" class="save btn btn-default">ثبت درخواست</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="mtl mbl"></div>
+                    <div class="row">
+
+                        <div class="col-sm-4 col-md-3">
+
+
+                            <img style="border-radius: 50%;" width="100%" height="150%"
+                                 src="https://pbs.twimg.com/profile_images/546708662287228929/XK0Jznql_400x400.jpeg">
+
+                            <div class="mtm mbm" style="height: 40px"></div>
+
+                            <a style="font-size: 18px"
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">ویرایش
+                                اطلاعات حساب کاربری
+                            </a>
+                            <div class="mtm mbm"></div>
+                            <a style="font-size: 18px"
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">تغییر
+                                کلمه‌ی عبور
+                            </a>
+                            <div class="mtm mbm"></div>
+                            <a style="font-size: 18px"
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">تمدید اشتراک سامانه
+                            </a>
+                            <div class="mtm mbm"></div>
+                            <a style="font-size: 18px"
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">حذف حساب
+                                کاربری
+                            </a>
+
+
+                        </div>
+                        <div class="mtm mbm"></div>
+                        <div class="col-sm-8 col-md-9">
+
+                            <div class="panel">
+                                <div class="panel-body pan">
+                                    <ul style="background: #fff" class="nav nav-pills nav-stacked">
+                                        <li class="active"><a><i class="fa fa-slack fa-fw mrs"></i>اطلاعات حساب
+                                            کاربری</a>
+                                        </li>
+                                        <li>
+                                            <div style="padding-right: 5%; padding-left: 5%">
+                                                <div class="form-group">
+                                                    <label for="usr">نام و نام خانوادگی:</label>
+                                                    <input type="text" class="form-control" id="name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pwd">شماره‌ي تلفن همراه:</label>
+                                                    <input type="text" class="form-control" id="phone">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pwd">پست الکترونیکی:</label>
+                                                    <input type="text" class="form-control" id="email">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pwd">نام کاربری:</label>
+                                                    <input type="text" class="form-control" id="username">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pwd">روز باقی مانده از اعتبار اشتراک سامانه:</label>
+                                                    <input type="text" class="form-control" id="‌credits_lrft">
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mtm mbm"></div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function my_function() {
+            $.notify({
+                // options
+                message: 'نمیشه هنوز کد این بخشو نزدیم!'
+            }, {
+                // settings
+                type: 'danger'
+            });
+        }
+    </script>
+
+
+    <!--END CONTENT-->
+    <!--END PAGE WRAPPER-->
+
+{% endblock %}
