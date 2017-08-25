@@ -203,3 +203,6 @@ def messaging_sent(request):
 @login_required
 def bulletin_board(request):
     return render(request, 'management/bulletin_board.html')
+
+def facility_info(request):
+    return render(request, 'management/facility_info.html')

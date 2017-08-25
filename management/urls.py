@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^messaging/$', views.messaging, name='messaging'),
     url(r'^messaging_sent/$', views.messaging_sent, name='messaging_sent'),
     url(r'^bulletin_board/$', views.bulletin_board, name='bulletin_board'),
+    url(r'^facility_info/$', views.facility_info, name='facility_info'),
     url(r'^dashboard_user/$', TemplateView.as_view(template_name='management/dashboard_user.html')),
     url(r'^building/new/$', views.new_building, name='new_building'),
     url(r'^building/(?P<building_id>)[0-9]+/$', views.make_building_page, name='building_page'),

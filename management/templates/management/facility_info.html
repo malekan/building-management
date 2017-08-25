@@ -1,0 +1,153 @@
+{% extends 'management/base.html' %}
+
+{% block user_fullname1 %}{{ user_fullname }}{% endblock %}
+{% block user_fullname2 %}{{ user_fullname }}{% endblock %}
+
+{% block content %}
+
+    <!--BEGIN PAGE WRAPPER-->
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                امکانات ساختمان - نام امکان
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a
+                    href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="{% url 'management:home' %}">امکانات ساختمان - نام امکان</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">امکانات ساختمان - نام امکان</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+
+    <div id="make_reservation" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">رزرو امکان - نام امکان</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST" class="post-form">{% csrf_token %}
+                        {{ new_building_form.as_p }}
+                        <button type="submit" class="save btn btn-default">ثبت درخواست</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="mtl mbl"></div>
+                    <div class="row">
+
+
+                        <div class="col-sm-7 col-md-8">
+
+                            <div class="panel">
+                                <div class="panel-body pan">
+                                    <ul style="background: #fff" class="nav nav-pills nav-stacked">
+                                        <li class="active"><a><i class="fa fa-slack fa-fw mrs"></i>امکانات ساختمان - نام
+                                            امکان</a>
+                                        </li>
+
+
+                                        <li>
+                                            <img width="100%" height="auto"
+                                                 src="http://cdn13.muratorplus.smcloud.net/t/image/thumbnails/67244/sandssands_skypark_c_timothy_800x0_rozmiar-niestandardowy.jpg">
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mtm mbm"></div>
+                            <div class="col-sm-6"><a style="font-size: 18px"
+                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
+                                                     role="button" class="btn btn-danger btn-sm btn-block">حذف پیام
+                            </a></div>
+                            <div class="mtm mbm"></div>
+                            <div class="col-sm-6"><a style="font-size: 18px;"
+                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
+                                                     role="button" class="btn btn-danger btn-sm btn-block">پاسخ دادن
+                            </a></div>
+
+                        </div>
+
+
+                        <div class="mtm mbm"></div>
+                        <div class="col-sm-5 col-md-4">
+
+
+                            <div class="panel">
+                                <div class="panel-body pan">
+                                    <ul style="background: #fff" class="nav nav-pills nav-stacked">
+                                        <li class="active"><a><i class="fa fa-book fa-fw mrs"></i>برنامه‌ی زمان بندی
+                                            امکان</a>
+                                        </li>
+                                        <li>
+                                            <canvas id="myCanvas" width="512" height="512"></canvas>
+                                            <script>
+                                                var canvas = document.getElementById('myCanvas');
+                                                var context = canvas.getContext('2d');
+                                                var x = canvas.width / 2;
+                                                var y = canvas.height / 2;
+                                                var radius = 150;
+                                                var startAngle = 1.1 * Math.PI;
+                                                var endAngle = 1.9 * Math.PI;
+                                                var counterClockwise = false;
+
+
+                                                for (var i = 0 ; i < 24 ; i++) {
+                                                    startAngle = 1.1 * Math.PI;
+                                                    endAngle = 1.9 * Math.PI;
+                                                    context.beginPath();
+                                                    context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+                                                    context.lineWidth = 15;
+                                                    // line color
+                                                    context.strokeStyle = 'red';
+                                                    context.stroke();
+                                                }
+
+                                                context.beginPath();
+                                                context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+                                                context.lineWidth = 15;
+                                                // line color
+                                                context.strokeStyle = 'red';
+                                                context.stroke();
+                                            </script>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!--END CONTENT-->
+    <!--END PAGE WRAPPER-->
+
+{% endblock %}
