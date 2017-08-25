@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # login url
-LOGIN_URL = 'management/login/'
+LOGIN_URL = 'localhost:8000/login'
 
 CRISPY_TEMPLATE_PACK = 'semantic-ui'
 

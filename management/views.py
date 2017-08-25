@@ -99,9 +99,8 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'management/dashboard.html', {
-                    'user_fullname': Profile.objects.get(user=request.user).full_name
-                })
+                messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+                return redirect(reverse('management:dashboard'))
             else:
                 return render(request, 'management/login.html', {
                     'login_error_message': 'حساب کاربری شما غیرفعال است.'
@@ -116,12 +115,14 @@ def login_user(request):
 @login_required
 def logout_user(request):
     logout(request)
-    return render(request, 'management/index.html')
+    return redirect(reverse('management:login'))
 
 
 @login_required
 def dashboard(request):
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/dashboard.html')
+
 
 @login_required
 def new_building(request):
@@ -141,6 +142,7 @@ def new_building(request):
         'new_cost_form': cost_form,
         'building_list': building_list,
     })
+
 
 def new_cost(request):
     if request.method == 'POST':
@@ -192,9 +194,11 @@ def new_facility(request):
 def messaging(request):
     return render(request, 'management/messaging.html')
 
+
 @login_required
 def messaging_sent(request):
     return render(request, 'management/messaging_sent.html')
+
 
 @login_required
 def bulletin_board(request):
