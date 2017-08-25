@@ -107,6 +107,14 @@ class Cost(models.Model):
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
 
 
+class Bulletin(models.Model):
+    title = models.CharField(max_length=2 * names_length)
+    text = models.TextField(max_length=3 * long_description_length)
+    date_time = models.DateTimeField()
+
+    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+
+
 class Message(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='sent_messages')
     receiver = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='received_messages')
