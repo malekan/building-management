@@ -1,7 +1,19 @@
-{% extends 'management/base.html' %}
+{% extends 'management/base_general_manager.html' %}
 
-{% block user_fullname1 %}{{ user_fullname }}{% endblock %}
-{% block user_fullname2 %}{{ user_fullname }}{% endblock %}
+{% block user_fullname1 %}
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block user_fullname2 %}
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 

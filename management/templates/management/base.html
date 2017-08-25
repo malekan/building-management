@@ -57,18 +57,20 @@
         <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
             <div class="news-update-box hidden-xs">
                 <ul id="news-update" class="ticker list-unstyled">
-                    <li style="color : white">{% block user_fullname2 %}{% endblock %} عزیز خوش آمدید. سیما, سامانه
+                    <li style="color : white">{% block user_fullname2 %}
+
+                    {% endblock %} عزیز خوش آمدید. سیما, سامانه
                         یکپارچه مدیریت آپارتمان
                     </li>
                 </ul>
             </div>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
-                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:bulletin_board' %}"
+                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:bulletin_board' building.id %}"
                                         class="dropdown-toggle"><i
                         class="fa fa-bell fa-fw"></i><span class="badge badge-yellow">3</span></a>
 
                 </li>
-                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:messaging' %}"
+                <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:messaging' building.id %}"
                                         class="dropdown-toggle"><i
                         class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
 
@@ -76,7 +78,9 @@
 
                 <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
                         src="images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span
-                        class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span
+                        class="hidden-xs">{% block user_fullname1 %}
+
+                        {% endblock %}</span>&nbsp;<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
                         <li><a href="{% url 'management:manager_account' %}"><i class="fa fa-user"></i>حساب کاربری من</a></li>
@@ -105,7 +109,7 @@
             <ul id="side-menu" class="nav">
 
                 <div class="clearfix"></div>
-                <li class="active"><a href="{% url 'management:dashboard' %}"><i class="fa fa-tachometer fa-fw">
+                <li class="active"><a href="{% url 'management:dashboard' building.id %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
                 </i><span class="menu-title">داشبورد - ساختمان لاله</span></a></li>
 
@@ -116,8 +120,8 @@
                 </i><span class="menu-title">مدیریت ساختمان</span></a>
                 </li>
                 <div id="collapse3" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="{% url 'management:new_unit' %}">واحد‌های ساختمان</a>
-                    <a class="list-group-item small" href="{% url 'management:facility_info' %}">امکانات ساختمان</a>
+                    <a class="list-group-item small" href="{% url 'management:new_unit' building.id%}">واحد‌های ساختمان</a>
+                    <a class="list-group-item small" href="{% url 'management:facility_info' building.id%}">امکانات ساختمان</a>
                     <a class="list-group-item small" href="">خدمه‌ی ساختمان</a>
                     <a class="list-group-item small" href="{% url 'management:buildings' %}">ساختمان‌های من</a>
                     <a class="list-group-item small" href="">تمدید اشتراک سامانه</a>
@@ -161,9 +165,9 @@
 
                 </li>
                 <div id="collapse8" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="{% url 'management:bulletin_board' %}">تابلو‌ی اعلانات</a>
-                    <a class="list-group-item small" href="{% url 'management:messaging' %}">پیام‌های دریافتی</a>
-                    <a class="list-group-item small" href="{% url 'management:messaging_sent' %}">پیام‌های ارسالی</a>
+                    <a class="list-group-item small" href="{% url 'management:bulletin_board' building.id%}">تابلو‌ی اعلانات</a>
+                    <a class="list-group-item small" href="{% url 'management:messaging' building.id%}">پیام‌های دریافتی</a>
+                    <a class="list-group-item small" href="{% url 'management:messaging_sent' building.id%}">پیام‌های ارسالی</a>
                 </div>
             </ul>
         </div>

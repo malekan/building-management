@@ -12,7 +12,7 @@ from django.views.generic.edit import UpdateView
 from django.template import loader, Context
 
 from django.contrib.auth.models import User
-from .models import Profile, Building, Unit
+from .models import Profile, Building, Unit, Facility, Bulletin
 from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm
 
 
@@ -128,6 +128,12 @@ def dashboard(request, building_id):
 
 
 @login_required
+def dashboard_user(request):
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/dashboard_user.html')
+
+
+@login_required
 def buildings(request):
     if request.method == 'POST':
         form = BuildingForm(request.POST or None, request.FILES or None)
@@ -140,6 +146,7 @@ def buildings(request):
     cost_form = CostForm()
     [manager] = list(Profile.objects.filter(user=request.user).all())
     building_list = Building.objects.filter(manager=manager)
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/building_management.html', {
         'new_building_form': form,
         'new_cost_form': cost_form,
@@ -162,16 +169,7 @@ def delete_building(request, building_id):
     print(building_id)
     building = get_object_or_404(Building, pk=building_id)
     building.delete()
-    return redirect(reverse('management:new_building'))
-
-
-@login_required
-def make_building_page(request, building_id):
-    form = UnitForm()
-    return render(request, 'management/building_page.html', context={
-        'building_id': building_id, 'new_unit_form': form
-
-    })
+    return redirect(reverse('management:buildings'))
 
 
 @login_required
@@ -182,31 +180,50 @@ class BuildingUpdate(UpdateView):
 
 
 @login_required
-def new_unit(request):
+def new_unit(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
     form = UnitForm()
-    return render(request, 'management/building_page.html', {'new_unit_form': form})
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/dashboard.html', {
+        'building': building,
+        'new_unit_form': form
+    })
 
 
 @login_required
-def new_facility(request, building_id):
+def facilities(request, building_id):
     if request.method == 'POST':
         form = FacilityForm(request.POST)
         if form.is_valid():
             facility = form.save(commit=False)
             facility.building = get_object_or_404(Building, pk=building_id)
             facility.save()
+
+    facility_list = get_object_or_404(Building, pk=building_id).facility_set.all()
     form = FacilityForm()
-    return render(request, 'management/new_facility_form.html', {'form': form})
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/new_facility_form.html', {
+        'facility_list': facility_list,
+        'form': form,
+    })
 
 
 @login_required
-def messaging(request):
-    return render(request, 'management/messaging.html')
+def messaging(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/messaging.html', {
+        'building': building,
+    })
 
 
 @login_required
-def messaging_sent(request):
-    return render(request, 'management/messaging_sent.html')
+def messaging_sent(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/messaging_sent.html', {
+        'building': building,
+    })
 
 
 @login_required
@@ -217,21 +234,32 @@ def bulletin_board(request, building_id):
             bulletin = form.save(commit=False)
             bulletin.building = get_object_or_404(Building, pk=building_id)
             bulletin.save()
+    building = get_object_or_404(Building, pk=building_id)
+    bulletins_list = building.bulletin_set.all()
     new_bulletin_form = BulletinForm()
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/bulletin_board.html', {
+        'building': building,
+        'bulletins_list': bulletins_list,
         'new_bulletin_form': new_bulletin_form,
     })
 
 
 @login_required
-def get_bulletin(request):
-    # bulletin_id =
+def get_bulletin(request, building_id):
     pass
 
+
 @login_required
-def facility_info(request):
-    return render(request, 'management/facility_info.html')
+def facility_info(request, facility_id):
+    facility = get_object_or_404(Facility, pk=facility_id)
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
+    return render(request, 'management/facility_info.html', {
+        'facility': facility,
+    })
+
 
 @login_required
 def manager_account(request):
+    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/manager_account.html')

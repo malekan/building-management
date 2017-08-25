@@ -1,12 +1,8 @@
-<!DOCTYPE HTML>
-<html>
-<body style="direction: rtl !important;">
+
 {{ fullname }} عزیز سلام،
-<br>
+
 لطفا جهت فعالسازی حساب کاربری خو بر روی لینک زیر کلیک کنید:
-<br>
-<div style="direction: ltr !important;">
+
+
 http://{{ domain }}{% url 'management:account-activation' uid_base_64=uid token=token %}
-</div>
-</body>
-</html>
+

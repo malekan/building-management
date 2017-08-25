@@ -1,4 +1,4 @@
-{% extends 'management/base_buildings.html' %}
+{% extends 'management/base_general_manager.html' %}
 {% load bootstrap %}
 
 {% block user_fullname1 %}
@@ -169,7 +169,8 @@
                                                    data-target="#modal-config"
                                                    class="fa fa-cog"></i>
                                                 <i class="fa fa-money" onclick="recordNewCost({{ building.pk }})"></i>
-                                                <i class="fa fa-times" onclick="closeClick({{ building.pk }})"></i>
+                                                <i class="fa fa-times delete_building" id="building{{ building.pk }}"
+                                                   delete_url="{% url 'management:delete_building' building_id=building.id %}" onclick="closeClick({{ building.pk }})"></i>
 
                                             </div>
                                         </div>
@@ -200,7 +201,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header" style="background-color: #00008d;color: white ">
-                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" >
                                             &times;
                                         </button>
                                         <h4 class="modal-title">
@@ -231,7 +232,8 @@
         function closeClick(buildingID) {
             var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
             if (result == true)
-                window.location.replace("/management/building/delete/" + buildingID);
+                var url = $('#building' + buildingID).attr('delete_url');
+                window.location.replace(url);
         }
         var is_first_time = true;
         function recordNewCost(buildingID) {

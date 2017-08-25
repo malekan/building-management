@@ -59,7 +59,7 @@
                         class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
-                        <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
+                        <li><a href="{% url 'management:manager_account' %}"><i class="fa fa-user"></i>حساب کاربری من</a></li>
                         <li><a href="{% url 'management:buildings' %}"><i class="fa fa-home"></i>ساختمان‌‌های من</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url 'management:logout' %}"><i class="fa fa-key"></i>خروج از سامانه</a></li>
