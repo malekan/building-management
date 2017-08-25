@@ -125,7 +125,7 @@ def dashboard(request):
 
 
 @login_required
-def new_building(request):
+def buildings(request):
     if request.method == 'POST':
         form = BuildingForm(request.POST or None, request.FILES or None)
         if form.is_valid():

@@ -65,7 +65,7 @@
             <ul class="nav navbar navbar-top-links navbar-right mbn">
                 <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:bulletin_board' %}"
                                         class="dropdown-toggle"><i
-                        class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+                        class="fa fa-bell fa-fw"></i><span class="badge badge-yellow">3</span></a>
 
                 </li>
                 <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:messaging' %}"
@@ -73,17 +73,14 @@
                         class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
 
                 </li>
-                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                        class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
 
-                </li>
                 <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
                         src="images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span
                         class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
                         <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
-                        <li><a href="#"><i class="fa fa-calendar"></i>تقویم</a></li>
+                        <li><a href="{% url 'management:buildings' %}"><i class="fa fa-home"></i>ساختمان‌‌های من</a></li>
                         {#                        <li><a href="#"><i class="fa fa-envelope"></i>پیام‌های دریافتی<span class="badge badge-danger">3</span></a>#}
                         {#                        </li>#}
                         {#                        <li><a href="#"><i class="fa fa-tasks"></i>فعالیت‌ها<span#}
@@ -110,7 +107,7 @@
                 <div class="clearfix"></div>
                 <li class="active"><a href="{% url 'management:dashboard' %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
-                </i><span class="menu-title">داشبورد</span></a></li>
+                </i><span class="menu-title">داشبورد (ساختمان لاله)</span></a></li>
 
 
                 <li><a data-toggle="collapse" href="#collapse1"><i class="fa fa-desktop fa-fw">
