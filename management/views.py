@@ -100,7 +100,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-                return redirect(reverse('management:dashboard'))
+                return redirect(reverse('management:buildings'))
             else:
                 return render(request, 'management/login.html', {
                     'login_error_message': 'حساب کاربری شما غیرفعال است.'
@@ -119,9 +119,12 @@ def logout_user(request):
 
 
 @login_required
-def dashboard(request):
+def dashboard(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
     messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-    return render(request, 'management/dashboard.html')
+    return render(request, 'management/dashboard.html', {
+        'building': building,
+    })
 
 
 @login_required

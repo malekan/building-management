@@ -1,0 +1,195 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ساختمان‌ها</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/jquery-ui-1.10.4.custom.min.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/font-awesome.min.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/bootstrap.min.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/animate.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/all.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/main.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/style-responsive.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/zabuto_calendar.min.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/pace.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "styles/jquery.news-ticker.css" %}">
+    <style>
+        * {
+            direction: rtl;
+        !important;
+        }
+    </style>
+</head>
+<body>
+
+
+<!--BEGIN BACK TO TOP-->
+<a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+<!--END BACK TO TOP-->
+<!--BEGIN TOPBAR-->
+<div id="header-topbar-option-demo" class="page-header-topbar">
+    <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3"
+         class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header">
+
+            <a id="logo" href="{% url 'management:home' %}" class="navbar-brand"><span
+                    class="fa fa-rocket">  </span><span
+                    class="logo-text"><img src="{% static "logo/sima_logo_captionless.png" %}" class=""
+                                           style="width: 40px"/> سیما</span><span style="display: none"
+                                                                                  class="logo-text-icon">µ</span></a>
+        </div>
+        <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+            <div class="news-update-box hidden-xs">
+                <ul id="news-update" class="ticker list-unstyled">
+                    <li style="color : white">{% block user_fullname2 %}{% endblock %} عزیز خوش آمدید. سیما, سامانه
+                        یکپارچه مدیریت آپارتمان
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav navbar navbar-top-links navbar-right mbn">
+                <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
+                        src="images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span
+                        class="hidden-xs">{% block user_fullname1 %}{% endblock %}</span>&nbsp;<span
+                        class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-user pull-right">
+                        <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
+                        <li><a href="{% url 'management:buildings' %}"><i class="fa fa-home"></i>ساختمان‌‌های من</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'management:logout' %}"><i class="fa fa-key"></i>خروج از سامانه</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--END TOPBAR-->
+
+<div id="wrapper">
+
+    <div id="page-wrapper">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+
+    <footer>
+        <div class="container-fluid text-center">
+            <a class="brand" href="#"></a>
+        </div>
+        <div class="container-fluid text-center">
+            <nav class="navbar-collapse">
+                <ul id="menu-main-menu-1" class="nav navbar-nav">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-83">
+                        <a href="{% url 'management:whatis' %}">سیما چیست؟</a></li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16"><a
+                            href="{% url 'management:whatis' %}">راهنما</a></li>
+                    {#<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="/login">ورود به سامانه</a></li>#}
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-13"><a
+                            href="{% url 'management:home' %}">صفحه‌ی اصلی</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript">window.NREUM || (NREUM = {});
+    NREUM.info = {
+        "beacon": "bam.nr-data.net",
+        "licenseKey": "afa4101d8d",
+        "applicationID": "11530091",
+        "transactionName": "NFxSMEtRXURYBUJQCw0WcQdNWVxZFgBEVgoXFEAFXlU=",
+        "queueTime": 3,
+        "applicationTime": 252,
+        "atts": "GBtRRgNLTko=",
+        "errorBeacon": "bam.nr-data.net",
+        "agent": ""
+    }</script>
+
+
+</div>
+
+
+
+
+<script src="{% static "script/jquery-1.10.2.min.js" %}"></script>
+<script src="{% static "script/jquery-migrate-1.2.1.min.js" %}"></script>
+<script src="{% static "script/jquery-ui.js" %}"></script>
+<script src="{% static "script/bootstrap.min.js" %}"></script>
+<script src="{% static "script/bootstrap-hover-dropdown.js" %}"></script>
+<script src="{% static "script/html5shiv.js" %}"></script>
+<script src="{% static "script/respond.min.js" %}"></script>
+<script src="{% static "script/jquery.metisMenu.js" %}"></script>
+<script src="{% static "script/jquery.slimscroll.js" %}"></script>
+<script src="{% static "script/jquery.cookie.js" %}"></script>
+<script src="{% static "script/icheck.min.js" %}"></script>
+<script src="{% static "script/custom.min.js" %}"></script>
+<script src="{% static "script/jquery.news-ticker.js" %}"></script>
+<script src="{% static "script/jquery.menu.js" %}"></script>
+<script src="{% static "script/pace.min.js" %}"></script>
+<script src="{% static "script/holder.js" %}"></script>
+<script src="{% static "script/responsive-tabs.js" %}"></script>
+<script src="{% static "script/jquery.flot.js" %}"></script>
+<script src="{% static "script/jquery.flot.categories.js" %}"></script>
+<script src="{% static "script/jquery.flot.pie.js" %}"></script>
+<script src="{% static "script/jquery.flot.tooltip.js" %}"></script>
+<script src="{% static "script/jquery.flot.resize.js" %}"></script>
+<script src="{% static "script/jquery.flot.fillbetween.js" %}"></script>
+<script src="{% static "script/jquery.flot.stack.js" %}"></script>
+<script src="{% static "script/jquery.flot.spline.js" %}"></script>
+<script src="{% static "script/zabuto_calendar.min.js" %}"></script>
+<script src="{% static "script/index.js" %}"></script>
+<!--LOADING SCRIPTS FOR CHARTS-->
+<script src="{% static "script/highcharts.js" %}"></script>
+<script src="{% static "script/data.js" %}"></script>
+<script src="{% static "script/drilldown.js" %}"></script>
+<script src="{% static "script/exporting.js" %}"></script>
+<script src="{% static "script/highcharts-more.js" %}"></script>
+<script src="{% static "script/charts-highchart-pie.js" %}"></script>
+<script src="{% static "script/charts-highchart-more.js" %}"></script>
+<!--CORE JAVASCRIPT-->
+<script src="{% static "script/main.js" %}"></script>
+<script>        (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+ga('create', 'UA-145464-12', 'auto');
+ga('send', 'pageview');
+
+
+</script>
+
+
+
+
+{#start of bootstrap notify scripts#}
+<script src="{% static "script/bootstrap-notify-3.1.3/bootstrap-notify.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/Gruntfile.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/package.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/test_meteor.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/dist/bootstrap-notify.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/dist/bootstrap-notify.min.js" %}"></script>
+{#end of bootstrap notify scripts#}
+
+
+
+</body>
+</html>
+
+

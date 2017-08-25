@@ -1,5 +1,20 @@
-{% extends 'management/base.html' %}
+{% extends 'management/base_buildings.html' %}
 {% load bootstrap %}
+
+{% block user_fullname1 %}
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block user_fullname2 %}
+    {% if messages %}
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
@@ -10,7 +25,7 @@
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
-            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:dashboard' %}">خانه</a>&nbsp;&nbsp;<i
+            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:buildings' %}">ساختمان‌ها</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
             <li class="hidden"><a href="#">مدیریت ساختمان</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
@@ -123,7 +138,7 @@
                 <div class="modal-body">
 
                     <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
+                        {{ new_building_form|bootstrap }}
                         <button type="submit" class="save btn btn-default">ثبت ساختمان</button>
                     </form>
                 </div>
@@ -147,7 +162,7 @@
                                     <div class="portlet box">
                                         <div class="portlet-header">
                                             <div class="caption">
-                                                {{ building.name }}
+                                                <a href="{% url 'management:dashboard' building.id %}">{{ building.name }}</a>
                                             </div>
                                             <div class="tools">
                                                 <i data-toggle="modal"
@@ -160,10 +175,13 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div>
-                                                <img src="{{ building.main_pic_src }}"
-                                                     width="100%"/>
+                                                <a href="{% url 'management:dashboard' building.id %}">
+                                                    <img src="{{ building.main_pic }}" width="100%"/>
+                                                </a>
                                                 <p>
-                                                    <strong>{{ building.name }}</strong><br/>
+                                                    <a href="{% url 'management:dashboard' building.id %}">
+                                                        <strong>{{ building.name }}</strong><br/>
+                                                    </a>
                                                     <small>
                                                         {{ building.address }}                                                    </small>
                                                 <p>
