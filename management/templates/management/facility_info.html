@@ -70,22 +70,22 @@
 
                                         <li>
                                             <img width="100%" height="auto"
+                                                 style="-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))"
                                                  src="http://cdn13.muratorplus.smcloud.net/t/image/thumbnails/67244/sandssands_skypark_c_timothy_800x0_rozmiar-niestandardowy.jpg">
+                                            <label style="position: relative; right: 5%; left: 5%; top: 80%; color: black; font-size: 26px">
+                                                استخر ساختمان
+                                                <br>
+                                                این استخر در ارتفاع 400 متری و در پشت بام واقع شده است. شنا توی این
+                                                استخر و استراحت در کنارش خیلی حال میده. جدی برین صفا کنین!
+                                            </label>
                                         </li>
+
 
                                     </ul>
                                 </div>
                             </div>
                             <div class="mtm mbm"></div>
-                            <div class="col-sm-6"><a style="font-size: 18px"
-                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                                     role="button" class="btn btn-danger btn-sm btn-block">حذف پیام
-                            </a></div>
-                            <div class="mtm mbm"></div>
-                            <div class="col-sm-6"><a style="font-size: 18px;"
-                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                                     role="button" class="btn btn-danger btn-sm btn-block">پاسخ دادن
-                            </a></div>
+
 
                         </div>
 
@@ -101,41 +101,55 @@
                                             امکان</a>
                                         </li>
                                         <li>
-                                            <canvas id="myCanvas" width="512" height="512"></canvas>
+                                            <canvas id="myCanvas" width="512" height="450"></canvas>
                                             <script>
+                                                var timeArray = [0, 0, 0, 0, 1, 1, 1, 2, 2, 1, 2, 1, 1, 1, 2, 2, 2, 2, 0, 0, 0, 2, 2, 1];
                                                 var canvas = document.getElementById('myCanvas');
                                                 var context = canvas.getContext('2d');
                                                 var x = canvas.width / 2;
                                                 var y = canvas.height / 2;
                                                 var radius = 150;
-                                                var startAngle = 1.1 * Math.PI;
-                                                var endAngle = 1.9 * Math.PI;
+                                                var arcLength = Math.PI * 2 / 12 - 0.02 * Math.PI;
+                                                var startAngle = 0.51 * Math.PI;
                                                 var counterClockwise = false;
 
 
-                                                for (var i = 0 ; i < 24 ; i++) {
-                                                    startAngle = 1.1 * Math.PI;
-                                                    endAngle = 1.9 * Math.PI;
+                                                for (var i = 0; i < 12; i++) {
                                                     context.beginPath();
-                                                    context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
+                                                    context.arc(x, y, radius, startAngle, startAngle + arcLength, counterClockwise);
                                                     context.lineWidth = 15;
                                                     // line color
-                                                    context.strokeStyle = 'red';
+                                                    context.strokeStyle = (timeArray[i] === 0) ? ('gray') : ((timeArray[i] === 1) ? ('red') : ('green'));
                                                     context.stroke();
+                                                    startAngle += Math.PI * 2 / 12;
                                                 }
 
-                                                context.beginPath();
-                                                context.arc(x, y, radius, startAngle, endAngle, counterClockwise);
-                                                context.lineWidth = 15;
-                                                // line color
-                                                context.strokeStyle = 'red';
-                                                context.stroke();
+                                                radius = 120;
+
+                                                for (i = 12; i < 24; i++) {
+                                                    context.beginPath();
+                                                    context.arc(x, y, radius, startAngle, startAngle + arcLength, counterClockwise);
+                                                    context.lineWidth = 15;
+                                                    // line color
+                                                    context.strokeStyle = (timeArray[i] === 0) ? ('gray') : ((timeArray[i] === 1) ? ('red') : ('green'));
+                                                    context.stroke();
+                                                    startAngle += Math.PI * 2 / 12;
+                                                }
+
                                             </script>
+                                            <label style="position: absolute; top: 42%; left: 39%; font-size: 28px;">
+                                                بعد از ظهر</label>
+                                            <label style="position: absolute; top: 85%; left: 39%; font-size: 28px;">
+                                                قبل از ظهر</label>
                                         </li>
 
                                     </ul>
                                 </div>
                             </div>
+                            <a style="font-size: 18px"
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">ثبت درخواست رزرو
+                            </a>
+
 
                         </div>
 
@@ -145,7 +159,19 @@
             </div>
         </div>
     </div>
-    </div>
+
+    <script>
+        function my_function() {
+            $.notify({
+                // options
+                message: 'نمیشه هنوز کد این بخشو نزدیم!'
+            }, {
+                // settings
+                type: 'danger'
+            });
+        }
+    </script>
+
 
     <!--END CONTENT-->
     <!--END PAGE WRAPPER-->
