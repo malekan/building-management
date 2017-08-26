@@ -61,6 +61,26 @@
         </div>
     </div>
 
+    <div id="delete_bulletin_modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">حذف اعلان</h4>
+                </div>
+                <div class="modal-body">
+                    <div>آیا از حذف اعلان مطمئنید؟</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="deleteBulletin({{ building.id }})">بله</button>
+                    <button type="button" data-dismiss="modal" class="close btn btn-default">خیر</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="page-content">
         <div id="tab-general">
             <div class="row mbl">
@@ -74,20 +94,25 @@
                             <div class="panel">
                                 <div class="panel-body pan">
                                     <ul style="background: #fff" class="nav nav-pills nav-stacked">
-                                        <li class="active"><a
-                                                href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"><i
-                                                class="fa fa-inbox fa-fw mrs"></i>محسن محب زاده - چرا پولتونو
-                                            نمیدین؟</a>
+                                        <li class="active">
+                                            <a>
+                                            <i class="fa fa-inbox fa-fw mrs"></i>
+                                                <div style="display: inline-block; font-size: 30px; font-weight: bold"
+                                                     id="bulletin_title" bulletin-id="">
+
+                                                </div>
+                                            </a>
                                         </li>
 
 
-                                        <li>
-                                            <textarea style="font-size: 32px; direction: rtl; background-color: white;"
-                                                      disabled class="form-control" rows="10" id="bullet_text">
+                                        <li style="overflow: hidden; height: 485px;">
+                                            <textarea
+                                                    style="font-size: 26px; direction: rtl; background-color: white;
+                                                    height: 100%; padding: 30px; border: none; resize: none;
+                                                    width: 100%;"
+                                                    class="" id="bulletin_text" disabled>
 
-                                                آقا من چقدر باید بگم بیاین پولتونو بریزین؟
-                                                یا تا آخر امروز پولتونو میریزین یا من قهر میکنم میرم :(
-                                                مرسی اه
+
                                             </textarea>
                                         </li>
 
@@ -95,16 +120,12 @@
                                 </div>
                             </div>
                             <div class="mtm mbm"></div>
-                            <div class="col-sm-6"><a style="font-size: 18px"
-                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                                     role="button" class="btn btn-danger btn-sm btn-block">حذف اعلان
+                            <div class="col-sm-6"><a style="font-size: 18px; margin-right: 50%;"
+                                                     href=""
+                                                     role="button" class="btn btn-danger btn-sm btn-block"
+                                                     data-toggle="modal" data-target="#delete_bulletin_modal">حذف اعلان
                             </a></div>
                             <div class="mtm mbm"></div>
-                            <div class="col-sm-6"><a style="font-size: 18px;"
-                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                                     role="button" class="btn btn-danger btn-sm btn-block">نوسازی لیست
-                                اعلانات
-                            </a></div>
 
                         </div>
                         <div class="col-sm-4 col-md-3">
@@ -114,10 +135,14 @@
 
                                 <div id="home" class="tab-pane fade in active" style="height: 485px; overflow: hidden">
                                     <strong>لیست اعلانات</strong><br/><br/>
-                                    <div class="list-group" style="overflow-y: scroll; height: 90%;">
+                                    <div class="list-group" id="bulletin-list"
+                                         style="overflow-y: auto; height: 90%;"
+                                         bulletin-board-url="{% url 'management:bulletin_board' building.id %}">
                                         {% for bulletin in bulletins_list %}
 
-                                            <a style="margin-bottom: 15px; border: dashed orangered 2px;" href="#" class="list-group-item">
+                                            <a class="list-group-item"
+                                               style="margin-bottom: 15px; border: dashed orangered 2px;"
+                                               onclick="getBulletinAjax({{ bulletin.id }})">
                                                 <span style="color: darkorange" class="name">
                                                     مدیریت:
                                                 </span>
@@ -143,4 +168,30 @@
     <!--END CONTENT-->
     <!--END PAGE WRAPPER-->
 
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function getBulletinAjax(bulletin_id) {
+            $.ajax({
+                url: $('#bulletin-list').attr('bulletin-board-url'),
+                data: {
+                    'bulletin_id': bulletin_id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#bulletin_title').text(data.bulletin_title);
+                    $('#bulletin_text').text(data.bulletin_text);
+                    $('#bulletin_title').attr('bulletin-id', bulletin_id);
+                }
+            });
+            return false;
+        }
+
+        function deleteBulletin(building_id) {
+            var bulletin_id = $('#bulletin_title').attr('bulletin-id');
+            var url = '/buildings/' + building_id + '/bulletin_board/' + bulletin_id + '/delete/'
+            window.location.replace(url)
+        }
+    </script>
 {% endblock %}

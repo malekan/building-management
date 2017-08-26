@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.template import loader, Context
+from django.http import JsonResponse
 from django.utils import timezone
 from . import jdate
 import math
@@ -233,6 +234,14 @@ def messaging_sent(request, building_id):
 
 @login_required
 def bulletin_board(request, building_id):
+    if request.is_ajax():
+        bulletin_id = request.GET['bulletin_id']
+        bulletin = get_object_or_404(Bulletin, pk=bulletin_id)
+        data = {
+            'bulletin_title': bulletin.title,
+            'bulletin_text': bulletin.text,
+        }
+        return JsonResponse(data)
     if request.method == 'POST':
         form = BulletinForm(request.POST)
         if form.is_valid():
@@ -246,7 +255,7 @@ def bulletin_board(request, building_id):
         dt = bulletin.date_time
         jd = jdate.gregorian_to_jd(dt.year, dt.month, dt.day)
         jalalidate = jdate.jd_to_persian(jd)
-        bulletin.jalalidate = '' + str(math.floor(jalalidate[0])) + '/' + str(math.floor(jalalidate[1])) + '/' +\
+        bulletin.jalalidate = '' + str(math.floor(jalalidate[0])) + '/' + str(math.floor(jalalidate[1])) + '/' + \
                               str(math.floor(jalalidate[2]))
         bulletin.time = '' + str(dt.hour) + ':' + str(dt.minute)
     new_bulletin_form = BulletinForm()
@@ -259,8 +268,10 @@ def bulletin_board(request, building_id):
 
 
 @login_required
-def get_bulletin(request, building_id):
-    pass
+def delete_bulletin(request, building_id, bulletin_id):
+    bulletin = get_object_or_404(Bulletin, pk=bulletin_id)
+    bulletin.delete()
+    return redirect('/buildings/' + building_id + '/bulletin_board/')
 
 
 @login_required

@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^buildings/(?P<building_id>[0-9]+)/messaging/$', views.messaging, name='messaging'),
     url(r'^buildings/(?P<building_id>[0-9]+)/messaging/sent_messages/$', views.messaging_sent, name='messaging_sent'),
     url(r'^buildings/(?P<building_id>[0-9]+)/bulletin_board/$', views.bulletin_board, name='bulletin_board'),
+    url(r'^buildings/(?P<building_id>[0-9]+)/bulletin_board/(?P<bulletin_id>[0-9]+)/delete/$',
+        views.delete_bulletin, name='delete_bulletin'),
     url(r'^buildings/(?P<building_id>[0-9]+)/facility_info/$', views.facility_info, name='facility_info'),
     url(r'^dashboard_user/$', views.dashboard_user, name='user_dashboard'),
     url(r'^buildings/(?P<building_id>[0-9]+)/edit/', views.BuildingUpdate, name='update_building'),
