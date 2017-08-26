@@ -62,6 +62,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'management.context_processors.profiles_processor',
                 'django.template.context_processors.debug',
                 "django.template.context_processors.static",
                 'django.template.context_processors.request',

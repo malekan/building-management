@@ -57,10 +57,8 @@
         <div class="topbar-main"><a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
             <div class="news-update-box hidden-xs">
                 <ul id="news-update" class="ticker list-unstyled">
-                    <li style="color : white">{% block user_fullname2 %}
-
-                    {% endblock %} عزیز خوش آمدید. سیما, سامانه
-                        یکپارچه مدیریت آپارتمان
+                    <li style="color : white">{{ user_fullname }}
+                        عزیز خوش آمدید. سیما, سامانه‌ی یکپارچه مدیریت آپارتمان
                     </li>
                 </ul>
             </div>
@@ -78,9 +76,7 @@
 
                 <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
                         src="https://pbs.twimg.com/profile_images/546708662287228929/XK0Jznql_400x400.jpeg" alt="" class="img-responsive img-circle"/>&nbsp;<span
-                        class="hidden-xs">{% block user_fullname1 %}
-
-                        {% endblock %}</span>&nbsp;<span
+                        class="hidden-xs">{{ user_fullname }}</span>&nbsp;<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
                         <li><a href="{% url 'management:manager_account' %}"><i class="fa fa-user"></i>حساب کاربری من</a></li>
@@ -120,7 +116,7 @@
                 </i><span class="menu-title">مدیریت ساختمان</span></a>
                 </li>
                 <div id="collapse3" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="{% url 'management:new_unit' building.id%}">واحد‌های ساختمان</a>
+                    <a class="list-group-item small" href="{% url 'management:building_units' building.id%}">واحد‌های ساختمان</a>
                     <a class="list-group-item small" href="{% url 'management:facilities' building.id%}">امکانات ساختمان</a>
                     <a class="list-group-item small" href="">خدمه‌ی ساختمان</a>
                     <a class="list-group-item small" href="{% url 'management:buildings' %}">ساختمان‌های من</a>

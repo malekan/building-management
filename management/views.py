@@ -14,8 +14,7 @@ from django.template import loader, Context
 from django.http import JsonResponse
 from django.utils import timezone
 import datetime
-from . import jdate
-import math
+import pytz
 
 from django.contrib.auth.models import User
 from .models import Profile, Building, Unit, Facility, Bulletin
@@ -105,7 +104,6 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
                 return redirect(reverse('management:buildings'))
             else:
                 return render(request, 'management/login.html', {
@@ -127,7 +125,6 @@ def logout_user(request):
 @login_required
 def dashboard(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/dashboard.html', {
         'building': building,
     })
@@ -135,7 +132,6 @@ def dashboard(request, building_id):
 
 @login_required
 def dashboard_user(request):
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/dashboard_user.html')
 
 
@@ -152,7 +148,6 @@ def buildings(request):
     cost_form = CostForm()
     [manager] = list(Profile.objects.filter(user=request.user).all())
     building_list = Building.objects.filter(manager=manager)
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/building_management.html', {
         'new_building_form': form,
         'new_cost_form': cost_form,
@@ -186,13 +181,14 @@ class BuildingUpdate(UpdateView):
 
 
 @login_required
-def new_unit(request, building_id):
+def building_units(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
-    form = UnitForm()
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-    return render(request, 'management/dashboard.html', {
+    units_list = building.unit_set.all()
+    new_unit_form = UnitForm()
+    return render(request, 'management/building_units.html', {
         'building': building,
-        'new_unit_form': form
+        'units_list': units_list,
+        'new_unit_form': new_unit_form
     })
 
 
@@ -208,7 +204,6 @@ def facilities(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
     facility_list = building.facility_set.all()
     form = FacilityForm()
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/facilities.html', {
         'building': building,
         'facility_list': facility_list,
@@ -219,7 +214,6 @@ def facilities(request, building_id):
 @login_required
 def messaging(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/messaging.html', {
         'building': building,
     })
@@ -228,7 +222,6 @@ def messaging(request, building_id):
 @login_required
 def messaging_sent(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/messaging_sent.html', {
         'building': building,
     })
@@ -254,7 +247,6 @@ def bulletin_board(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
     bulletins_list = building.bulletin_set.order_by('-date_time')
     new_bulletin_form = BulletinForm()
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/bulletin_board.html', {
         'building': building,
         'bulletins_list': bulletins_list,
@@ -272,7 +264,6 @@ def delete_bulletin(request, building_id, bulletin_id):
 @login_required
 def facility_info(request, facility_id):
     facility = get_object_or_404(Facility, pk=facility_id)
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/facility_info.html', {
         'facility': facility,
     })
@@ -280,12 +271,13 @@ def facility_info(request, facility_id):
 
 @login_required
 def manager_account(request):
-    messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-    return render(request, 'management/manager_account.html') @ login_required
+    return render(request, 'management/manager_account.html')
+
 
 @login_required
 def payment_initial(request):
     return render(request, 'management/payment_initial.html')
+
 
 @login_required
 def payment_final(request):
