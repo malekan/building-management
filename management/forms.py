@@ -20,16 +20,19 @@ class BuildingForm(forms.ModelForm):
 class UnitForm(forms.ModelForm):
     class Meta:
         model = Unit
-        fields = ('unit_type', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
-                  'number_of_storage_rooms', 'description', 'owner')
+        fields = ('unit_type', 'unit_number', 'story', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
+                  'number_of_storage_rooms', 'options', 'description', 'owner')
 
     def __init__(self, *args, **kwargs):
         super(UnitForm, self).__init__(*args, **kwargs)
         self.fields['unit_type'].label = "نوع واحد"
+        self.fields['unit_number'].label = "شماره‌ی واحد"
+        self.fields['story'].label = "طبقه"
         self.fields['area'].label = "مساحت"
         self.fields['number_of_bedrooms'].label = "تعداد اتاق خواب"
         self.fields['number_of_parking_spaces'].label = "تعداد پارکینگ"
         self.fields['number_of_storage_rooms'].label = "تعداد انباری"
+        self.fields['options'].label = "امکانات"
         self.fields['description'].label = "توضیح"
         self.fields['owner'].label = "مالک"
 

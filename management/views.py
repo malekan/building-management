@@ -163,7 +163,7 @@ def building_units(request, building_id):
             unit = form.save(commit=False)
             print(request.FILES)
             unit.building = get_object_or_404(Building, pk=building_id)
-            building.save()
+            unit.save()
     building = get_object_or_404(Building, pk=building_id)
     units_list = building.unit_set.all()
     new_unit_form = UnitForm()

@@ -5,6 +5,7 @@ import math
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 # max lengths
 names_length = 60
@@ -46,12 +47,14 @@ class Unit(models.Model):
     unit_type = models.CharField(max_length=1,
                                  choices=TYPE_CHOICES,
                                  default=RESIDENTIAL)
-
+    unit_number = models.PositiveIntegerField()
+    story = models.IntegerField()
     area = models.IntegerField()  # unit: m^2
-    number_of_bedrooms = models.IntegerField(default=1)
-    number_of_parking_spaces = models.IntegerField(default=1)
-    number_of_storage_rooms = models.IntegerField(default=1)
-    description = models.TextField(blank=True)
+    number_of_bedrooms = models.PositiveIntegerField(default=1)
+    number_of_parking_spaces = models.PositiveIntegerField(default=1)
+    number_of_storage_rooms = models.PositiveIntegerField(default=1)
+    description = models.TextField(blank=True, null=True)
+    options = models.CharField(max_length=short_description_length, blank=True, null=True)
     main_pic = models.FileField(upload_to='unit_images', default='../static/unit_default.png')
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
