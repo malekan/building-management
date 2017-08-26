@@ -1,3 +1,4 @@
+import pytz
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,6 +13,7 @@ from django.views.generic.edit import UpdateView
 from django.template import loader, Context
 from django.http import JsonResponse
 from django.utils import timezone
+import datetime
 from . import jdate
 import math
 
@@ -251,13 +253,6 @@ def bulletin_board(request, building_id):
             bulletin.save()
     building = get_object_or_404(Building, pk=building_id)
     bulletins_list = building.bulletin_set.order_by('-date_time')
-    for bulletin in bulletins_list:
-        dt = bulletin.date_time
-        jd = jdate.gregorian_to_jd(dt.year, dt.month, dt.day)
-        jalalidate = jdate.jd_to_persian(jd)
-        bulletin.jalalidate = '' + str(math.floor(jalalidate[0])) + '/' + str(math.floor(jalalidate[1])) + '/' + \
-                              str(math.floor(jalalidate[2]))
-        bulletin.time = '' + str(dt.hour) + ':' + str(dt.minute)
     new_bulletin_form = BulletinForm()
     messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/bulletin_board.html', {

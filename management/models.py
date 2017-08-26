@@ -1,5 +1,7 @@
 import datetime
 from django.utils import timezone
+from . import jdate
+import math
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -113,6 +115,18 @@ class Bulletin(models.Model):
     date_time = models.DateTimeField()
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
+
+    @property
+    def jalali_date(self):
+        dt = self.date_time
+        jd = jdate.gregorian_to_jd(dt.year, dt.month, dt.day)
+        jalalidate = jdate.jd_to_persian(jd)
+        return '' + str(math.floor(jalalidate[0])) + '/' + str(math.floor(jalalidate[1])) + '/' + \
+               str(math.floor(jalalidate[2]))
+
+    @property
+    def jalali_time(self):
+        return '' + str(self.date_time.hour) + ':' + str(self.date_time.minute)
 
 
 class Message(models.Model):
