@@ -199,10 +199,12 @@ def facilities(request, building_id):
             facility.building = get_object_or_404(Building, pk=building_id)
             facility.save()
 
-    facility_list = get_object_or_404(Building, pk=building_id).facility_set.all()
+    building = get_object_or_404(Building, pk=building_id)
+    facility_list = building.facility_set.all()
     form = FacilityForm()
     messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-    return render(request, 'management/new_facility_form.html', {
+    return render(request, 'management/facilities.html', {
+        'building': building,
         'facility_list': facility_list,
         'form': form,
     })

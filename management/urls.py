@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^dashboard_user/$', views.dashboard_user, name='user_dashboard'),
     url(r'^buildings/(?P<building_id>[0-9]+)/edit/', views.BuildingUpdate, name='update_building'),
     url(r'^buildings/(?P<building_id>[0-9]+)/units/new/$', views.new_unit, name='new_unit'),
-    url(r'^buildings/(?P<building_id>[0-9]+)/facilities/new', views.facilities, name='facilities'),
+    url(r'^buildings/(?P<building_id>[0-9]+)/facilities/$', views.facilities, name='facilities'),
     url(r'^buildings/(?P<building_id>[0-9]+)/delete/$', views.delete_building, name="delete_building"),
     url(r'^cost/new/$', views.new_cost, name="new_cost")
 ]
