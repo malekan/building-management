@@ -155,6 +155,25 @@ def buildings(request):
     })
 
 
+@login_required
+def building_units(request, building_id):
+    if request.method == 'POST':
+        form = UnitForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            building = form.save(commit=False)
+            print(request.FILES)
+            building.manager = get_object_or_404(Profile, user=request.user)
+            building.save()
+    building = get_object_or_404(Building, pk=building_id)
+    units_list = building.unit_set.all()
+    new_unit_form = UnitForm()
+    return render(request, 'management/building_units.html', {
+        'building': building,
+        'units_list': units_list,
+        'new_unit_form': new_unit_form
+    })
+
+
 def new_cost(request):
     if request.method == 'POST':
         form = CostForm(request.POST)
@@ -178,18 +197,6 @@ class BuildingUpdate(UpdateView):
     form = BuildingForm
     context_object_name = 'update_form'
     template_name = 'management/building_management.html'
-
-
-@login_required
-def building_units(request, building_id):
-    building = get_object_or_404(Building, pk=building_id)
-    units_list = building.unit_set.all()
-    new_unit_form = UnitForm()
-    return render(request, 'management/building_units.html', {
-        'building': building,
-        'units_list': units_list,
-        'new_unit_form': new_unit_form
-    })
 
 
 @login_required
