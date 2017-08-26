@@ -55,10 +55,10 @@ class Unit(models.Model):
     main_pic = models.FileField(upload_to='unit_images', default='../static/unit_default.png')
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='owned_units')
-    ownership_info = models.TextField(max_length=long_description_length, blank=True)
+    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, related_name='owned_units')
+    ownership_info = models.TextField(max_length=long_description_length, blank=True, null=True)
     rental_status = models.BooleanField(default=False)
-    tenant = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name='rented_units')
+    tenant = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, related_name='rented_units')
 
 
 class Pictures(models.Model):

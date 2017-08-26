@@ -160,9 +160,9 @@ def building_units(request, building_id):
     if request.method == 'POST':
         form = UnitForm(request.POST or None, request.FILES or None)
         if form.is_valid():
-            building = form.save(commit=False)
+            unit = form.save(commit=False)
             print(request.FILES)
-            building.manager = get_object_or_404(Profile, user=request.user)
+            unit.building = get_object_or_404(Building, pk=building_id)
             building.save()
     building = get_object_or_404(Building, pk=building_id)
     units_list = building.unit_set.all()
