@@ -57,13 +57,13 @@
 
                             <div class="mtm mbm" style="height: 40px"></div>
 
-                            <a style="font-size: 18px" data-toggle="modal" data-target="#edit_info"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">انتقال به
+                            <a style="font-size: 18px" data-toggle="modal" href="{% url 'management:payment_final' %}"
+                               role="button" class="btn btn-danger btn-sm btn-block">انتقال به
                                 صفحه‌ی پرداخت
                             </a>
                             <div class="mtm mbm"></div>
                             <a style="font-size: 18px"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">لفو
+                               role="button" href="{% url 'management:home' %}" class="btn btn-danger btn-sm btn-block">لفو
                                 پرداخت</a>
                             <div class="mtm mbm"></div>
                         </div>
@@ -125,59 +125,6 @@
         </div>
     </div>
 
-    <script>
-        function my_function() {
-            $.notify({
-                // options
-                message: 'نمیشه هنوز کد این بخشو نزدیم!'
-            }, {
-                // settings
-                type: 'danger'
-            });
-        }
-    </script>
-
-
-    <div id="edit_info" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">ویرایش اطلاعات حساب کاربری</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت تغییرات</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="change_avatar" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">تغییر تصویر حساب کاربری</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت تغییرات</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
