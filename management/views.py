@@ -291,3 +291,8 @@ def manager_account(request):
 @login_required
 def payment_initial(request):
     return render(request, 'management/payment_initial.html')
+
+@login_required
+def payment_final(request):
+    messages.add_message(request, messages.INFO, True)
+    return render(request, 'management/payment_final.html')
