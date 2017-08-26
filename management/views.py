@@ -10,6 +10,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import UpdateView
 from django.template import loader, Context
+from django.utils import timezone
+from . import jdate
+import math
 
 from django.contrib.auth.models import User
 from .models import Profile, Building, Unit, Facility, Bulletin
@@ -234,10 +237,18 @@ def bulletin_board(request, building_id):
         form = BulletinForm(request.POST)
         if form.is_valid():
             bulletin = form.save(commit=False)
+            bulletin.date_time = timezone.now()
             bulletin.building = get_object_or_404(Building, pk=building_id)
             bulletin.save()
     building = get_object_or_404(Building, pk=building_id)
-    bulletins_list = building.bulletin_set.all()
+    bulletins_list = building.bulletin_set.order_by('-date_time')
+    for bulletin in bulletins_list:
+        dt = bulletin.date_time
+        jd = jdate.gregorian_to_jd(dt.year, dt.month, dt.day)
+        jalalidate = jdate.jd_to_persian(jd)
+        bulletin.jalalidate = '' + str(math.floor(jalalidate[0])) + '/' + str(math.floor(jalalidate[1])) + '/' +\
+                              str(math.floor(jalalidate[2]))
+        bulletin.time = '' + str(dt.hour) + ':' + str(dt.minute)
     new_bulletin_form = BulletinForm()
     messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
     return render(request, 'management/bulletin_board.html', {
