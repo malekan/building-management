@@ -41,8 +41,8 @@ class Unit(models.Model):
     RESIDENTIAL = 'R'
     BUSINESS = 'B'
     TYPE_CHOICES = (
-        (RESIDENTIAL, 'Residential'),
-        (BUSINESS, 'Business'),
+        (RESIDENTIAL, 'مسکونی'),
+        (BUSINESS, 'تجاری'),
     )
     unit_type = models.CharField(max_length=1,
                                  choices=TYPE_CHOICES,
