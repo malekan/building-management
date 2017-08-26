@@ -1,9 +1,11 @@
 from .models import Profile
-from django.shortcuts import get_object_or_404
 
 
 def profiles_processor(request):
-    user_fullname = get_object_or_404(Profile, user=request.user).full_name
+    try:
+        user_fullname = Profile.objects.get(user=request.user).full_name
+    except Profile.DoesNotExist:
+        return {}
     return {
         'user_fullname': user_fullname,
     }

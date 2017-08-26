@@ -5,17 +5,16 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-
-                مدیریت ساختمان
+واحد‌ها
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
-            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:buildings' %}">ساختمان‌ها</a>&nbsp;&nbsp;<i
+            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:building_units' building.id %}">واحد‌ها</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="#">مدیریت ساختمان</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            <li class="hidden"><a href="#"></a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">داشبورد</li>
+            <li class="active">ساختمان&nbsp;{{ building.name }}</li>
         </ol>
         <div class="clearfix">
         </div>
