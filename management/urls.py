@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^login/$', views.login_user, name='login'),
     url(r'^logout/$', views.logout_user, name='logout'),
     url(r'^manager_account/$', views.manager_account, name='manager_account'),
+    url(r'^payment_initial/$', views.payment_initial, name='payment_initial'),
     url(r'^buildings/$', views.buildings, name='buildings'),
     url(r'^buildings/(?P<building_id>[0-9]+)/dashboard/$', views.dashboard, name='dashboard'),
     url(r'^buildings/(?P<building_id>[0-9]+)/messaging/$', views.messaging, name='messaging'),

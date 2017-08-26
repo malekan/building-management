@@ -286,4 +286,8 @@ def facility_info(request, facility_id):
 @login_required
 def manager_account(request):
     messages.add_message(request, messages.INFO, Profile.objects.get(user=request.user).full_name)
-    return render(request, 'management/manager_account.html')
+    return render(request, 'management/manager_account.html') @ login_required
+
+@login_required
+def payment_initial(request):
+    return render(request, 'management/payment_initial.html')

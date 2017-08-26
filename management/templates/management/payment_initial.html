@@ -22,7 +22,7 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-                حساب کاربری مدیریت
+                انتقال به درگاه پرداخت بانک
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
@@ -30,36 +30,16 @@
                     href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="{% url 'management:manager_account' %}">حساب کاربری مدیریت</a>&nbsp;&nbsp;<i
+            <li class="hidden"><a href="{% url 'management:manager_account' %}">انتقال به درگاه پرداخت بانک</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">حساب کاربری مدیریت</li>
+            <li class="active">انتقال به درگاه پرداخت بانک</li>
         </ol>
         <div class="clearfix">
         </div>
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->
     <!--BEGIN CONTENT-->
-
-    <div id="make_reservation" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
-                        &times;
-                    </button>
-                    <h4 class="modal-title">رزرو امکان - نام امکان</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت درخواست</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <div class="page-content">
@@ -72,32 +52,20 @@
                         <div class="col-sm-4 col-md-3">
 
 
-                            <img style="cursor: pointer; border-radius: 50%;" width="100%" height="150%" data-toggle="modal" data-target="#change_avatar" role="button"
-                                 src="https://pbs.twimg.com/profile_images/546708662287228929/XK0Jznql_400x400.jpeg">
+                            <img style="border-radius: 50%;" width="100%" height="150%"
+                                 src="https://pbs.twimg.com/profile_images/839119648243220480/TO-zqdNS.jpg">
 
                             <div class="mtm mbm" style="height: 40px"></div>
 
                             <a style="font-size: 18px" data-toggle="modal" data-target="#edit_info"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">ویرایش
-                                اطلاعات حساب کاربری
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">انتقال به
+                                صفحه‌ی پرداخت
                             </a>
                             <div class="mtm mbm"></div>
                             <a style="font-size: 18px"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">تغییر
-                                کلمه‌ی عبور
-                            </a>
+                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">لفو
+                                پرداخت</a>
                             <div class="mtm mbm"></div>
-                            <a style="font-size: 18px"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">تمدید
-                                اشتراک سامانه
-                            </a>
-                            <div class="mtm mbm"></div>
-                            <a style="font-size: 18px"
-                               role="button" onclick="my_function()" class="btn btn-danger btn-sm btn-block">حذف حساب
-                                کاربری
-                            </a>
-
-
                         </div>
                         <div class="mtm mbm"></div>
                         <div class="col-sm-8 col-md-9">
@@ -105,32 +73,41 @@
                             <div class="panel">
                                 <div class="panel-body pan">
                                     <ul style="background: #fff" class="nav nav-pills nav-stacked">
-                                        <li class="active"><a><i class="fa fa-slack fa-fw mrs"></i>اطلاعات حساب
-                                            کاربری</a>
+                                        <li class="active"><a><i class="fa fa-slack fa-fw mrs"></i>اطلاعات پرداخت</a>
                                         </li>
                                         <li>
                                             <div style="padding-right: 5%; padding-left: 5%">
                                                 <div class="form-group">
-                                                    <label for="usr">نام و نام خانوادگی:</label>
+                                                    <label for="usr">شماره قبض:</label>
                                                     <input disabled type="text" class="form-control" id="name">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pwd">شماره‌ي تلفن همراه:</label>
+                                                    <label for="pwd">مهلت پرداخت:</label>
                                                     <input disabled type="text" class="form-control" id="phone">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pwd">پست الکترونیکی:</label>
+                                                    <label for="pwd">مبلغ قابل پرداخت:</label>
                                                     <input disabled type="text" class="form-control" id="email">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="pwd">نام کاربری:</label>
-                                                    <input disabled type="text" class="form-control" id="username">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="pwd">روز باقی مانده از اعتبار اشتراک سامانه:</label>
-                                                    <input disabled type="text" class="form-control" id="‌credits_lrft">
-                                                </div>
+                                                    <div>
+                                                        <ul>
+                                                            <li> هم اکنون به درگاه پرداخت زرین‌پال منتقل خواهید شد.</li>
 
+                                                            <li>لطفا حین انجام فرایند پرداخت تنها از یک tab مرورگر
+                                                                استفاده کنید.
+                                                            </li>
+
+                                                            <li>حتما قبل از ورود اطلاعات بانکی خود موارد امنیتی را بررسی
+                                                                نمایید.
+                                                            </li>
+
+                                                            <li>در صورتی که هرگونه پرسشی دارید با واحد پشتیبانی تماس
+                                                                بگیرید.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </li>
                                     </ul>
