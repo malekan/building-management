@@ -1,0 +1,236 @@
+{% extends 'management/base_general_resident.html' %}
+{% load bootstrap %}
+
+{% block content %}
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                واحد‌های من
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:user_units' %}">واحد‌ها</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="#"></a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active"></li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+
+
+{#    <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;#}
+{#    color:#f5f5f5;text-align:center;text-decoration:none;background: #00008d;box-shadow: 0 0 3px gray;#}
+{#     font-size:20px;width: 100px; height: 100px; z-index: 5000" data-toggle="modal"#}
+{#            data-target="#new_building">اضافه کردن ساختمان جدید#}
+{#    </button>#}
+
+    <div id="modal-config" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        وضعیت کلی واحد</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-6">
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">مانده سرفصل بدهی واحد</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>موجودی نقد و بانک</td>
+                                        <td>۲۵۰۰۰۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی ساکنین</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طلب مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">وضعیت هزینه ۶ ماه گذشته</div>
+                            <div class="panel-body">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <td>موجودی نقد و بانک</td>
+                                        <td>۲۵۰۰۰۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی ساکنین</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>طلب مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    <tr>
+                                        <td>بدهی مجتمع</td>
+                                        <td>۰ ریال</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" style="background-color: red">
+                        بستن
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        برو به صفحه واحد
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#    <div id="new_building" class="modal fade">#}
+{#        <div class="modal-dialog">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-header" style="background-color: #00008d;color: white ">#}
+{#                    <button  type="button" data-dismiss="modal" aria-hidden="true" class="close">#}
+{#                        x#}
+{#                    </button>#}
+{#                    <h4 class="modal-title">#}
+{#                        ثبت ساختمان جدید</h4>#}
+{#                </div>#}
+{#                <div class="modal-body">#}
+{##}
+{#                    <form method="POST" class="post-form">{% csrf_token %}#}
+{#                        {{ new_building_form|bootstrap }}#}
+{#                        <button type="submit" class="save btn btn-default">ثبت ساختمان</button>#}
+{#                    </form>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+
+
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        {% for unit in units_list %}
+                            <div class="col-lg-4">
+                                <div class="col-lg-12">
+                                    <div class="portlet box">
+                                        <div class="portlet-header">
+                                            <div class="caption">
+                                                <a href="">واحد &nbsp;{{ unit.unit_number }}</a>
+                                            </div>
+                                            <div class="tools">
+                                                <i data-toggle="modal"
+                                                   data-target="#unit-status-modal"
+                                                   class="fa fa-cog"></i>
+                                                <i class="fa fa-money"></i>
+                                                <i class="fa fa-times delete_building" id="unit{{ unit.pk }}"
+                                                   delete_url="{% url 'management:delete_unit' building_id=unit.building.id unit_id=unit.id%}" onclick="deleteUnit({{ unit.id }})"></i>
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div>
+                                                <a href="">
+                                                    <img src="{{ unit.main_pic }}" width="100%"/>
+                                                </a>
+                                                <p>
+                                                    <a href="">
+                                                        <strong>واحد &nbsp;{{ unit.unit_number }}</strong><br/>
+                                                    </a>
+                                                    <small>
+                                                        {{ unit.unit_type }}                                                    </small>
+                                                <p>
+                                                مساحت:
+                                                &nbsp;
+                                                    {{ unit.area }}
+                                                متر مربع
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+
+                        <div id="add_new_cost" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color: #00008d;color: white ">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" >
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title">
+                                            ثبت هزینه</h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function deleteUnit(buildingID) {
+            var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
+            if (result == true)
+                var url = $('#building' + buildingID).attr('delete_url');
+                window.location.replace(url);
+        }
+        var is_first_time = true;
+        function recordNewCost(buildingID) {
+            $('#add_new_cost').modal();
+            $('#id_bill_type').css('display', 'none');
+            $('[for="id_bill_type"]').css('display', 'none');
+            $('#id_building_id').val(buildingID);
+            if (is_first_time) {
+                $('#id_should_be_billed').click(function () {
+                    $('#id_bill_type').toggle();
+                    $('[for="id_bill_type"]').toggle();
+                    is_first_time = false;
+                });
+            }
+        }
+
+    </script>
+{% endblock %}

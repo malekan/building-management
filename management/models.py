@@ -22,6 +22,7 @@ class Profile(models.Model):
     full_name = models.CharField(max_length=names_length)
     mobile_number = models.CharField(max_length=11)
     avatar = models.ImageField(upload_to='avatars', blank=True, null=True)
+    is_manager = models.BooleanField(default=True)
 
     def __str__(self):
         return self.full_name + ' ' + self.mobile_number

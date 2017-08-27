@@ -36,6 +36,7 @@ def signup(request):
         email = request.POST['email']
         username = request.POST['username']
         password = request.POST['password']
+        user_type = request.POST['user_type']
         # avatar = request.POST['avatar']
 
         if Profile.objects.filter(mobile_number=signup_tel).count() == 1:
@@ -55,7 +56,8 @@ def signup(request):
         user.set_password(password)
         user.is_active = False
         user.save()
-        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel)
+        profile = Profile(user=user, full_name=fullname, mobile_number=signup_tel,
+                          is_manager=True if user_type == 'manager' else False)
         profile.save()
         current_site = get_current_site(request)
         message_template = loader.get_template('management/account_activation_confirmation_email.html')
@@ -75,8 +77,8 @@ def signup(request):
             return render(request, 'management/signup.html', {
                 'email_error_message': 'ایمیل وارد شده معتبر نیست.'
             })
-        return render(request, 'management/signup.html', {
-            'confirmation_message': 'ایمیل فعالسازی حساب کاربری برای شما ارسال شد.'
+        return render(request, 'management/login.html', {
+            'email_sent_message': 'ایمیل فعالسازی حساب کاربری برای شما ارسال شد.'
         })
 
     else:
@@ -104,7 +106,11 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect(reverse('management:buildings'))
+                user_profile = get_object_or_404(Profile, user=user)
+                if user_profile.is_manager:
+                    return redirect(reverse('management:buildings'))
+                else:
+                    return redirect(reverse('management:user_units'))
             else:
                 return render(request, 'management/login.html', {
                     'login_error_message': 'حساب کاربری شما غیرفعال است.'
@@ -178,7 +184,10 @@ def building_units(request, building_id):
 def delete_unit(request, building_id, unit_id):
     unit = get_object_or_404(Unit, pk=unit_id)
     unit.delete()
-    return redirect('/buildings/' + building_id + '/units/')
+    if get_object_or_404(Profile, user=request.user).is_manager:
+        return redirect('/buildings/' + building_id + '/units/')
+    else:
+        return redirect('/my_units/')
 
 
 def new_cost(request):
@@ -339,3 +348,13 @@ def payment_initial(request):
 def payment_final(request):
     messages.add_message(request, messages.INFO, 1)
     return render(request, 'management/payment_final.html')
+
+
+# ######################################## resident ############
+@login_required
+def user_units(request):
+    user_profile = get_object_or_404(Profile, user=request.user)
+    unit_list = Unit.objects.filter(owner=user_profile)
+    return render(request, 'management/resident_units.html', {
+        'unit_list': unit_list,
+    })

@@ -9,49 +9,57 @@
 <div class="container-fluid" style="margin-top: 150px;">
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
-            {% if confirmation_message %}
-                <div class="text-center">{{ confirmation_message }}</div>
-            {% else %}
-                <form id="signup-form" method="post" action="" role="form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="fullname">نام و خانوادگی</label>
-                        <input class="form-control" id="fullname" name="fullname" required />
-                    </div>
-                    <div class="form-group {% if tel_error_message %}has-error{% endif %}">
-                        <span class="help-block">
-                            {% if tel_error_message %}
-                                <div>{{ tel_error_message }}</div>
-                            {% endif %}
-                        </span>
-                        <label for="signup_tel">شماره همراه</label>
-                        <input class="form-control" id="signup_tel" name="signup_tel" required />
-                    </div>
-                    <div class="form-group {% if email_error_message %}has-error{% endif %}">
-                        <span class="help-block">
-                            {% if email_error_message %}
-                                <div>{{ email_error_message }}</div>
-                            {% endif %}
-                        </span>
-                        <label for="email">ایمیل</label>
-                        <input type="email" class="form-control" id="email" name="email" required />
-                    </div>
-                    <div class="form-group {% if username_error_message %}has-error{% endif %}">
-                        <span class="help-block">
-                            {% if username_error_message %}
-                                <div class="errornote">{{ username_error_message }}</div>
-                            {% endif %}
-                        </span>
-                        <label for="username_id">نام کاربری</label>
-                        <input class="form-control" id="username_id" name="username" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">رمز عبور</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" id="signup-btn" class="btn btn-default">ثبت نام</button>
-                </form>
-            {% endif %}
+            <form id="signup-form" method="post" action="" role="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fullname">نام و خانوادگی</label>
+                    <input class="form-control" id="fullname" name="fullname" required />
+                </div>
+                <div class="form-group {% if tel_error_message %}has-error{% endif %}">
+                    <span class="help-block">
+                        {% if tel_error_message %}
+                            <div>{{ tel_error_message }}</div>
+                        {% endif %}
+                    </span>
+                    <label for="signup_tel">شماره همراه</label>
+                    <input class="form-control" id="signup_tel" name="signup_tel" required />
+                </div>
+                <div class="form-group {% if email_error_message %}has-error{% endif %}">
+                    <span class="help-block">
+                        {% if email_error_message %}
+                            <div>{{ email_error_message }}</div>
+                        {% endif %}
+                    </span>
+                    <label for="email">ایمیل</label>
+                    <input type="email" class="form-control" id="email" name="email" required />
+                </div>
+                <div class="form-group {% if username_error_message %}has-error{% endif %}">
+                    <span class="help-block">
+                        {% if username_error_message %}
+                            <div class="errornote">{{ username_error_message }}</div>
+                        {% endif %}
+                    </span>
+                    <label for="username_id">نام کاربری</label>
+                    <input class="form-control" id="username_id" name="username" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="manager-radio">
+                        <input type="radio" class="form-control" id="manager-radio" value="manager" name="user_type">
+                        مدیر هستم.
+                    </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <label for="resident-radio">
+                        <input type="radio" class="form-control" id="resident-radio" value="resident" name="user_type">
+                        ساکن هستم.
+                    </label>
+                </div>
+                <button type="submit" id="signup-btn" class="btn btn-default">ثبت نام</button>
+            </form>
+
         </div>
     </div>
 </div>

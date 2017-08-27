@@ -17,6 +17,9 @@
             {% endfor %}
         {% endif %}
         <div class="col-sm-4 col-sm-offset-4">
+            {% if email_sent_message %}
+                <div style="display: none;" id="email_sent">{{ email_sent_message }}</div>
+            {% endif %}
             <form id="login-form" action="" method="post">
                 {% csrf_token %}
                 <div class="form-group {% if login_error_message %}has-error{% endif %}">
@@ -38,4 +41,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            var message = $('#email_sent').html();
+            console.log(message);
+            if(message){
+                $.notify({
+                    // options
+                    message: message
+                }, {
+                    // settings
+                    type: 'success'
+                });
+            }
+
+        });
+    </script>
 {% endblock %}
