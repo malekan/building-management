@@ -65,7 +65,7 @@
             <ul class="nav navbar navbar-top-links navbar-right mbn">
                 <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:bulletin_board' building.id %}"
                                         class="dropdown-toggle"><i
-                        class="fa fa-bell fa-fw"></i><span class="badge badge-yellow">3</span></a>
+                        class="fa fa-bell fa-fw"></i><span class="badge badge-yellow">{% block bulletin-badge %}{% endblock %}</span></a>
 
                 </li>
                 <li class="dropdown"><a data-hover="dropdown" href="{% url 'management:messaging' building.id %}"

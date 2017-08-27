@@ -1,6 +1,8 @@
 {% extends 'management/base.html' %}
 {% load bootstrap %}
-
+{% block bulletin-badge %}
+    {{ building.bulletin_set.count }}
+{% endblock %}
 {% block content %}
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
