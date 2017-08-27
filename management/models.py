@@ -6,7 +6,7 @@ import math
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 
 # max lengths
@@ -51,7 +51,7 @@ class Unit(models.Model):
                                  default=RESIDENTIAL)
     unit_number = models.PositiveIntegerField()
     story = models.IntegerField()
-    area = models.IntegerField()  # unit: m^2
+    area = models.PositiveIntegerField()  # unit: m^2
     number_of_bedrooms = models.PositiveIntegerField(default=1)
     number_of_parking_spaces = models.PositiveIntegerField(default=1)
     number_of_storage_rooms = models.PositiveIntegerField(default=1)
@@ -79,7 +79,19 @@ class Facility(models.Model):
     main_pic = models.FileField(upload_to='unit_images', default='../../../static/facility_default.png')
     cost_per_half_hour = models.PositiveIntegerField()
 
+    def __init__(self, *args, **kwargs):
+        super(Facility, self).__init__(*args, **kwargs)
+        for i in range(23):
+            one_hour = OneHourReserve(hour_number=i, facility=self)
+            one_hour.save()
+
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
+
+
+class OneHourReserve(models.Model):
+    hour_number = models.PositiveIntegerField(validators=[MaxValueValidator(23)])
+    reservation_status = models.PositiveIntegerField(validators=[MaxValueValidator(2)], default=0)
+    facility = models.ForeignKey(Facility, on_delete=models.CASCADE)
 
 
 class Bill(models.Model):
