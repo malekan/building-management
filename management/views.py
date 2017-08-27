@@ -232,6 +232,15 @@ def delete_facility(request, building_id, facility_id):
 
 
 @login_required
+def facility_info(request, building_id, facility_id):
+    facility = get_object_or_404(Facility, pk=facility_id)
+    return render(request, 'management/facility_info.html', {
+        'building': facility.building,
+        'facility': facility,
+    })
+
+
+@login_required
 def messaging(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
     return render(request, 'management/messaging.html', {
@@ -288,12 +297,6 @@ def delete_bulletin(request, building_id, bulletin_id):
 #         'facility': facility,
 #     })
 
-@login_required
-def facility_info(request, building_id):
-    building = get_object_or_404(Building, pk=building_id)
-    return render(request, 'management/facility_info.html', {
-        'building': building,
-    })
 
 
 @login_required
