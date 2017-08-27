@@ -1,0 +1,129 @@
+{% extends 'management/base.html' %}
+{% load bootstrap %}
+
+
+{% block content %}
+
+    <!--BEGIN PAGE WRAPPER-->
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                تابلو‌ی اعلانات
+            </div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a
+                    href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="hidden"><a href="{% url 'management:home' %}">تابلو‌ی اعلانات</a>&nbsp;&nbsp;<i
+                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">تابلو‌ی اعلانات</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="mtl mbl"></div>
+                    <div class="row">
+
+
+                        <div class="col-sm-8 col-md-9">
+
+                            <div class="panel">
+                                <div class="panel-body pan">
+                                    <ul style="background: #fff" class="nav nav-pills nav-stacked">
+                                        <li class="active">
+                                            <a>
+                                                <i class="fa fa-inbox fa-fw mrs"></i>
+                                                <div style="display: inline-block; font-size: 30px; font-weight: bold"
+                                                     id="bulletin_title" bulletin-id="">
+
+                                                </div>
+                                            </a>
+                                        </li>
+
+
+                                        <li style="overflow: hidden; height: 485px;">
+                                            <textarea
+                                                    style="font-size: 26px; direction: rtl; background-color: white;
+                                                    height: 100%; padding: 30px; border: none; resize: none;
+                                                    width: 100%;"
+                                                    class="" id="bulletin_text" disabled>
+
+
+                                            </textarea>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mtm mbm"></div>
+
+                        </div>
+                        <div class="col-sm-4 col-md-3">
+
+                            <div class="tab-content">
+
+
+                                <div id="home" class="tab-pane fade in active" style="height: 485px; overflow: hidden">
+                                    <strong>لیست اعلانات</strong><br/><br/>
+                                    <div class="list-group" id="bulletin-list"
+                                         style="overflow-y: auto; height: 90%;"
+                                         bulletin-board-url="{% url 'management:bulletin_board' building.id %}">
+                                        {% for bulletin in bulletins_list %}
+
+                                            <a class="list-group-item"
+                                               style="margin-bottom: 15px; border: dashed orangered 2px;"
+                                               onclick="getBulletinAjax({{ bulletin.id }})">
+                                                <span style="color: darkorange" class="name">
+                                                    مدیریت:
+                                                </span>
+                                                <span>{{ bulletin.title }}</span>&nbsp;
+                                                <div style="direction: ltr;"
+                                                     class="time-badge small">{{ bulletin.jalali_time }} {{ bulletin.jalali_date }}</div>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--END CONTENT-->
+    <!--END PAGE WRAPPER-->
+
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        function getBulletinAjax(bulletin_id) {
+            $.ajax({
+                url: $('#bulletin-list').attr('bulletin-board-url'),
+                data: {
+                    'bulletin_id': bulletin_id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#bulletin_title').text(data.bulletin_title);
+                    $('#bulletin_text').text(data.bulletin_text);
+                    $('#bulletin_title').attr('bulletin-id', bulletin_id);
+                }
+            });
+            return false;
+        }
+    </script>
+{% endblock %}

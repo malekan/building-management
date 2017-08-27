@@ -281,11 +281,18 @@ def delete_bulletin(request, building_id, bulletin_id):
     return redirect('/buildings/' + building_id + '/bulletin_board/')
 
 
+# @login_required
+# def facility_info(request, facility_id):
+#     facility = get_object_or_404(Facility, pk=facility_id)
+#     return render(request, 'management/facility_info.html', {
+#         'facility': facility,
+#     })
+
 @login_required
-def facility_info(request, facility_id):
-    facility = get_object_or_404(Facility, pk=facility_id)
+def facility_info(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
     return render(request, 'management/facility_info.html', {
-        'facility': facility,
+        'building': building,
     })
 
 
@@ -295,11 +302,16 @@ def manager_account(request):
 
 
 @login_required
+def user_account(request):
+    return render(request, 'management/user_account.html')
+
+
+@login_required
 def payment_initial(request):
     return render(request, 'management/payment_initial.html')
 
 
 @login_required
 def payment_final(request):
-    messages.add_message(request, messages.INFO, True)
+    messages.add_message(request, messages.INFO, 1)
     return render(request, 'management/payment_final.html')
