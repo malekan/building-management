@@ -1,23 +1,155 @@
 {% extends 'management/base.html' %}
+{% load bootstrap %}
 
 {% block content %}
-    <!--BEGIN PAGE WRAPPER-->
-    <!--BEGIN TITLE & BREADCRUMB PAGE-->
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-               امکانات ساختمان لاله
+امکانات ساختمان
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
-            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:buildings' %}">امکانات ساختمان</a>&nbsp;&nbsp;<i
+            <li><i class="fa fa-home"></i>&nbsp;<a href="{% url 'management:facilities' building.id %}">امکانات</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="#">امکانات ساختمان</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li class="active">امکانات ساختمان</li>
+            <li class="hidden"><a href="#"></a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            </li>
+            <li class="active">ساختمان&nbsp;{{ building.name }}</li>
         </ol>
         <div class="clearfix">
         </div>
     </div>
-    <!--END TITLE & BREADCRUMB PAGE-->
+
+
+    <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;
+    color:#f5f5f5;text-align:center;text-decoration:none;background: #00008d;box-shadow: 0 0 3px gray;
+     font-size:20px;width: 100px; height: 100px; z-index: 5000" data-toggle="modal"
+            data-target="#new_facility">اضافه کردن امکانات جدید
+    </button>
+
+    <div id="new_facility" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #00008d;color: white ">
+                    <button  type="button" data-dismiss="modal" aria-hidden="true" class="close">
+                        x
+                    </button>
+                    <h4 class="modal-title">
+                        ثبت امکانات جدید</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST" class="post-form">{% csrf_token %}
+                        {{ new_facility_form|bootstrap }}
+                        <button type="submit" class="save btn btn-default">ثبت امکانات</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="page-content">
+        <div id="tab-general">
+            <div class="row mbl">
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        {% for facility in facility_list %}
+                            <div class="col-lg-4">
+                                <div class="col-lg-12">
+                                    <div class="portlet box">
+                                        <div class="portlet-header">
+                                            <div class="caption">
+                                                <a href="">{{ facility.name }}</a>
+                                            </div>
+                                            <div class="tools">
+                                                <i data-toggle="modal"
+                                                   data-target="#unit-status-modal"
+                                                   class="fa fa-cog"></i>
+                                                <i class="fa fa-times delete_facility" id="facility{{ facility.pk }}"
+                                                   delete_url="{% url 'management:delete_facility' building_id=building.id facility_id=facility.id%}" onclick="deleteFacility({{ facility.id }})"></i>
+
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div>
+                                                <a href="">
+                                                    <img src="{{ facility.main_pic }}" width="100%"/>
+                                                </a>
+                                                <p>
+                                                    <a href="">
+                                                        <strong>واحد &nbsp;{{ facility.name }}</strong><br/>
+                                                    </a>
+                                                    <small>
+                                                                                                             </small>
+                                                <p>
+                                                    {{ facility.description }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+
+{#                        <div id="add_new_cost" class="modal fade">#}
+{#                            <div class="modal-dialog">#}
+{#                                <div class="modal-content">#}
+{#                                    <div class="modal-header" style="background-color: #00008d;color: white ">#}
+{#                                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close" >#}
+{#                                            &times;#}
+{#                                        </button>#}
+{#                                        <h4 class="modal-title">#}
+{#                                            ثبت هزینه</h4>#}
+{#                                    </div>#}
+{#                                    <div class="modal-body">#}
+{##}
+{#                                        <form method="POST" class="post-form" action="/cost/new/">{% csrf_token %}#}
+{#                                            {{ new_cost_form|bootstrap }}#}
+{##}
+{#                                            <button type="submit" class="save btn btn-default">Save</button>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function deleteFacility(unit_id) {
+            var result = confirm('آیا از حذف کردن این امکانات اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
+            if (result == true)
+                var url = $('#facility' + unit_id).attr('delete_url');
+                window.location.replace(url);
+        }
+        var is_first_time = true;
+        function recordNewCost(buildingID) {
+            $('#add_new_cost').modal();
+            $('#id_bill_type').css('display', 'none');
+            $('[for="id_bill_type"]').css('display', 'none');
+            $('#id_building_id').val(buildingID);
+            if (is_first_time) {
+                $('#id_pay_from_cash').click(function () {
+                    $('#id_bill_type').toggle();
+                    $('[for="id_bill_type"]').toggle();
+                    is_first_time = false;
+                });
+            }
+        }
+
+    </script>
 {% endblock %}

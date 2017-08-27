@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^buildings/(?P<building_id>[0-9]+)/units/$', views.building_units, name='building_units'),
     url(r'^buildings/(?P<building_id>[0-9]+)/units/(?P<unit_id>[0-9]+)/delete/$', views.delete_unit, name='delete_unit'),
     url(r'^buildings/(?P<building_id>[0-9]+)/facilities/$', views.facilities, name='facilities'),
+    url(r'^buildings/(?P<building_id>[0-9]+)/facilities/(?P<facility_id>[0-9]+)/delete/$', views.delete_facility,
+        name='delete_facility'),
     url(r'^buildings/(?P<building_id>[0-9]+)/delete/$', views.delete_building, name="delete_building"),
     url(r'^cost/new/$', views.new_cost, name="new_cost")
 ]

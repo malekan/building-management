@@ -220,8 +220,15 @@ def facilities(request, building_id):
     return render(request, 'management/facilities.html', {
         'building': building,
         'facility_list': facility_list,
-        'form': form,
+        'new_facility_form': form,
     })
+
+
+@login_required
+def delete_facility(request, building_id, facility_id):
+    facility = get_object_or_404(Facility, pk=facility_id)
+    facility.delete()
+    return redirect('/buildings/' + building_id + '/facilities/')
 
 
 @login_required

@@ -76,6 +76,8 @@ class Pictures(models.Model):
 class Facility(models.Model):
     name = models.CharField(max_length=names_length)
     description = models.TextField(max_length=long_description_length)
+    main_pic = models.FileField(upload_to='unit_images', default='../../../static/facility_default.png')
+    cost_per_half_hour = models.PositiveIntegerField()
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
 
