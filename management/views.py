@@ -137,8 +137,11 @@ def dashboard(request, building_id):
 
 
 @login_required
-def dashboard_user(request):
-    return render(request, 'management/dashboard_user.html')
+def dashboard_user(request, unit_id):
+    unit = get_object_or_404(Unit, pk=unit_id)
+    return render(request, 'management/dashboard_user.html', {
+        'unit': unit,
+    })
 
 
 @login_required
@@ -289,10 +292,10 @@ def new_message(request):
 
 
 @login_required
-def bills(request, building_id):
-    building = get_object_or_404(Building, pk=building_id)
+def bills(request, unit_id):
+    unit = get_object_or_404(Unit, pk=unit_id)
     return render(request, 'management/bills.html', {
-        'building': building,
+        'unit_bills': unit.bill_set.all(),
     })
 
 
