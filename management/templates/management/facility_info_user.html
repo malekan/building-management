@@ -26,20 +26,20 @@
     <!--END TITLE & BREADCRUMB PAGE-->
     <!--BEGIN CONTENT-->
 
-    <div id="edit_timing" class="modal fade">
+    <div id="make_reservation" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
                         &times;
                     </button>
-                    <h4 class="modal-title">ویرایش برنامه‌ی زمان‌بندی امکان</h4>
+                    <h4 class="modal-title">رزرو امکان - نام امکان</h4>
                 </div>
                 <div class="modal-body">
 
                     <form method="POST" class="post-form">{% csrf_token %}
                         {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت تغییرات</button>
+                        <button type="submit" class="save btn btn-default">ثبت درخواست</button>
                     </form>
                 </div>
             </div>
@@ -147,8 +147,8 @@
                                 </div>
                             </div>
                             <a style="font-size: 18px"
-                               role="button" onclick="my_function()" data-toggle="modal" data-target="#edit_timing"
-                               class="btn btn-danger btn-sm btn-block">ویرایش برنامه‌ی زمان بندی امکان
+                               role="button" onclick="my_function()" data-toggle="modal" data-target="#make_reservation"
+                               class="btn btn-danger btn-sm btn-block">ثبت درخواست رزرو
                             </a>
 
 

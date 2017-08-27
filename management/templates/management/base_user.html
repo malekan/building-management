@@ -54,23 +54,21 @@
             </div>
             <ul class="nav navbar navbar-top-links navbar-right mbn">
                 <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                        class="fa fa-bell fa-fw"></i><span class="badge badge-green">3</span></a>
+                        class="fa fa-bell fa-fw"></i><span class="badge badge-yellow">3</span></a>
 
                 </li>
                 <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
                         class="fa fa-envelope fa-fw"></i><span class="badge badge-orange">7</span></a>
 
                 </li>
-                <li class="dropdown"><a data-hover="dropdown" href="#" class="dropdown-toggle"><i
-                        class="fa fa-tasks fa-fw"></i><span class="badge badge-yellow">8</span></a>
 
                 </li>
                 <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img
-                        src="images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span
+                        src="https://pbs.twimg.com/profile_images/546708662287228929/XK0Jznql_400x400.jpeg" alt="" class="img-responsive img-circle"/>&nbsp;<span
                         class="hidden-xs">محمد مهدی فاریابی</span>&nbsp;<span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-user pull-right">
-                        <li><a href="#"><i class="fa fa-user"></i>حساب کاربری من</a></li>
-                        <li><a href="#"><i class="fa fa-calendar"></i>تقویم</a></li>
+                        <li><a href="{% url 'management:user_account' %}"><i class="fa fa-user"></i>حساب کاربری من</a></li>
+                        <li><a href="{% url 'management:buildings' %}"><i class="fa fa-home"></i>واحد‌های من</a></li>
 {#                        <li><a href="#"><i class="fa fa-envelope"></i>پیام‌های دریافتی<span class="badge badge-danger">3</span></a>#}
 {#                        </li>#}
 {#                        <li><a href="#"><i class="fa fa-tasks"></i>فعالیت‌ها<span#}
@@ -95,42 +93,34 @@
             <ul id="side-menu" class="nav">
 
                 <div class="clearfix"></div>
-                <li class="active"><a href="/dashboard.html"><i class="fa fa-tachometer fa-fw">
+                <li class="active"><a href="{% url 'management:dashboard_user' %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
-                </i><span class="menu-title">داشبورد</span></a></li>
+                </i><span class="menu-title">داشبورد - واحد ۳</span></a></li>
 
 
                 <li><a data-toggle="collapse"  href="#collapse1"><i class="fa fa-desktop fa-fw">
                     <div class="icon-bg bg-pink"></div>
-                </i><span class="menu-title ">واحدهای من</span></a>
+                </i><span class="menu-title ">ساختمان</span></a>
                 </li>
                         <div id="collapse1" class="sublinks collapse list-group">
                             <a class="list-group-item small" href="">پرداخت قبوض</a>
                             <a class="list-group-item small" href="">دریافت سوابق مالی</a>
                             <a class="list-group-item small" href="">رزرو امکانات ساختمان</a>
-                            <a class="list-group-item small" href="">حذف واحد</a>
                         </div>
 
-                <li><a data-toggle="collapse" href="#collapse2"><i class="fa fa-send-o fa-fw">
-                    <div class="icon-bg bg-green"></div>
-                </i><span class="menu-title">استیجار واحد مسکونی</span></a>
+
+
+                <li><a data-toggle="collapse" href="#collapse8"><i class="fa fa-envelope-o fa-fw">
+                    <div class="icon-bg bg-grey"></div>
+                </i>
+                    <span class="menu-title">پیام رسانی</span></a>
+
                 </li>
-                        <div id="collapse2" class="sublinks collapse list-group">
-                            <a class="list-group-item small" href="">ثبت مستاجر</a>
-                            <a class="list-group-item small" href="">ویرایش مستاجر</a>
-                        </div>
-
-
-
-                <li><a data-toggle="collapse" href="#collapse3"><i class="fa fa-envelope-o">
-                    <div class="icon-bg bg-primary"></div>
-                </i><span class="menu-title">پیام رسانی</span></a>
-                </li>
-                         <div id="collapse3" class="sublinks collapse list-group">
-                            <a class="list-group-item small" href="">پیام‌های ارسالی</a>
-                            <a class="list-group-item small" href="">پیام‌های دریافتی</a>
-                            <a class="list-group-item small" href="">اعلانات</a>
-                        </div>
+                <div id="collapse8" class="sublinks collapse list-group">
+                    <a class="list-group-item small" href="">تابلو‌ی اعلانات</a>
+                    <a class="list-group-item small" href="">پیام‌های دریافتی</a>
+                    <a class="list-group-item small" href="">پیام‌های ارسالی</a>
+                </div>
             </ul>
         </div>
     </nav>
@@ -227,6 +217,20 @@ ga('send', 'pageview');
 
 </script>
 </body>
+
+
+
+
+{#start of bootstrap notify scripts#}
+<script src="{% static "script/bootstrap-notify-3.1.3/bootstrap-notify.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/Gruntfile.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/package.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/test_meteor.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/dist/bootstrap-notify.js" %}"></script>
+<script src="{% static "script/bootstrap-notify-3.1.3/dist/bootstrap-notify.min.js" %}"></script>
+{#end of bootstrap notify scripts#}
+
+
 </html>
 
 
