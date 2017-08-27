@@ -268,7 +268,7 @@ def messaging(request, building_id):
     if request.method == 'POST':
         new_message(request)
     building = get_object_or_404(Building, pk=building_id)
-    receiver =  get_object_or_404(Profile, user=request.user)
+    receiver = get_object_or_404(Profile, user=request.user)
     inbox_messages = Message.objects.filter(receiver=receiver).all()
     message_form = MessageForm()
     return render(request, 'management/messaging.html', {
@@ -299,8 +299,11 @@ def bills(request, building_id):
 @login_required
 def messaging_sent(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
+    sender = get_object_or_404(Profile, user=request.user)
+    sent_messages = Message.objects.filter(sender=sender).all()
     return render(request, 'management/messaging_sent.html', {
         'building': building,
+        'sent_list': sent_messages
     })
 
 
