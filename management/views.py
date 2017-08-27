@@ -303,8 +303,11 @@ def bills(request, unit_id):
 @login_required
 def messaging_sent(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
+    sender = get_object_or_404(Profile, user=request.user)
+    sent_messages = Message.objects.filter(sender=sender).all()
     return render(request, 'management/messaging_sent.html', {
         'building': building,
+        'sent_list': sent_messages
     })
 
 

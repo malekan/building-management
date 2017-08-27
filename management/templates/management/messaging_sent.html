@@ -41,18 +41,18 @@
                             <div class="panel">
                                 <div class="panel-body pan">
                                     <ul style="background: #fff" class="nav nav-pills nav-stacked">
-                                        <li class="active"><a
-                                                href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"><i class="fa fa-inbox fa-fw mrs"></i>محسن محب زاده (blur@) - چرا پولتونو نمیدین؟</a>
+                                        <li class="active"><a id="msg_top"
+                                                              href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"><i
+                                                class="fa fa-inbox fa-fw mrs"></i>محسن محب زاده (blur@) - پیام آزمایشی
+                                        </a>
                                         </li>
 
 
                                         <li>
-                                            <textarea style="font-size: 32px; direction: rtl; background-color: white;" disabled class="form-control" rows="10" id="bullet_text">
-
-                                                آقا من چقدر باید بگم بیاین پولتونو بریزین؟
-                                                یا تا آخر امروز پولتونو میریزین یا من قهر میکنم میرم :(
-                                                مرسی اه
-                                            </textarea>
+                                            <textarea id="msg_text"
+                                                      style="font-size: 32px; direction: rtl; background-color: white;"
+                                                      disabled class="form-control" rows="10" id="bullet_text">
+این پیام آزمایشی است                               </textarea>
                                         </li>
 
                                     </ul>
@@ -60,13 +60,13 @@
                             </div>
                             <div class="mtm mbm"></div>
                             <div class="col-sm-6"><a style="font-size: 18px"
-                                                          href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                                          role="button" class="btn btn-danger btn-sm btn-block">حذف پیام
+                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
+                                                     role="button" class="btn btn-danger btn-sm btn-block">حذف پیام
                             </a></div>
                             <div class="mtm mbm"></div>
                             <div class="col-sm-6"><a style="font-size: 18px;"
-                                    href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                    role="button" class="btn btn-danger btn-sm btn-block">پاسخ دادن
+                                                     href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
+                                                     role="button" class="btn btn-danger btn-sm btn-block">پاسخ دادن
                             </a></div>
 
                         </div>
@@ -95,381 +95,22 @@
 
 
                                 <div id="home" class="tab-pane fade in active">
+                                    <div class="list-group mail-box">
+                                        {% for message in sent_list %}
+                                            <button class="list-group-item"
+                                                    onclick="ld_msg('{{ message.receiver }}', '{{ message.title }}', '{{ message.text }}')">
+                                                <span style="min-width: 120px; display: inline-block;"
+                                                      clss="name">{{ message.receiver }}</span>
+                                                <span>{{ message.title }}</span>&nbsp;
+                                                - &nbsp;
+                                                {#                                                <span class="text-muted">{{ message.text }}</span>#}
+                                                {#                                                <span class="time-badge">{{ message.date_time }} </span>#}
+                                            </button>
+
+                                        {% endfor %}
 
 
-                                    <div class="list-group mail-box"><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-
-
-
-
-
-
-
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a></div>
-                                </div>
-
-
-                                <div id="profile" class="tab-pane fade in">
-                                    <div class="list-group mail-box"><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span class="text-muted">Lorem ipsum dolor sit amet</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span class="text-muted">Lorem ipsum dolor sit amet</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        -
-                                        &nbsp;<span
-                                            class="text-muted">آقا من چقدر باید بگم بیاین شارژتونو بدید؟</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a><a
-                                            href="file:///home/mohammadmahdi/Desktop/sample_template/KAdmin-Dark/Email.html#"
-                                            class="list-group-item">
-                                        <div class="icheckbox_minimal-grey" style="position: relative;"><input
-                                                type="checkbox"
-                                                style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                        </div>
-                                        <span class="fa fa-star-o mrm mlm"></span><span
-                                            style="min-width: 120px; display: inline-block;"
-                                            class="name">محسن محب زاده</span><span>چرا پولتونو نمیدین؟</span>&nbsp;
-                                        - &nbsp;<span class="text-muted">حاجی پاشو بیا پولتو بده</span><span
-                                            class="time-badge">12:10 </span><span class="pull-right mrl"><span
-                                            class="fa fa-paperclip"></span></span></a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -482,4 +123,15 @@
     <!--END CONTENT-->
     <!--END PAGE WRAPPER-->
 
+{% endblock %}
+
+
+{% block javascript %}
+    <script>
+        function ld_msg(sender, title, text) {
+            $('#msg_top').text(sender + ' - ' + title);
+            $('#msg_text').text(text);
+
+        }
+    </script>
 {% endblock %}
