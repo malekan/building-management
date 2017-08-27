@@ -41,13 +41,13 @@ class UnitForm(forms.ModelForm):
 class FacilityForm(forms.ModelForm):
     class Meta:
         model = Facility
-        fields = ('name', 'description', 'cost_per_half_hour')
+        fields = ('name', 'description', 'cost_per_hour')
 
     def __init__(self, *args, **kwargs):
         super(FacilityForm, self).__init__(*args, **kwargs)
         self.fields['name'].label = "نام"
         self.fields['description'].label = "توضیحات"
-        self.fields['cost_per_half_hour'].label = "نرخ اجاره به ازای هر نیم ساعت"
+        self.fields['cost_per_hour'].label = "نرخ اجاره به ازای هر نیم ساعت"
 
 
 class CostForm(forms.ModelForm):

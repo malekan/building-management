@@ -77,13 +77,7 @@ class Facility(models.Model):
     name = models.CharField(max_length=names_length)
     description = models.TextField(max_length=long_description_length)
     main_pic = models.FileField(upload_to='unit_images', default='../../../static/facility_default.png')
-    cost_per_half_hour = models.PositiveIntegerField()
-
-    def __init__(self, *args, **kwargs):
-        super(Facility, self).__init__(*args, **kwargs)
-        for i in range(23):
-            one_hour = OneHourReserve(hour_number=i, facility=self)
-            one_hour.save()
+    cost_per_hour = models.PositiveIntegerField()
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
 

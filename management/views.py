@@ -17,7 +17,7 @@ import datetime
 import pytz
 
 from django.contrib.auth.models import User
-from .models import Profile, Building, Unit, Facility, Bulletin
+from .models import Profile, Building, Unit, Facility, Bulletin, OneHourReserve
 from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm
 
 
@@ -213,6 +213,9 @@ def facilities(request, building_id):
             facility = form.save(commit=False)
             facility.building = get_object_or_404(Building, pk=building_id)
             facility.save()
+            for i in range(24):
+                one_hour = OneHourReserve(hour_number=i, facility=facility)
+                one_hour.save()
 
     building = get_object_or_404(Building, pk=building_id)
     facility_list = building.facility_set.all()
