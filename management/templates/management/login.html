@@ -1,4 +1,4 @@
-{% extends 'management/base_guest.html' %}
+{% extends 'management/base_login.html' %}
 {% block title %}ورود | سیما{% endblock %}
 {% load staticfiles %}
 {% block style %}
@@ -7,7 +7,7 @@
 
 
 {% block body %}
-<div class="container" style="margin-top: 250px">
+<div class="container" style="margin-top: 276px;">
     <div class="row">
         {% if messages %}
             {% for message in messages %}

@@ -122,14 +122,14 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  color: #1b404b;
+  color: #FFFFFF;
   background-color:#ffffff;
   direction:rtl;
   font-size: 24px;
   line-height:22px;
   font-family:'ProximaNova'!important;
 }
-a, a:visited {color: #1b404b;}
+a, a:visited {color: #FFFFFF;}
 a:hover {color: #04b0ED;text-decoration:none;}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {font-weight:bold;margin:0;padding-bottom:20px;}
 
@@ -308,7 +308,7 @@ select:not([multiple]) {
 .navbar-wrapper .navbar .nav li.current-menu-parent a,
 .navbar-wrapper .navbar .nav li.current-post-parent a,
 .navbar-wrapper .navbar .nav li.current_page_item a {
-  color:#04b0ed !important;
+  color:#04b0ed;
 }
 .homepage .navbar-wrapper .navbar .nav li a:hover,
 .homepage .navbar-wrapper .navbar .nav li.active a,
