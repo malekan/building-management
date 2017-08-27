@@ -17,7 +17,7 @@ import datetime
 import pytz
 
 from django.contrib.auth.models import User
-from .models import Profile, Building, Unit, Facility, Bulletin, OneHourReserve, Message
+from .models import Profile, Building, Unit, Facility, Bulletin, OneHourReserve, Message, Bill
 from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm, MessageForm
 
 
@@ -369,7 +369,13 @@ def payment_initial(request):
 
 
 @login_required
-def payment_final(request):
+def payment_final(request, bill_id):
+    try:
+        bill = Bill.objects.get(pk=bill_id)
+        bill.is_paid = True
+        bill.save()
+    except Bill.DoesNotExist:
+        return render(request, 'management/payment_final.html')
     messages.add_message(request, messages.INFO, 1)
     return render(request, 'management/payment_final.html')
 

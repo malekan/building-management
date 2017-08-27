@@ -1,4 +1,4 @@
-{% extends 'management/base.html' %}
+{% extends 'management/base_user.html' %}
 {% block bulletin-badge %}
     {{ building.bulletin_set.count }}
 {% endblock %}
@@ -51,7 +51,7 @@
 
 
                                         {% for bill in unit_bills %}
-                                            <a href="{% url 'management:payment_initial' %}" class="list-group-item">
+                                            <a href="{% url 'management:payment_initial' unit_id=unit.id bill_id=bill.id %}" class="list-group-item">
                                                 <span class="fa fa-money mrm mlm"></span>
                                                 <span style="min-width: 120px; display: inline-block;"
                                                       class="name"></span><span>&nbsp;تومان{{ bill.fee }}</span>&nbsp;
@@ -59,7 +59,12 @@
                                                 <span class="text-muted">{{ bill.description }}</span>
                                                 <a href="{% url 'management:payment_initial' unit_id=unit.id bill_id=bill.id %}">
                                                     <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                          role="button" class="btn btn-danger btn-sm btn-block">پرداخت
+                                                          role="button" class="btn btn-danger btn-sm btn-block">
+                                                        {% if bill.is_paid %}
+                                                            پرداخت شد
+                                                            {% else %}
+                                                            پرداخت
+                                                        {% endif %}
                                                     </span>
                                                 </a>
                                                 <span class="pull-right mrl"></span>
@@ -75,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{% url 'management:payment_initial' unit_id=unit.id %}">
+                        <a href="">
                             <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;
     color:#f5f5f5;text-align:center;background: rgb(220,103,103);box-shadow: 0 0 3px gray;
      font-size:26px;width: 100px; height: 100px; z-index: 5000">پرداخت
