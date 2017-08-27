@@ -227,7 +227,7 @@
             $('[for="id_bill_type"]').css('display', 'none');
             $('#id_building_id').val(buildingID);
             if (is_first_time) {
-                $('#id_pay_from_cash').click(function () {
+                $('#id_should_be_billed').click(function () {
                     $('#id_bill_type').toggle();
                     $('[for="id_bill_type"]').toggle();
                     is_first_time = false;

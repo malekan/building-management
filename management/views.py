@@ -185,10 +185,20 @@ def new_cost(request):
     if request.method == 'POST':
         form = CostForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['pay_from_cash'])
-            print(form.cleaned_data['fee'])
-            print(form.cleaned_data['description'])
-            print(form.cleaned_data['building_id'])
+            cost = form.save(commit=False)
+            cost.building = get_object_or_404(Building, pk=form.cleaned_data['building_id'])
+            cost.date = timezone.now()
+            cost.save()
+            cost.building.balance -= cost.fee
+            if form.cleaned_data['should_be_billed']:
+                bill_type = form.cleaned_data['bill_type']
+                if bill_type == 'area':
+                    cost.bill_based_on_area()
+                elif bill_type == 'number_of_unit':
+                    cost.bill_based_on_unit()
+                else:
+                    cost.bill_based_on_number_of_residents()
+    return redirect(reverse('management:buildings'))
 
 
 @login_required
