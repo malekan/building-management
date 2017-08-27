@@ -3,6 +3,7 @@
     {{ building.bulletin_set.count }}
 {% endblock %}
 {% block content %}
+{% load bootstrap %}
 
     <!--BEGIN PAGE WRAPPER-->
     <!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -40,7 +41,7 @@
                 <div class="modal-body">
 
                     <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
+                        {{ message_form|bootstrap }}
                         <button type="submit" class="save btn btn-default">ارسال پیام</button>
                     </form>
                 </div>

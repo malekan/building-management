@@ -1,5 +1,7 @@
 {% extends 'management/base.html' %}
-
+{% block bulletin-badge %}
+    {{ building.bulletin_set.count }}
+{% endblock %}
 {% block content %}
 
     <!--BEGIN PAGE WRAPPER-->
@@ -7,18 +9,17 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-                امکانات ساختمان - نام امکان
+                {{ facility.name }}
             </div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a
-                    href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    href="{% url 'management:facilities' building.id %}">امکانات ساختمان</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="{% url 'management:home' %}">امکانات ساختمان - نام امکان</a>&nbsp;&nbsp;<i
-                    class="fa fa-angle-right"></i>&nbsp;&nbsp;
+            <li class="hidden"><a href=""></a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">امکانات ساختمان - نام امکان</li>
+            <li class="active">{{ facility.name }}</li>
         </ol>
         <div class="clearfix">
         </div>
@@ -26,21 +27,81 @@
     <!--END TITLE & BREADCRUMB PAGE-->
     <!--BEGIN CONTENT-->
 
-    <div id="make_reservation" class="modal fade">
+    <div id="edit_timing" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: rgb(220,103,103);color: white ">
                     <button type="button" data-dismiss="modal" aria-hidden="true" class="close">
                         &times;
                     </button>
-                    <h4 class="modal-title">رزرو امکان - نام امکان</h4>
+                    <h4 class="modal-title">ثبت درخواست رزرو</h4>
                 </div>
                 <div class="modal-body">
 
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت درخواست</button>
-                    </form>
+                    <div>
+                        لطفا ساعاتی را که می‌خواهید رزرو کنید انتخاب نمایید:
+                    </div>
+                    <div style="display: none" id='page_url'
+                         ajax_url="{% url 'management:facility_info' facility_id=facility.id building_id=building.id %}"></div>
+                    {% for i in n %}
+                            <span class="col-sm-6"> <a style="font-size: 22px" id="{{ i|add:12 }}"
+                                                       class="btn btn-sm btn-block"
+                                                       onclick="change_color_func(this)">{{ i|add:12 }} - {{ i|add:13 }}</a> </span>
+                            <span class="col-sm-6"> <a style="font-size: 22px" id="{{ i }}" class="btn btn-sm btn-block"
+                                                       onclick="change_color_func(this)">{{ i }} - {{ i|add:1 }}</a> </span>
+                    {% endfor %}
+
+                    <button onclick="save_changes_func()" data-dismiss="modal" type="submit" class="save btn btn-default">ثبت تغییرات
+                    </button>
+
+                    <script>
+                        function change_color_func(element) {
+                            if (element.style.backgroundColor === 'rgb(0, 255, 0)') {
+                                element.style.backgroundColor = 'rgb(255,255,255)';
+                            } else {
+                                element.style.backgroundColor = 'rgb(0, 255, 0)';
+                            }
+                        }
+
+                        function save_changes_func() {
+
+                            var temp_list = [];
+                            for (var i = 0; i < 24; i++) {
+                                if ($('#' + i).css('backgroundColor') === 'rgb(220, 103, 103)') {
+                                    temp_list.push(i);
+                                }
+                            }
+
+                            $.ajax({
+                                url: $('#page_url').attr('ajax-url'),
+                                data: {
+                                    'forbidden_list': temp_list
+                                },
+                                dataType: 'json',
+                                success: function (data) {
+                                    $.notify({
+                                        // options
+                                        message: 'تغییرات با موفقیت ثبت شد!'
+                                    }, {
+                                        // settings
+                                        type: 'success'
+                                    });
+                                }
+                            });
+
+                            $.notify({
+                                // options
+                                message: 'تغییرات با موفقیت ثبت شد!'
+                            }, {
+                                // settings
+                                type: 'success'
+                            });
+
+                            return false;
+                        }
+                    </script>
+
+
                 </div>
             </div>
         </div>
@@ -69,12 +130,12 @@
                                             <img width="100%" height="auto"
                                                  style="-webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))"
                                                  src="http://cdn13.muratorplus.smcloud.net/t/image/thumbnails/67244/sandssands_skypark_c_timothy_800x0_rozmiar-niestandardowy.jpg">
-                                            <label style="position: relative; right: 5%; left: 5%; top: 80%; color: black; font-size: 26px">
+                                            <div style="padding: 5%; width: 100%; position: relative; bottom: 30%; color: black; font-size: 26px">
                                                 استخر ساختمان
                                                 <br>
                                                 این استخر در ارتفاع 400 متری و در پشت بام واقع شده است. شنا توی این
                                                 استخر و استراحت در کنارش خیلی حال میده. جدی برین صفا کنین!
-                                            </label>
+                                            </div>
                                         </li>
 
 
@@ -147,7 +208,7 @@
                                 </div>
                             </div>
                             <a style="font-size: 18px"
-                               role="button" onclick="my_function()" data-toggle="modal" data-target="#make_reservation"
+                               role="button" onclick="my_function()" data-toggle="modal" data-target="#edit_timing"
                                class="btn btn-danger btn-sm btn-block">ثبت درخواست رزرو
                             </a>
 
@@ -161,17 +222,6 @@
         </div>
     </div>
 
-    <script>
-        function my_function() {
-            $.notify({
-                // options
-                message: 'نمیشه هنوز کد این بخشو نزدیم!'
-            }, {
-                // settings
-                type: 'danger'
-            });
-        }
-    </script>
 
 
     <!--END CONTENT-->

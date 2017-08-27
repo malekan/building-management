@@ -17,8 +17,8 @@ import datetime
 import pytz
 
 from django.contrib.auth.models import User
-from .models import Profile, Building, Unit, Facility, Bulletin, OneHourReserve
-from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm
+from .models import Profile, Building, Unit, Facility, Bulletin, OneHourReserve, Message
+from .forms import BuildingForm, UnitForm, FacilityForm, CostForm, BulletinForm, MessageForm
 
 
 def index(request):
@@ -259,15 +259,33 @@ def facility_info(request, building_id, facility_id):
     return render(request, 'management/facility_info.html', {
         'building': facility.building,
         'facility': facility,
+        'n': range(12),
     })
 
 
 @login_required
 def messaging(request, building_id):
+    if request.method == 'POST':
+        new_message(request)
     building = get_object_or_404(Building, pk=building_id)
+    receiver =  get_object_or_404(Profile, user=request.user)
+    inbox_messages = Message.objects.filter(receiver=receiver).all()
+    message_form = MessageForm()
     return render(request, 'management/messaging.html', {
         'building': building,
+        'message_form': message_form,
+        'inbox_list': inbox_messages
     })
+
+
+def new_message(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            msg = form.save(commit=False)
+            msg.sender = get_object_or_404(Profile, user=request.user)
+            msg.date_time = timezone.now()
+            msg.save()
 
 
 @login_required

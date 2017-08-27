@@ -1,5 +1,5 @@
 from django import forms
-from .models import Building, Unit, Facility, Profile, Cost, Bulletin
+from .models import Building, Unit, Facility, Profile, Cost, Bulletin, Message
 
 
 class BuildingForm(forms.ModelForm):
@@ -80,3 +80,14 @@ class BulletinForm(forms.ModelForm):
         super(BulletinForm, self).__init__(*args, **kwargs)
         self.fields['title'].label = "عنوان"
         self.fields['text'].label = "متن"
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ('receiver', 'title', 'text')
+
+    def __init__(self, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+        self.fields['title'].label = "عنوان"
+        self.fields['receiver'].label = "گیرنده"
+        self.fields['text'].label = "متن پیام"

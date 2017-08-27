@@ -38,10 +38,72 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="POST" class="post-form">{% csrf_token %}
-                        {{ new_building_form.as_p }}
-                        <button type="submit" class="save btn btn-default">ثبت تغییرات</button>
-                    </form>
+                    <div>
+                        لطفا ساعاتی را که برای رزرو مجاز نیستند انتخاب کنید:
+                    </div>
+                    <div style="display: none" id='page_url'
+                         ajax_url="{% url 'management:facility_info' facility_id=facility.id building_id=building.id %}"></div>
+                    {% for i in n %}
+                        <div>
+                            <span class="col-sm-6"> <a style="font-size: 22px" id="{{ i|add:12 }}"
+                                                       class="btn btn-sm btn-block"
+                                                       onclick="change_color_func(this)">{{ i|add:12 }} - {{ i|add:13 }}</a> </span>
+                            <span class="col-sm-6"> <a style="font-size: 22px" id="{{ i }}" class="btn btn-sm btn-block"
+                                                       onclick="change_color_func(this)">{{ i }} - {{ i|add:1 }}</a> </span>
+                        </div>
+                    {% endfor %}
+
+                    <button onclick="save_changes_func()" data-dismiss="modal" type="submit" class="save btn btn-default">ثبت تغییرات
+                    </button>
+
+                    <script>
+                        function change_color_func(element) {
+                            if (element.style.backgroundColor === 'rgb(220, 103, 103)') {
+                                element.style.backgroundColor = 'rgb(255,255,255)';
+                            } else {
+                                element.style.backgroundColor = 'rgb(220, 103, 103)';
+                            }
+                        }
+
+                        function save_changes_func() {
+
+                            var temp_list = [];
+                            for (var i = 0; i < 24; i++) {
+                                if ($('#' + i).css('backgroundColor') === 'rgb(220, 103, 103)') {
+                                    temp_list.push(i);
+                                }
+                            }
+
+                            $.ajax({
+                                url: $('#page_url').attr('ajax-url'),
+                                data: {
+                                    'forbidden_list': temp_list
+                                },
+                                dataType: 'json',
+                                success: function (data) {
+                                    $.notify({
+                                        // options
+                                        message: 'تغییرات با موفقیت ثبت شد!'
+                                    }, {
+                                        // settings
+                                        type: 'success'
+                                    });
+                                }
+                            });
+
+                            $.notify({
+                                // options
+                                message: 'تغییرات با موفقیت ثبت شد!'
+                            }, {
+                                // settings
+                                type: 'success'
+                            });
+
+                            return false;
+                        }
+                    </script>
+
+
                 </div>
             </div>
         </div>
@@ -162,17 +224,6 @@
         </div>
     </div>
 
-    <script>
-        function my_function() {
-            $.notify({
-                // options
-                message: 'نمیشه هنوز کد این بخشو نزدیم!'
-            }, {
-                // settings
-                type: 'danger'
-            });
-        }
-    </script>
 
 
     <!--END CONTENT-->
