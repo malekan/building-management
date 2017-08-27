@@ -123,7 +123,7 @@
 
                     <form method="POST" class="post-form">{% csrf_token %}
                         {{ new_unit_form|bootstrap }}
-                        <button type="submit" class="save btn btn-default">ثبت ساختمان</button>
+                        <button type="submit" class="save btn btn-default">ثبت واحد</button>
                     </form>
                 </div>
             </div>
@@ -217,7 +217,7 @@
     <script>
 
         function deleteUnit(unit_id) {
-            var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
+            var result = confirm('آیا از حذف کردن این واحد اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
             if (result == true)
                 var url = $('#unit' + unit_id).attr('delete_url');
                 window.location.replace(url);
