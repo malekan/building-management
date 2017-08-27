@@ -5,7 +5,7 @@ from .models import Building, Unit, Facility, Profile, Cost, Bulletin
 class BuildingForm(forms.ModelForm):
     class Meta:
         model = Building
-        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic')
+        fields = ('name', 'address', 'description', 'number_of_floors', 'number_of_elevators', 'main_pic', 'balance')
 
     def __init__(self, *args, **kwargs):
         super(BuildingForm, self).__init__(*args, **kwargs)
@@ -14,6 +14,7 @@ class BuildingForm(forms.ModelForm):
         self.fields['description'].label = "توضیح"
         self.fields['number_of_floors'].label = "تعداد طبقات"
         self.fields['number_of_elevators'].label = "تعداد آسانسورها"
+        self.fields['balance'].label = "موجودی اولیه"
         self.fields['main_pic'].label = "انتخاب تصویر"
 
 
@@ -54,14 +55,15 @@ class CostForm(forms.ModelForm):
     TYPE_CHOICES = (
         ('number_of_unit', 'تعداد واحد'),
         ('number_of_people', 'تعداد نفر'),
+        ('area', 'مساحت'),
     )
     building_id = forms.IntegerField(label="", widget=forms.HiddenInput(), required=True)
-    pay_from_cash = forms.BooleanField(label="برای این هزینه قبض صادر شود؟", required=False)
+    should_be_billed = forms.BooleanField(label="برای این هزینه قبض صادر شود؟", required=False)
     bill_type = forms.CharField(label="صدور قبض براساس", widget=forms.Select(choices=TYPE_CHOICES), required=True)
 
     class Meta:
         model = Cost
-        fields = ('fee', 'description', 'building_id', 'pay_from_cash')
+        fields = ('fee', 'description', 'building_id', 'should_be_billed', 'bill_type')
 
     def __init__(self, *args, **kwargs):
         super(CostForm, self).__init__(*args, **kwargs)

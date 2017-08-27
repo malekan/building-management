@@ -5,6 +5,7 @@ from . import jdate
 import math
 
 from django.db import models
+from django.db.models import Sum
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
@@ -34,6 +35,7 @@ class Building(models.Model):
     number_of_elevators = models.IntegerField()
     # main_pic_src = models.CharField(max_length=5000, null=True, blank=True)
     main_pic = models.FileField(upload_to='building_images', default='../static/building_default.png')
+    balance = models.IntegerField(default=0)
     manager = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     end_of_subscription = models.DateTimeField(null=True)
 
@@ -61,6 +63,7 @@ class Unit(models.Model):
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, related_name='owned_units')
+    number_of_residents = models.PositiveIntegerField(validators=[MinValueValidator(1)], default=2)
     ownership_info = models.TextField(max_length=long_description_length, blank=True, null=True)
     rental_status = models.BooleanField(default=False)
     tenant = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, related_name='rented_units')
@@ -71,6 +74,15 @@ class Pictures(models.Model):
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE, null=True)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, null=True)
+
+
+class Bill(models.Model):
+    # todo: types? types should be determined
+    description = models.TextField(max_length=short_description_length)
+    fee = models.IntegerField()
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    due_date_time = models.DateTimeField()
+    is_paid = models.BooleanField(default=False)
 
 
 class Facility(models.Model):
@@ -86,15 +98,6 @@ class OneHourReserve(models.Model):
     hour_number = models.PositiveIntegerField(validators=[MaxValueValidator(23)])
     reservation_status = models.PositiveIntegerField(validators=[MaxValueValidator(2)], default=0)
     facility = models.ForeignKey(Facility, on_delete=models.CASCADE)
-
-
-class Bill(models.Model):
-    # todo: types? types should be determined
-    description = models.TextField(max_length=short_description_length)
-    fee = models.IntegerField()
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    due_date_time = models.DateTimeField()
-    is_paid = models.BooleanField(default=False)
 
 
 class FacilityReservation(models.Model):
@@ -121,6 +124,36 @@ class Cost(models.Model):
     description = models.TextField(max_length=short_description_length)
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
+
+    def bill_based_on_area(self):
+        units = self.building.unit_set.all()
+        area_sum = units.aggregate(Sum('area'))['area__sum']
+        for unit in units:
+            fee = math.floor(self.fee * unit.area / area_sum)
+            bill = Bill(description=self.description, fee=fee,
+                        due_date_time=timezone.now() + datetime.timedelta(weeks=1),
+                        unit=unit)
+            bill.save()
+
+    def bill_based_on_unit(self):
+        units = self.building.unit_set.all()
+        number_of_units = units.count()
+        for unit in units:
+            fee = math.floor(self.fee / number_of_units)
+            bill = Bill(description=self.description, fee=fee,
+                        due_date_time=timezone.now() + datetime.timedelta(weeks=1),
+                        unit=unit)
+            bill.save()
+
+    def bill_based_on_number_of_residents(self):
+        units = self.building.unit_set.all()
+        residents_sum = units.aggregate(Sum('number_of_residents'))['number_of_residents__sum']
+        for unit in units:
+            fee = math.floor(self.fee * unit.number_of_residents / residents_sum)
+            bill = Bill(description=self.description, fee=fee,
+                        due_date_time=timezone.now() + datetime.timedelta(weeks=1),
+                        unit=unit)
+            bill.save()
 
 
 class Bulletin(models.Model):
