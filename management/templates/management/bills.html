@@ -14,13 +14,13 @@
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a
-                    href="{% url 'management:home' %}">خانه</a>&nbsp;&nbsp;<i
+                    href="{% url 'management:dashboard_user' unit.id %}">داشبورد واحد&nbsp;{{ unit.unit_number }}</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="hidden"><a href="{% url 'management:home' %}">واحد ۳ - قبض‌های صادر شده</a>&nbsp;&nbsp;<i
+            <li class="hidden"><a href=""> قبض‌های صادر شده</a>&nbsp;&nbsp;<i
                     class="fa fa-angle-right"></i>&nbsp;&nbsp;
             </li>
-            <li class="active">واحد ۳ - قبض‌های صادر شده</li>
+            <li class="active"> قبض‌های صادر شده</li>
         </ol>
         <div class="clearfix">
         </div>
@@ -50,98 +50,24 @@
                                     <div class="list-group mail-box">
 
 
-
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
-                                        <a href="{% url 'management:payment_initial' %}" class="list-group-item">
-                                            <span class="fa fa-money mrm mlm"></span>
-                                            <span style="min-width: 120px; display: inline-block;"
-                                                  class="name">قبض شارژ</span><span>12,000,000 ریال</span>&nbsp;
-                                            - &nbsp;
-                                            <span class="text-muted">توضیحات قبض باید اینجا وارد شود.</span>
-                                            <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
-                                                  role="button" class="btn btn-danger btn-sm btn-block">پرداخت
-                                            </span>
-                                            <span class="pull-right mrl"></span>
-                                            <span class="text-muted  mrm mlm" style="float: left">مهلت پرداخت: ۷ روز</span>
-                                            <span class="text-muted" style="float: left">تاریخ صدور ۱۳۹۶/۶/۶</span>
-                                        </a>
+                                        {% for bill in unit_bills %}
+                                            <a href="{% url 'management:payment_initial' %}" class="list-group-item">
+                                                <span class="fa fa-money mrm mlm"></span>
+                                                <span style="min-width: 120px; display: inline-block;"
+                                                      class="name"></span><span>&nbsp;تومان{{ bill.fee }}</span>&nbsp;
+                                                - &nbsp;
+                                                <span class="text-muted">{{ bill.description }}</span>
+                                                <a href="{% url 'management:payment_initial' unit_id=unit.id bill_id=bill.id %}">
+                                                    <span style="font-size: 18px; width: 10%; display: inline-block; float: left"
+                                                          role="button" class="btn btn-danger btn-sm btn-block">پرداخت
+                                                    </span>
+                                                </a>
+                                                <span class="pull-right mrl"></span>
+                                                <span class="text-muted  mrm mlm"
+                                                      style="float: left">موعد پرداخت: &nbsp;{{ bill.due_date_time }}</span>
+                                                <span class="text-muted" style="float: left"></span>
+                                            </a>
+                                        {% endfor %}
 
 
 
@@ -149,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{% url 'management:payment_initial' %}">
+                        <a href="{% url 'management:payment_initial' unit_id=unit.id %}">
                             <button style="position: fixed;bottom:2%;left: 2%;border-radius: 50%;border: 2px solid #f5f5f5;
     color:#f5f5f5;text-align:center;background: rgb(220,103,103);box-shadow: 0 0 3px gray;
      font-size:26px;width: 100px; height: 100px; z-index: 5000">پرداخت

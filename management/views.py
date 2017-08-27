@@ -271,7 +271,7 @@ def messaging(request, building_id):
     if request.method == 'POST':
         new_message(request)
     building = get_object_or_404(Building, pk=building_id)
-    receiver =  get_object_or_404(Profile, user=request.user)
+    receiver = get_object_or_404(Profile, user=request.user)
     inbox_messages = Message.objects.filter(receiver=receiver).all()
     message_form = MessageForm()
     return render(request, 'management/messaging.html', {
@@ -295,6 +295,7 @@ def new_message(request):
 def bills(request, unit_id):
     unit = get_object_or_404(Unit, pk=unit_id)
     return render(request, 'management/bills.html', {
+        'unit': unit,
         'unit_bills': unit.bill_set.all(),
     })
 
@@ -349,7 +350,6 @@ def delete_bulletin(request, building_id, bulletin_id):
 #     })
 
 
-
 @login_required
 def manager_account(request):
     return render(request, 'management/manager_account.html')
@@ -375,7 +375,17 @@ def payment_final(request):
 @login_required
 def user_units(request):
     user_profile = get_object_or_404(Profile, user=request.user)
-    unit_list = Unit.objects.filter(owner=user_profile)
+    units_list = Unit.objects.filter(owner=user_profile).all()
     return render(request, 'management/resident_units.html', {
-        'unit_list': unit_list,
+        'units_list': units_list,
     })
+
+
+@login_required
+def user_facilities(request, unit_id):
+    return render(request, 'management/user_facilities.html')
+
+
+@login_required
+def user_facility_info(request, unit_id, facility_id):
+    return render(request, 'management/user_facility_info.html')

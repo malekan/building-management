@@ -44,4 +44,11 @@ urlpatterns = [
     url(r'^my_units/$', views.user_units, name='user_units'),
     url(r'^my_units/(?P<unit_id>[0-9]+)/dashboard', views.dashboard_user, name='dashboard_user'),
     url(r'^my_units/(?P<unit_id>[0-9]+)/bills/$', views.bills, name='bills'),
+    url(r'^my_units/(?P<unit_id>[0-9]+)/bills/(?P<bill_id>[0-9]+)/pay/$', views.payment_initial,
+        name='payment_initial'),
+    url(r'^my_units/(?P<unit_id>[0-9]+)/bills/(?P<bill_id>[0-9]+)/pay/$', views.payment_final,
+        name='payment_final'),
+    url(r'^my_units/(?P<unit_id>[0-9]+)/facilities/$', views.user_facilities, name='user_facilities'),
+    url(r'^my_units/(?P<unit_id>[0-9]+)/facilities/(?P<facility_id>[0-9]+)/facility_info/$', views.user_facility_info,
+        name='user_facility_info'),
 ]

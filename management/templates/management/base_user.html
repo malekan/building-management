@@ -93,7 +93,7 @@
             <ul id="side-menu" class="nav">
 
                 <div class="clearfix"></div>
-                <li class="active"><a href="{% url 'management:dashboard_user' %}"><i class="fa fa-tachometer fa-fw">
+                <li class="active"><a href="{% url 'management:dashboard_user' unit.id %}"><i class="fa fa-tachometer fa-fw">
                     <div class="icon-bg bg-orange"></div>
                 </i><span class="menu-title">داشبورد - واحد ۳</span></a></li>
 
@@ -103,8 +103,8 @@
                 </i><span class="menu-title ">ساختمان</span></a>
                 </li>
                         <div id="collapse1" class="sublinks collapse list-group">
-                            <a class="list-group-item small" href="">پرداخت قبوض</a>
-                            <a class="list-group-item small" href="">دریافت سوابق مالی</a>
+                            <a class="list-group-item small" href="{% url 'management:bills' unit.id %}">پرداخت قبوض</a>
+{#                            <a class="list-group-item small" href="">دریافت سوابق مالی</a>#}
                             <a class="list-group-item small" href="">رزرو امکانات ساختمان</a>
                         </div>
 
@@ -117,7 +117,7 @@
 
                 </li>
                 <div id="collapse8" class="sublinks collapse list-group">
-                    <a class="list-group-item small" href="">تابلو‌ی اعلانات</a>
+                    <a class="list-group-item small" href="">">تابلو‌ی اعلانات</a>
                     <a class="list-group-item small" href="">پیام‌های دریافتی</a>
                     <a class="list-group-item small" href="">پیام‌های ارسالی</a>
                 </div>
