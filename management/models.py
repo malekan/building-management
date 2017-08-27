@@ -1,11 +1,13 @@
 import datetime
 from django.utils import timezone
 from . import jdate
+
 import math
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
+from django.conf import settings
 
 # max lengths
 names_length = 60
@@ -55,7 +57,7 @@ class Unit(models.Model):
     number_of_storage_rooms = models.PositiveIntegerField(default=1)
     description = models.TextField(blank=True, null=True)
     options = models.CharField(max_length=short_description_length, blank=True, null=True)
-    main_pic = models.FileField(upload_to='unit_images', default='../static/unit_default.png')
+    main_pic = models.FileField(upload_to='unit_images', default='../../../static/unit_default.png')
 
     building = models.ForeignKey(Building, on_delete=models.CASCADE)
     owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, blank=True, null=True, related_name='owned_units')

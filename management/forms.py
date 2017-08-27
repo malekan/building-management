@@ -21,7 +21,7 @@ class UnitForm(forms.ModelForm):
     class Meta:
         model = Unit
         fields = ('unit_type', 'unit_number', 'story', 'area', 'number_of_bedrooms', 'number_of_parking_spaces',
-                  'number_of_storage_rooms', 'options', 'description', 'owner')
+                  'number_of_storage_rooms', 'options', 'description', 'owner', 'main_pic')
 
     def __init__(self, *args, **kwargs):
         super(UnitForm, self).__init__(*args, **kwargs)
@@ -35,6 +35,7 @@ class UnitForm(forms.ModelForm):
         self.fields['options'].label = "امکانات"
         self.fields['description'].label = "توضیح"
         self.fields['owner'].label = "مالک"
+        self.fields['main_pic'].label = "انتخاب تصویر"
 
 
 class FacilityForm(forms.ModelForm):
@@ -94,4 +95,3 @@ class BulletinForm(forms.ModelForm):
         super(BulletinForm, self).__init__(*args, **kwargs)
         self.fields['title'].label = "عنوان"
         self.fields['text'].label = "متن"
-

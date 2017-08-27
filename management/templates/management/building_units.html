@@ -123,7 +123,7 @@
 
                     <form method="POST" class="post-form">{% csrf_token %}
                         {{ new_unit_form|bootstrap }}
-                        <button type="submit" class="save btn btn-default">ثبت ساختمان</button>
+                        <button type="submit" class="save btn btn-default">ثبت واحد</button>
                     </form>
                 </div>
             </div>
@@ -146,31 +146,34 @@
                                     <div class="portlet box">
                                         <div class="portlet-header">
                                             <div class="caption">
-                                                <a href="">{{ unit }}</a>
+                                                <a href="">واحد &nbsp;{{ unit.unit_number }}</a>
                                             </div>
                                             <div class="tools">
                                                 <i data-toggle="modal"
                                                    data-target="#unit-status-modal"
                                                    class="fa fa-cog"></i>
                                                 <i class="fa fa-money" onclick="recordNewCost({{ building.pk }})"></i>
-                                                <i class="fa fa-times delete_building" id="building{{ building.pk }}"
-                                                   delete_url="{% url 'management:delete_building' building_id=building.id %}" onclick="closeClick({{ building.pk }})"></i>
+                                                <i class="fa fa-times delete_building" id="unit{{ unit.pk }}"
+                                                   delete_url="{% url 'management:delete_unit' building_id=building.id unit_id=unit.id%}" onclick="deleteUnit({{ unit.id }})"></i>
 
                                             </div>
                                         </div>
                                         <div class="portlet-body">
                                             <div>
-                                                <a href="{% url 'management:dashboard' building.id %}">
-                                                    <img src="{{ building.main_pic }}" width="100%"/>
+                                                <a href="">
+                                                    <img src="{{ unit.main_pic }}" width="100%"/>
                                                 </a>
                                                 <p>
-                                                    <a href="{% url 'management:dashboard' building.id %}">
-                                                        <strong>{{ building.name }}</strong><br/>
+                                                    <a href="">
+                                                        <strong>واحد &nbsp;{{ unit.unit_number }}</strong><br/>
                                                     </a>
                                                     <small>
-                                                        {{ building.address }}                                                    </small>
+                                                        {{ unit.unit_type }}                                                    </small>
                                                 <p>
-                                                    {{ building.description }}
+                                                مساحت:
+                                                &nbsp;
+                                                    {{ unit.area }}
+                                                متر مربع
                                                 </p>
                                             </div>
                                         </div>
@@ -213,10 +216,10 @@
 
     <script>
 
-        function closeClick(buildingID) {
-            var result = confirm('آیا از حذف کردن این ساختمان اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
+        function deleteUnit(unit_id) {
+            var result = confirm('آیا از حذف کردن این واحد اطمینان دارید\nتوجه حذف ساختمان بدون بازگشت خواهد بود!');
             if (result == true)
-                var url = $('#building' + buildingID).attr('delete_url');
+                var url = $('#unit' + unit_id).attr('delete_url');
                 window.location.replace(url);
         }
         var is_first_time = true;
