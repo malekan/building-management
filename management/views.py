@@ -174,6 +174,13 @@ def building_units(request, building_id):
     })
 
 
+@login_required
+def delete_unit(request, building_id, unit_id):
+    unit = get_object_or_404(Unit, pk=unit_id)
+    unit.delete()
+    return redirect('/buildings/' + building_id + '/units/')
+
+
 def new_cost(request):
     if request.method == 'POST':
         form = CostForm(request.POST)
@@ -186,7 +193,6 @@ def new_cost(request):
 
 @login_required
 def delete_building(request, building_id):
-    print(building_id)
     building = get_object_or_404(Building, pk=building_id)
     building.delete()
     return redirect(reverse('management:buildings'))
