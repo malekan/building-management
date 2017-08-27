@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^buildings/$', views.buildings, name='buildings'),
     url(r'^buildings/(?P<building_id>[0-9]+)/dashboard/$', views.dashboard, name='dashboard'),
     url(r'^buildings/(?P<building_id>[0-9]+)/messaging/$', views.messaging, name='messaging'),
+    ## temporary
+     url(r'^buildings/(?P<building_id>[0-9]+)/bills/$', views.bills, name='bills'),
+    ## temporary
     url(r'^buildings/(?P<building_id>[0-9]+)/messaging/sent_messages/$', views.messaging_sent, name='messaging_sent'),
     url(r'^buildings/(?P<building_id>[0-9]+)/bulletin_board/$', views.bulletin_board, name='bulletin_board'),
     url(r'^buildings/(?P<building_id>[0-9]+)/bulletin_board/(?P<bulletin_id>[0-9]+)/delete/$',

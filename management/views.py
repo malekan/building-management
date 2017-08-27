@@ -252,6 +252,14 @@ def messaging(request, building_id):
 
 
 @login_required
+def bills(request, building_id):
+    building = get_object_or_404(Building, pk=building_id)
+    return render(request, 'management/bills.html', {
+        'building': building,
+    })
+
+
+@login_required
 def messaging_sent(request, building_id):
     building = get_object_or_404(Building, pk=building_id)
     return render(request, 'management/messaging_sent.html', {
