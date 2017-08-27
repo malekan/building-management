@@ -146,7 +146,7 @@
                                     <div class="portlet box">
                                         <div class="portlet-header">
                                             <div class="caption">
-                                                <a href="">واحد &nbsp;{{ unit.unit_number }}</a>
+                                                <a href="{% url 'management:dashboard_user' unit_id=unit.id %}">واحد &nbsp;{{ unit.unit_number }}</a>
                                             </div>
                                             <div class="tools">
                                                 <i data-toggle="modal"
@@ -160,7 +160,7 @@
                                         </div>
                                         <div class="portlet-body">
                                             <div>
-                                                <a href="">
+                                                <a href="{% url 'management:dashboard_user' unit_id=unit.id %}">
                                                     <img src="{{ unit.main_pic }}" width="100%"/>
                                                 </a>
                                                 <p>
